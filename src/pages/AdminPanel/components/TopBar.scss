@@ -1,0 +1,41 @@
+.admin-layout .admin-main .admin-topbar {
+    height: auto;
+    background-color: #fff;
+    border-bottom: 1px solid #dee2e6;
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+
+    .dep-wrap {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: auto;
+    align-items: center;
+    margin-bottom: 0px;
+
+    .depurture-button {
+    width: max-content;
+    padding: 15px 24px;
+    background: #FF543E;
+    border-radius: 10px;
+    text-align: center;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 600;
+    cursor: pointer;
+    line-height: 100%;
+}
+
+.user-button {
+    background: #152B52;
+    color: #fff;
+    border-radius: 5px;
+    height: 42px;
+    width: 42px;
+    border: none;
+}
+}
+}

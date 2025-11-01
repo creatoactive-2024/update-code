@@ -1,0 +1,118 @@
+.services-section {
+  background: #fff;
+
+  .service-card {
+    display: flex;
+    overflow: hidden;
+    height: 158px;
+    .service-card-info{
+        background: $dark-gray;
+        border-radius: 5px;
+        position: relative;
+        padding: 30px;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        gap: 0px 22px;
+        &::before,&::after{
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: $white;
+            right:-9px;
+            z-index: 1;
+        }
+         &::before{
+            top: -9px;
+         }
+         &::after{
+            bottom: -9px;
+         }
+
+        .icon {
+            width: 62px;
+            height: 62px;
+            border-radius: 10px;
+            background: $secondary;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        h5 {
+        font-weight: 600;
+        font-size: 16px;
+        color: $primary;
+        line-height: 120%;
+        }
+
+        p {
+        font-size: 12px;
+        font-weight: 300;
+        color: $primary;
+        line-height: 120%;
+        margin: 0;
+        }
+    }
+    .learn-more-btn {
+      position: relative;
+      background: $secondary;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      font-weight: 500;
+      line-height: 120%;
+      padding: 10px 16px;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      letter-spacing: 0%;
+      transition: all 0.3s ease;
+      font-size: 18px;
+
+      &:hover {
+        background: $primary;
+      }
+    }
+
+    // &:hover {
+    //   transform: translateY(-4px);
+    //   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    // }
+  }
+
+  /* Desktop grid */
+  .desktop-view {
+    display: flex;
+  }
+
+  /* Mobile slider */
+  .mobile-slider {
+    display: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 15px;
+    padding: 10px;
+
+    .service-card {
+      flex: 0 0 100%;
+      scroll-snap-align: center;
+      margin-right: 0px;
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .desktop-view {
+      display: none;
+    }
+    .mobile-slider {
+      display: flex;
+    }
+  }
+}

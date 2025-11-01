@@ -1,0 +1,68 @@
+.calender-wrap {
+    margin: 30px 0 0;
+
+    .calendar-input-form {
+        max-width: 100%;
+        margin: 0 0 15px;
+
+    .react-datepicker-wrapper{
+        display: flex;
+    }
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+
+.calendar-wrapper {
+    position: relative;
+
+
+
+ .input-field
+ {
+        width: 100%;
+    padding: 3px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    height: 36px;
+}
+    .calendar-icon {
+      position: absolute;
+      right: 15px;
+      top: 44%;
+      transform: translateY(-50%);
+      color: #333;
+      cursor: pointer;
+      font-size: 18px;
+    }
+  }
+}
+}
+
+
+/* Customize react-datepicker popup */
+.custom-datepicker {
+  font-family: Arial, sans-serif;
+
+  .react-datepicker__header {
+    background-color: #007bff;
+    color: white;
+  }
+
+  .react-datepicker__current-month {
+    font-weight: bold;
+  }
+
+  .react-datepicker__day--selected,
+  .react-datepicker__day--keyboard-selected {
+    background-color: #007bff;
+    color: white;
+  }
+
+  .react-datepicker__day:hover {
+    background-color: #0056b3;
+    color: white;
+  }
+}

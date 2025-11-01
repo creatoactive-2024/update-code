@@ -1,0 +1,139 @@
+ 
+ .form-inner-headings {
+    padding: 0 40px;
+}
+.calendar-wrapper {
+    position: relative;
+    width: 100%;
+}
+.new-booking-wrap{
+    padding: 0 55px;
+    width: 100%;
+    min-height: 400px;
+h3{
+    font-size: 24px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 100%;
+}
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    max-width: 80%;
+    margin: 0;
+    padding: 35px 40px;
+    background: transparent;
+    box-shadow: none;
+    .for-logout{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-transform: uppercase;
+    text-decoration: underline;
+    }
+
+   
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    .add-vechicle {
+    background: #152B52;
+    border-radius: 10px;
+    height: 54px;
+    font-size: 16px;
+    font-weight: 600;
+}
+    label {
+        font-weight: 400;
+        margin-bottom: 8px;
+        font-size: 18px;
+    }
+
+    input {
+        padding: 0.6rem;
+        border: 1px solid #152B52;
+        font-size: 1rem;
+        background: #F6F6F6;
+        border-radius: 10px;
+        height: 54px;
+
+      &:focus {
+        border-color: #0077ff;
+        outline: none;
+      }
+    }
+  }
+
+.checks-wrap {
+    display: flex;
+    gap: 25px;
+
+  .checkbox-container {
+  display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-top: 0px;
+
+  .custom-checkbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+
+    input {
+      display: none; 
+    }
+
+    .checkmark {
+      width: 20px;
+      height: 20px;
+      background-color: white;
+      border: 2px solid #152b52;
+      border-radius: 4px;
+      margin-right: 8px;
+      position: relative;
+      transition: background-color 0.3s, border-color 0.3s;
+
+      &::after {
+        content: "";
+        position: absolute;
+        display: none;
+        left: 6px;
+        top: 2px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+      }
+    }
+
+    input:checked + .checkmark {
+                  background-color: #152b52;
+            border-color: #152b52;
+
+      &::after {
+        display: block;
+      }
+    }
+  }
+}
+}
+  // Make the submit button span both columns
+  .submit-btn {
+    background: #152B52;
+    border-radius: 10px;
+    color: #ffffff;
+    height: 54px;
+    font-size: 16px;
+    font-weight: 600;
+
+    &:hover {
+      background-color: #ffffff;
+      color: #152B52;
+    }
+  }
+}

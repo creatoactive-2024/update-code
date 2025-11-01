@@ -1,0 +1,121 @@
+
+.sign-in{
+    padding: 36px 0px 57px;
+    background: $white;
+    .close-btn{
+        width: 48px;
+        img{
+            width: 48px;
+            right: 0;
+        }
+    }
+}
+  .signin-card {
+    width: 100%;
+    position: relative;
+    animation: fadeInUp 0.6s ease;
+
+    .logo img {
+      height: 100%;
+      object-fit: contain;
+    }
+    h5{
+        font-weight: 700;
+        font-size: 40px;
+        line-height: 100%;
+        margin-bottom: 54px;
+        color: $primary;
+    }
+
+    .text-accent {
+      color: $secondary;
+    }
+    .form-group-mb{
+        margin-bottom: 24px;
+    }
+    .form-label {
+      font-size: 18px;
+      font-weight: 400;
+      color: $muted;
+      margin-bottom: 8px;
+    }
+
+    input.form-control {
+      border-radius: 10px;
+      border: 1px solid $primary;
+      background: #F6F6F6;
+      padding: 16px 12px;
+      font-size: 14px;
+      transition: all 0.2s;
+
+      &:focus {
+        border-color: $primary;
+        box-shadow: 0 0 0 0.2rem rgba(11, 46, 103, 0.15);
+      }
+    }
+
+    .forgot-link {
+        margin-bottom: 36px;
+     a{
+         color: $primary;
+      font-size: 18px;
+      text-decoration: underline;
+      font-weight: 600;
+      line-height: 0;
+
+     }
+
+    }
+
+    .signin-btn {
+      background-color: $primary;
+      border: none;
+      border-radius: 10px;
+      padding: 9px 12px;
+      font-weight: 600;
+      transition: background 0.3s;
+      font-size: 24px;
+
+      &:hover {
+        background-color: $secondary;
+      }
+    }
+
+    .accent-link {
+      color: $secondary;
+      font-weight: 500;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    .sign-in-text{
+        margin-top: 36px;
+        p{
+            font-size: 18px;
+            color: $muted;
+            font-weight: 600;
+            a{
+                color: $primary;
+                text-decoration: underline;
+
+            }
+        }
+        hr{
+            border: 0.5px solid $primary;
+            margin: 18px 0px 13px;
+        }
+    }
+  }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

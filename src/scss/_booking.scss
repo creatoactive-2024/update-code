@@ -1,0 +1,283 @@
+.my-bookings{
+    .booking-dashboard {
+  .stat-box {
+    border-radius: 10px;
+    padding: 16px 25px 16px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .stat-info{
+        h5 {
+            font-size: 16px;
+            color: $white;
+            font-weight: 300;
+            line-height: 100%;
+            margin-bottom: 12px;
+        }
+
+        p {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 100%;
+        }
+
+    }
+    .state-icon{
+        width: 48px;
+        height: 48px;
+        border-radius: 10px;
+        background: $white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &.total { background: $primary;  color: #fff; }
+    &.upcoming { background: rgba(230, 133, 49, 1); color: #fff; }
+    &.completed { background: rgba(0, 195, 29, 1); color: #fff; }
+    &.cancelled { background: rgba(194, 0, 3, 1); color: #fff; }
+  }
+  .search-tab-bar{
+    gap:24px;
+    margin: 36px 0;
+  }
+  .search-bar {
+    max-width: 100%;
+    width: 100%;
+    position: relative;
+    gap: 24px;
+    
+    .search-box {
+      width: 100%;
+      border: 1px solid $primary;
+      border-radius: 10px;
+      padding: 13px 22px;
+      padding-left: 64px;
+      position: relative;
+      font-size: 16px;
+      color: $primary;
+      font-weight: 300;
+      
+    }
+    .btn-search {
+      position: absolute;
+      left: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      z-index: 1;
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  .tab-group{
+    display: flex;
+    gap: 16px;
+    height: 100%;
+        button.btn-primary{
+            border-radius: 10px;
+            padding: 10px 10px;
+            font-size: 16px;
+            font-weight: 600;
+            color: $primary;
+            height: 100%;
+            &.btn-outline-primary { border: 1px solid $primary;  padding: 10px 24px;background: transparent;}
+            &.btn-outline-success { border: 1px solid rgba(230, 133, 49, 1); background: transparent; }
+            &.btn-outline-info { border: 1px solid rgba(0, 195, 29, 1); background: transparent; }
+            &.btn-outline-danger { border: 1px solid rgba(194, 0, 3, 1);  background: transparent;}
+            &.btn-outline-primary.active { background: $primary; color: #fff;}
+            &.btn-outline-success.active { background: rgba(230, 133, 49, 1); color: #fff; }
+            &.btn-outline-info.active { background: rgba(0, 195, 29, 1); color: #fff; }
+            &.btn-outline-danger.active { background: rgba(194, 0, 3, 1); color: #fff; }
+        }
+        
+    }
+
+  .booking-card {
+    background: #F6F6F6;
+    border-radius: 10px;
+    border: 1px solid rgba(21, 43, 82, 0.35);
+    padding: 25px;
+    margin-bottom: 24px;
+    
+    .cart-title-status{
+        display: flex;
+        align-items: self-start;
+        gap: 16px;
+        h5{
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 120%;
+            color: $primary;
+        }
+        p{
+            font-size: 16px;
+            font-weight: 300;
+            color: #000;
+        }
+    }
+
+    .sub-box{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        p{
+            font-size: 16px;
+            font-weight: 400;
+            color: $primary;
+            line-height: 140%;
+        }
+        h6{
+            font-size: 16px;
+            font-weight: 600;
+            color: $primary;
+            line-height: 140%;
+        }
+        h3{
+            font-size: 36px;
+            font-weight: 600;
+            color: $primary;
+            line-height: 140%;
+        }
+    }
+
+    .badge {
+      text-transform: capitalize;
+      padding: 5px 6px;
+      font-size: 10px;
+      border-radius: 10px;
+      font-weight: 300;
+      line-height: 100%;
+      margin-top: 8px;
+    }
+    
+    .status-upcoming { background-color: #E68531; color: #fff; }
+    .status-completed { background-color: #00C31D; color: #fff; }
+    .status-cancelled { background-color: #C20003; color: #fff; }
+
+    .addons-section {
+        display: flex;
+        gap: 12px;
+        margin-top: 16px;
+     span{
+        border: 1px solid $muted;
+        color: $muted;
+        border-radius: 25px;
+        padding: 5px 8px;
+        font-size: 10px;
+        font-weight: 300;
+     }
+    }
+    .action-buttons-group{
+      gap: 16px;
+      button{
+        border-radius: 10px;
+        border: 1px solid $primary;
+        font-size: 16px;
+        font-weight: 600;
+        color: $primary;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 14px;
+        background: none;
+      }
+    }
+    
+  }
+  
+}
+
+
+
+}
+
+.profile-wrapper{
+      display: flex;
+      position: relative;
+      z-index: 2;
+      gap: 45px;
+      align-items: center;
+      .profile-img{
+        width: 240px;
+        height: 240px;
+        border-radius: 50%;
+        overflow: hidden;
+        img{
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+      .profile-info{
+        margin-top: 16px;
+        text-align: left;
+        h2{
+          font-size: 48px;
+          font-weight: 600;
+          line-height: 100%;
+          color: $white;
+          margin-bottom: 12px;
+        }
+        a{
+          font-size: 36px;
+          font-weight: 300;
+          line-height: 100%;
+          color: $white;
+        }
+        span{
+          background: rgba(217, 217, 217, 0.65);
+          font-size: 24px;
+          font-weight: 300;
+          line-height: 100%;
+          border-radius: 10px;
+          color: $white;
+          padding: 6px 25px;
+          display: block;
+          margin-top: 16px;
+          width: max-content;
+        }
+      }
+      
+}
+
+.profile-btn{
+        display: flex;
+        position: relative;
+        z-index: 2;
+        gap: 24px;
+        margin-top: 36px;
+        margin-bottom: 24px;
+        span{
+          border: 1px solid rgba(255, 255, 255, 1);
+          border-radius: 10px;
+          padding: 7px 14px;
+          font-size: 24px;
+          font-weight: 300;
+          color: $white;
+          display: block;
+          width: max-content;
+          line-height: 100%;
+        }
+        button{
+          border-radius: 10px;
+          padding: 7px 14px;
+          font-size: 24px;
+          font-weight: 300;
+          color: $white;
+          background: rgba(0, 195, 29, 1);
+          border: none;
+          width: max-content;
+          line-height: 100%;
+          transition: all 0.3s ease;
+          &:hover{
+            background: $primary;
+          }
+        }
+      }

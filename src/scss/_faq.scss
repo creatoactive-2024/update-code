@@ -1,0 +1,83 @@
+.faq-section {
+
+  
+  .faq-accordion {
+    .accordion-item {
+      border: none;
+      margin-bottom: 24px;
+      border-radius: 10px;
+      background: $secondary;
+      overflow: hidden;
+      @media (max-width: 768px) {
+                margin-bottom: 11px;
+            }
+      
+
+      .accordion-header {
+        button {
+          background: transparent;
+          border-radius: 10px;
+          font-weight: 600;
+          font-size: 18px;
+          color: $primary;
+          box-shadow: none;
+          padding: 16px 36px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          position: relative;
+          @media (max-width: 768px) {
+            font-size: 14px;
+            padding: 11px 24px;
+          }
+
+          &.collapsed {
+            box-shadow: none;
+            background: #D9D9D9;
+            color: #000;
+            font-weight: 400;
+          }
+          &::after {
+            content: "";
+            position: absolute;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%) rotate(0deg);
+            width: 0;
+            height: 0;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-left: 16px solid $muted;
+            transition: transform 0.3s ease;
+            @media (max-width: 768px) {
+                border-top: 6px solid transparent;
+                border-bottom: 6px solid transparent;
+                border-left: 12px solid $muted;
+            }
+        }
+
+        &:not(.collapsed)::after {
+            transform: translateY(-50%) rotate(90deg);
+            border-left: 16px solid $primary;
+            @media (max-width: 768px) {
+                border-left: 12px solid $primary;
+            }
+        }
+        }
+      }
+
+      .accordion-body {
+        padding: 6px 36px 24px;
+        color: $primary;
+        font-size: 16px;
+        line-height: 120%;
+        text-align: left;
+        font-weight: 500;
+        @media (max-width: 768px) {
+             font-size: 12px;
+             padding: 6px 36px 16px;
+        }
+      }
+    }
+  }
+}

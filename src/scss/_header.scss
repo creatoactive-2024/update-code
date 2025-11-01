@@ -1,0 +1,108 @@
+.site-header{
+    .navbar{
+        padding: 13px 0;
+            .brand-logo {
+                padding: 0px;
+                margin: 0;
+                img {
+                width: 214px;
+                }
+            }
+            .menu-bar{
+                .nav-link {
+                    font-weight: 400;
+                    font-size: 18px;
+                    color: $primary;
+                    line-height: 100%;
+                    padding: 0px 25px;
+                    &:hover {
+                        // color: $primary-color;
+                    }
+                }
+            }
+    }
+    .user-dropdown {
+  position: relative;
+
+  .dropdown-toggle-custom {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-align: left;
+
+    .avatar {
+      width: 36px;
+      height: 36px;
+      background-color: $primary;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 400;
+      font-size: 15px;
+      border-radius: 5px;
+      text-transform: uppercase;
+    }
+
+    .user-name {
+      font-size: 18px;
+      font-weight: 600;
+      color: $primary;
+      margin-bottom: -5px;
+      line-height: 100%;
+    }
+
+    .user-email {
+      font-size: 12px;
+      color: #6c757d;
+      margin: 0;
+      line-height: 100%;
+    }
+
+    .user-role {
+      font-weight: 300;
+      font-size: 14px;
+      color: #999;
+      line-height: 100%;
+    }
+  }
+  hr{
+        margin:6px 0px;
+      }
+  .dropdown-menu-custom {
+    border: none;
+    border-radius: 10px;
+    min-width: 144px;
+    background: #fff;
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 3px 23px;
+      font-size: 12px;
+      color: $primary;
+      transition: background 0.3s ease;
+    &:hover{
+        background: #fff;
+    }
+      
+
+      &.signout {
+        color: #e74c3c;
+      }
+    }
+  }
+}
+
+}

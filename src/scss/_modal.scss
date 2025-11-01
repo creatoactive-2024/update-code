@@ -1,0 +1,65 @@
+.cancel-booking-wrapper {
+  .cancel-btn {
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 8px;
+  }
+}
+.modal-dialog{
+    max-width: 673px;
+    
+}
+.cancel-modal {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+
+  .modal-body {
+    background: $white;
+    border-radius: 10px;
+    padding: 24px;
+    
+  }
+
+  .title {
+    font-weight: 600;
+    font-size: 24px;
+    color: #000;
+    margin-bottom: 24px;
+    line-height: 120%;
+  }
+
+  .message {
+    font-size: 24px;
+    font-weight: 300;
+    color: #000;
+    line-height: 120%;
+    margin-bottom: 36px;
+  }
+
+  .action-btns {
+    display: flex;
+    justify-content: end;
+    gap: 24px;
+
+    button {
+      font-size: 24px;
+      font-weight: 600;
+      border: none;
+      padding: 14px 18px;
+      border-radius: 10px;
+      line-height: 100%;
+      transition: all 0.2s ease;
+
+      &.keep-booking {
+        background-color: $primary;
+        color: #fff;
+      }
+
+      &.cancel-booking {
+        background-color: rgba(194, 0, 3, 1);
+        color: #fff;
+      }
+    }
+  }
+}

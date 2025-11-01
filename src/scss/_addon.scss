@@ -1,0 +1,180 @@
+.addon-service{
+    .heading-wrapper{
+        p{
+            font-size: 24px;
+            font-weight: 300;
+            line-height: 140%;
+            color: $primary;
+        }
+    }
+    
+  .service-card {
+    border: 1px solid rgba(21, 43, 82, 0.35);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    background: #F6F6F6;
+    .card-body{
+        padding: 24px;
+    }
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    h5 {
+      font-weight: 600;
+      font-size: 24px;
+      color: $primary;
+      line-height: 120%;
+      margin-bottom: 2px;
+    }
+
+    p {
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 140%;
+      color: #000;
+    }
+
+    h6{
+       font-size: 16px;
+        font-weight: 600;
+      color: $primary;
+      margin-top: 12px;
+    }
+
+    .service-icon {
+      
+    }
+
+    .add-btn {
+      background: $primary;
+      border: none;
+      border-radius: 10px;
+      line-height: 100%;
+      padding: 19px 25px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 16px;
+      transition: 0.3s ease;
+
+      &:hover {
+        background: $secondary;
+      }
+
+      &.active {
+        background: $secondary;
+      }
+    }
+  }
+
+  .order-summary {
+    border: 1px solid rgba(21, 43, 82, 0.35);
+    border-radius: 10px 10px 0px 10px;
+    background: rgba(246, 246, 246, 1);
+    line-height: 120%;
+
+    h5 {
+      font-weight: 600;
+      font-size: 24px;
+      text-align: center;
+      color: $primary;
+      margin-bottom: 24px;
+    }
+
+    h3{
+      font-weight: 400;
+      font-size: 16px;
+      color: #000;
+      margin-top: 24px;
+    }
+    hr{
+      margin: 24px 0;
+      border-top: 0.5px solid $primary;
+    }
+
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 16px;
+      font-weight: 600;
+      color: $primary;
+      line-height: 120%;
+      p{
+        
+      }
+    }
+    .summary-item-sub{
+       display: flex;
+      justify-content: space-between;
+      font-size: 16px;
+      font-weight: 400;
+      color: #000;
+      line-height: 120%;
+      margin-bottom: 8px;
+      span{
+        color: $primary;
+
+      }
+    }
+
+    .summary-total {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+      font-size: 16px;
+      margin-top: 8px;
+      color: #000;
+      margin-bottom: 8px;
+      p{
+        font-size: 16px;
+      }
+    }
+
+    .empty-box {
+      text-align: center;
+      color: $muted;
+      font-size: 14px;
+      padding: 15px;
+    }
+
+    .book-btn {
+      background: $primary;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      padding: 18px 0;
+      font-size: 16px;
+      line-height: 100%;
+
+      &:hover {
+        background: $secondary;
+      }
+    }
+  }
+  .amenities-wrapp{
+    margin-bottom: 7px;
+    margin-top: 60px;
+  }
+  .amenities-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 12px;
+    h4{
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 120%;
+      color: $primary;
+      width: 75%;
+      
+    }
+  }
+
+}

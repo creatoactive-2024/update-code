@@ -1,0 +1,30 @@
+.ap-sidebar { width: 240px; background:#0b1724; color:#fff; padding:1rem; min-height:100vh; }
+.ap-brand { font-weight:700; margin-bottom:1rem; text-align:center; }
+.ap-nav { display:flex; flex-direction:column; gap:.5rem; }
+.ap-nav a { color:#fff; padding:.5rem .75rem; text-decoration:none; border-radius:6px; }
+.ap-nav a.active, .ap-nav a:hover { background: rgba(255,255,255,0.06); }
+
+.logo-wrap {
+    width: fit-content;
+    height: auto;
+    border-bottom: solid 1px #fff;
+    padding: 25px;
+}
+
+.logo-wrap img{
+    width: 100%;
+    height: auto;
+}
+
+.nav-link-wrap {
+    padding: 35px 30px;
+    gap: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-link {
+    color: #ffffff;
+    display: flex;
+    gap: 10px;
+}

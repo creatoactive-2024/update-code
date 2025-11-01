@@ -1,0 +1,116 @@
+.registration{
+    
+    .mandatory-warn {
+        font-weight: 400;
+        font-size: 24px;
+        font-style: italic;
+        margin-bottom: 24px;
+        color: #000;
+        display: block;
+    }
+    
+    &-form{
+        background: $body-bg;
+        border: 1px solid #FFFFFF12;
+        border-radius: 10px;
+        padding: 24px 36px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        backdrop-filter: blur(8.399999618530273px);
+        box-shadow: 0px 4px 4px 0px #00000033;
+        margin-bottom: 36px;
+        .row {
+            gap: 24px 0;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .section-title{
+                font-size: 36px;
+                font-weight: 700;
+                color: $primary;
+                margin-top: 24px;
+                margin-bottom: 0;
+        }
+        .notificatin-text{
+            .mb-32{
+                margin-bottom: 32px;
+            }
+            p{
+            font-weight: 500;
+            font-size: 18px;
+            color: $muted;
+            a{
+                color: $primary;
+                text-decoration: underline;
+                font-weight: 700;
+            }
+            }
+            h6{
+                color: $primary;
+                font-weight: 700;
+                font-size: 18px;
+                margin-top: 16px;
+                margin-bottom: 8px;
+            }
+            span{
+                font-weight: 400;
+                font-size: 14px;
+                font-style: italic;
+                color: $muted;
+            }
+            .registration-btns{
+                .primary-btn,.tritory-btn{
+                    margin-top: 36px;
+                    margin-bottom: 16px;
+                    font-size: 24px;
+                    padding: 9px 19px;
+                }
+            }
+        }
+        
+        hr{
+            border: 1px solid #FFFFFF;
+            width: 100%;
+            margin:12px 0px;
+            }
+    }
+    &-btns{
+        .primary-btn{
+            background: $primary;
+            font-weight: 600;
+            font-size: 16px;
+            color: $white;
+            padding: 15px 19px;
+            max-width: 328px;
+            width: 100%;
+            border-radius: 10px;
+            border: none;
+        }
+        .secondary-btn{
+            padding: 15px 8px;
+            background: transparent;
+            font-weight: 300;
+            font-size: 16px;
+            text-decoration: underline;
+            color: $primary;
+            border: none;
+            border-radius: 0;
+        }
+        .tritory-btn{
+            background: transparent;
+            border: 1px solid rgba(21, 43, 82, 0.5);
+            border-radius: 10px;
+            padding: 15px 19px;
+            font-weight: 600;
+            font-size: 16px;
+            color: rgba(90, 89, 87, 0.35);
+            max-width: 328px;
+            width: 100%;
+        }
+    }
+   
+}

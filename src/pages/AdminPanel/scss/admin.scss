@@ -1,0 +1,47 @@
+// @import '@/scss/_variables';
+
+.admin-layout {
+  height: 100vh;
+
+  .admin-sidebar {
+    width: 276px;
+    background-color: #152B52;
+    border-right: 1px solid #dee2e6;
+
+    .nav-link{color: #ffffff; display: flex;}
+  }
+
+  .admin-main {
+    display: flex;
+    flex-direction: column;
+
+    .admin-topbar {
+    height: 60px;
+    background-color: #f1f3f6;
+    border-bottom: none;
+    display: flex;
+    align-items: center;
+    padding: 50px 20px;
+    box-shadow: none !important;
+    z-index: 1000;
+
+      .admin-topbar {
+    height: 60px;
+    background-color: #f1f3f6;
+    border-bottom: none;
+    display: flex
+;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: none !important;
+    z-index: 1000;
+}
+    }
+
+    .admin-content {
+      background-color: #f1f3f6;
+      flex-grow: 1;
+      overflow-y: auto;
+    }
+  }
+}
