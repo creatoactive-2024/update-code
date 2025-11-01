@@ -69,7 +69,7 @@ const Pricing: React.FC = () => {
     return pricing.fixedRate ? baseTotal + pricing.fixedRate : baseTotal;
   };
 
-  const valetPrice = calcPrice("Valet");
+  const valetPrice = calcPrice("valet parking service");
   const driveNDropPrice = calcPrice("Drive N drop");
 
   return (

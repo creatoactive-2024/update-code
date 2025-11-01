@@ -420,7 +420,7 @@ const AddonServices: React.FC = () => {
   <span>
     $
     {bookingDetails?.selectedService?.toLowerCase().includes("valet")
-      ? (basePrice - 10).toFixed(2)
+      ? (basePrice - 30).toFixed(2)
       : basePrice.toFixed(2)}
   </span>
 </div>
@@ -429,7 +429,7 @@ const AddonServices: React.FC = () => {
 {bookingDetails?.selectedService?.toLowerCase().includes("valet") && (
   <div className="summary-item" style={{ marginTop: "4px" }}>
     <p style={{ color: "gray" }}>Fixed valet charge</p>
-    <span style={{ color: "gray" }}>$10.00</span>
+    <span style={{ color: "gray" }}>$30.00</span>
   </div>
 )}
 
