@@ -280,14 +280,19 @@ const handleBookNow = async () => {
                 {/* Main service */}
                 <div className="summary-item">
                   <p>{bookingData?.selectedService || "Selected Service"}</p>
-                  <span>${adjustedBasePrice.toFixed(2)}</span>
+                  <span>
+                    $
+    {bookingData?.selectedService?.toLowerCase().includes("valet")
+      ? (basePrice - 30).toFixed(2)
+      : basePrice.toFixed(2)}
+                  </span>
                 </div>
 
                 {/* Fixed valet charge */}
                 {isValet && (
                   <div className="summary-item" style={{ marginTop: "4px" }}>
                     <p style={{ color: "gray" }}>Fixed valet charge</p>
-                    <span style={{ color: "gray" }}>$10.00</span>
+                    <span style={{ color: "gray" }}>$30.00</span>
                   </div>
                 )}
 

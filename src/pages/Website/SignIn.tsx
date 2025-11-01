@@ -97,6 +97,8 @@ import { Form, Button, Container, Row, Col, Alert, Spinner } from "react-bootstr
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../img/logo.png";
 import close from "../../img/close.svg";
+import baseURL from "../utils/baseURL"
+
 
 const SignIn: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -131,7 +133,7 @@ const SignIn: React.FC = () => {
 
     try {
       setLoading(true);
-      const response = await fetch("http://145.79.1.236:5009/api/users/login", {
+      const response = await fetch(`${baseURL}/api/users/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),

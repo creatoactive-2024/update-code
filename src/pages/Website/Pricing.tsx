@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import parkingImg from "../../../src/img/parking.jpg";
+import baseURL from "../utils/baseURL"
+
 
 interface PricingData {
   airportName: string;
@@ -42,7 +44,7 @@ const Pricing: React.FC = () => {
   useEffect(() => {
     const fetchPricing = async () => {
       try {
-        const res = await fetch("http://145.79.1.236:5009/api/users/getprice");
+        const res = await fetch(`${baseURL}/api/users/getprice`);
         const data = await res.json();
         setPricingData(data);
       } catch (error) {
@@ -116,7 +118,7 @@ const Pricing: React.FC = () => {
   to="/addonservices"
   state={{
     ...bookingData,
-    selectedService: "Valet",
+    selectedService: "Valet Parking Service",
     totalPrice: valetPrice,
     days,
   }}
