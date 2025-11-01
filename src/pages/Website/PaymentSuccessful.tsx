@@ -164,7 +164,7 @@ const PaymentSuccessful: React.FC = () => {
 
   useEffect(() => {
     if (bookingId) {
-      fetch(`${baseURL}/api/users/${bookingId}`)
+      fetch(`${baseURL}/api/users/booking/${bookingId}`)
         .then((res) => res.json())
         .then((data) => setBooking(data))
         .catch((err) => console.error("Error fetching booking:", err));
@@ -222,7 +222,14 @@ const PaymentSuccessful: React.FC = () => {
                     <div className="success-left">
                       <div className="section-a">
                         <h3>Customer Information</h3>
-                        <p>Name: {booking.user?.name || "N/A"}</p>
+                        <p>
+  Name:{" "}
+  {booking.user
+    ? `${booking.user?.firstName || ""} ${booking.user.lastName || ""}`.trim() ||
+      "N/A"
+    : "N/A"}
+</p>
+
                         <p>Email: {booking.user?.email || "N/A"}</p>
                         <p>Phone: {booking.user?.phone || "N/A"}</p>
                       </div>

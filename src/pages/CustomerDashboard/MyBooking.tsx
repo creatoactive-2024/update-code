@@ -373,14 +373,22 @@ const userId = storedUser?.id || storedUser?.user?.id;
           userId,
         });
 
-        if (res.data.bookings) {
-          // Sort latest first
-          const sorted = res.data.bookings.sort(
-            (a: Booking, b: Booking) =>
-              new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-          );
-          setBookings(sorted);
-        }
+       if (res.data.bookings) {
+  // ✅ Filter only confirmed & paid bookings
+  const confirmedBookings = res.data.bookings.filter(
+    (b: any) =>
+      b.paymentStatus === "paid" && b.bookingStatus === "confirmed"
+  );
+
+  // ✅ Sort latest first
+  const sorted = confirmedBookings.sort(
+    (a: Booking, b: Booking) =>
+      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  );
+
+  setBookings(sorted);
+}
+
       } catch (err) {
         console.error("Error fetching bookings:", err);
       }
@@ -408,14 +416,26 @@ const userId = storedUser?.id || storedUser?.user?.id;
                 <div className="profile-img">
                   <img src={profile} alt="Profile" />
                 </div>
-                <div className="profile-info">
-                  <h2>John Doe</h2>
-                  <a href="mailto:johndoe@gmail.com">johndoe@gmail.com</a>
-                  <span>Customer</span>
-                </div>
+               <div className="profile-info">
+  {(() => {
+    const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
+    const firstName = storedUser?.firstName || storedUser?.user?.firstName || "Guest";
+    const lastName = storedUser?.lastName || storedUser?.user?.lastName || "";
+    const email = storedUser?.email || storedUser?.user?.email || "N/A";
+    const role = storedUser?.role || storedUser?.user?.role || "customer";
+
+    return (
+      <>
+        <h2>{`${firstName} ${lastName}`}</h2>
+        <a href={`mailto:${email}`}>{email}</a>
+        <span>{role.charAt(0).toUpperCase() + role.slice(1)}</span>
+      </>
+    );
+  })()}
+</div>
+
               </div>
               <div className="profile-btn">
-                <span>Member Since 2024</span>
                 <Button className="btn btn-primary">Active Account</Button>
               </div>
             </Col>
@@ -511,13 +531,21 @@ const userId = storedUser?.id || storedUser?.user?.id;
 
                       <Row>
                         <Col md={4}>
-                          <div className="sub-box">
-                            <p>Date & Time:</p>
-                            <h6>
-                              {new Date(b.dropOffDateTime).toLocaleString()}
-                            </h6>
-                          </div>
-                        </Col>
+  <div className="sub-box">
+    <p>Drop-off:</p>
+    <h6>{new Date(b.dropOffDateTime).toLocaleString([], { 
+      dateStyle: "medium", 
+      timeStyle: "short" 
+    })}</h6>
+
+    <p className="mt-2">Pick-up:</p>
+    <h6>{new Date(b.pickUpDateTime).toLocaleString([], { 
+      dateStyle: "medium", 
+      timeStyle: "short" 
+    })}</h6>
+  </div>
+</Col>
+
                         <Col md={4}>
                           <div className="sub-box">
                             <p>Vehicle:</p>
@@ -551,24 +579,25 @@ const userId = storedUser?.id || storedUser?.user?.id;
                     </Col>
 
                     <Col md={2} className="text-md-end mt-3 mt-md-0">
-                      <div className="d-flex flex-column action-buttons-group">
-                        <Button className="btn action-btn">
-                          <img src={view} alt="view" /> View
-                        </Button>
+  <div className="d-flex flex-column action-buttons-group">
+    <Button className="btn action-btn" disabled>
+      <img src={view} alt="view" /> View
+    </Button>
 
-                        <Button className="btn action-btn">
-                          <img src={edit} alt="edit" /> Edit
-                        </Button>
+    <Button className="btn action-btn" disabled>
+      <img src={edit} alt="edit" /> Edit
+    </Button>
 
-                        <Button className="btn action-btn" onClick={handleShow}>
-                          <img src={deleteIcon} alt="delete" /> Delete
-                        </Button>
+    <Button className="btn action-btn" disabled>
+      <img src={deleteIcon} alt="delete" /> Delete
+    </Button>
 
-                        <Button className="btn action-btn">
-                          <img src={receipt} alt="receipt" /> Receipt
-                        </Button>
-                      </div>
-                    </Col>
+    <Button className="btn action-btn" disabled>
+      <img src={receipt} alt="receipt" /> Receipt
+    </Button>
+  </div>
+</Col>
+
                   </Row>
                 </div>
               ))}
