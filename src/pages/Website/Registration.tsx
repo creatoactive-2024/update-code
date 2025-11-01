@@ -333,6 +333,7 @@ const modelOptions: Record<string, string[]> = {
 };
 
 
+const [isExistingUser, setIsExistingUser] = useState(false);
 
   // 🧠 Track currently selected make (for relational filtering)
   const [selectedMake, setSelectedMake] = useState<string>("");
@@ -351,8 +352,19 @@ const modelOptions: Record<string, string[]> = {
     }));
   };
 
-
-
+useEffect(() => {
+  const storedUser = localStorage.getItem("user");
+  if (storedUser) {
+    try {
+      const parsed = JSON.parse(storedUser);
+      if (parsed?.id) {
+        setIsExistingUser(true);
+      }
+    } catch (err) {
+      console.error("Error parsing stored user:", err);
+    }
+  }
+}, []);
 
 
   const readCheckbox = (form: HTMLFormElement, id: string) => {
@@ -364,14 +376,80 @@ const modelOptions: Record<string, string[]> = {
   //   const mobileRegex = /^\+?[0-9]{8,15}$/;
   const mobileRegex = /^[0-9]{10}$/;
 
-  const validatePayload = (payload: any) => {
-    const err: Record<string, string> = {};
+  // const validatePayload = (payload: any) => {
+  //   const err: Record<string, string> = {};
 
-    if (!payload.firstName?.trim()) err.firstName = "First name is required";
-    if (!payload.lastName?.trim()) err.lastName = "Last name is required";
+  //   if (!payload.firstName?.trim()) err.firstName = "First name is required";
+  //   if (!payload.lastName?.trim()) err.lastName = "Last name is required";
 
+  //   if (!payload.email?.trim()) err.email = "Email is required";
+  //   else if (!emailRegex.test(payload.email)) err.email = "Enter a valid email";
+
+  //   if (!payload.confirmEmail?.trim())
+  //     err.confirmEmail = "Confirm email is required";
+  //   else if (
+  //     payload.email &&
+  //     payload.confirmEmail &&
+  //     payload.email !== payload.confirmEmail
+  //   )
+  //     err.confirmEmail = "Emails do not match";
+
+  //   if (!payload.password) err.password = "Password is required";
+  //   else if (payload.password.length < 6)
+  //     err.password = "Password must be at least 6 characters";
+
+  //   if (!payload.confirmPassword)
+  //     err.confirmPassword = "Confirm password is required";
+  //   else if (
+  //     payload.password &&
+  //     payload.confirmPassword &&
+  //     payload.password !== payload.confirmPassword
+  //   )
+  //     err.confirmPassword = "Passwords do not match";
+
+  //   if (!payload.mobile?.trim()) {
+  //     err.mobile = "Mobile number is required";
+  //   } else if (!mobileRegex.test(payload.mobile)) {
+  //     err.mobile = "Enter a valid 10-digit mobile number";
+  //   }
+
+  //   if (!payload.airportName?.trim()) err.airportName = "Airport name required";
+
+  //   if (!payload.postalCode?.trim()) err.postalCode = "Postal code is required";
+  //   else if (!postalCodeRegex.test(payload.postalCode))
+  //     err.postalCode = "Enter a valid postal code";
+
+  //   if (!payload.dropOff) err.dropOff = "Drop-off date & time required";
+  //   if (!payload.pickUp) err.pickUp = "Pick-up date & time required";
+
+  //   if (payload.dropOff && payload.pickUp) {
+  //     const d = new Date(payload.dropOff);
+  //     const p = new Date(payload.pickUp);
+  //     if (isNaN(d.getTime()) || isNaN(p.getTime()))
+  //       err.pickUp = "Invalid date/time";
+  //     else if (p <= d) err.pickUp = "Pick-up must be after drop-off";
+  //   }
+
+  //   if (!payload.viaEmail && !payload.viaSMS)
+  //     err.notifications = "Select at least one notification option";
+
+  //   return err;
+  // };
+
+const validatePayload = (payload: any) => {
+  const err: Record<string, string> = {};
+
+  const storedUser = localStorage.getItem("user");
+  const isExistingUser = storedUser && JSON.parse(storedUser)?.id;
+
+  if (!payload.firstName?.trim()) err.firstName = "First name is required";
+  if (!payload.lastName?.trim()) err.lastName = "Last name is required";
+
+  // ✅ Skip email validation for existing user
+  if (!isExistingUser) {
     if (!payload.email?.trim()) err.email = "Email is required";
-    else if (!emailRegex.test(payload.email)) err.email = "Enter a valid email";
+    else if (!emailRegex.test(payload.email))
+      err.email = "Enter a valid email";
 
     if (!payload.confirmEmail?.trim())
       err.confirmEmail = "Confirm email is required";
@@ -381,7 +459,10 @@ const modelOptions: Record<string, string[]> = {
       payload.email !== payload.confirmEmail
     )
       err.confirmEmail = "Emails do not match";
+  }
 
+  // ✅ Skip password validation for existing user
+  if (!isExistingUser) {
     if (!payload.password) err.password = "Password is required";
     else if (payload.password.length < 6)
       err.password = "Password must be at least 6 characters";
@@ -394,35 +475,39 @@ const modelOptions: Record<string, string[]> = {
       payload.password !== payload.confirmPassword
     )
       err.confirmPassword = "Passwords do not match";
+  }
 
-    if (!payload.mobile?.trim()) {
-      err.mobile = "Mobile number is required";
-    } else if (!mobileRegex.test(payload.mobile)) {
-      err.mobile = "Enter a valid 10-digit mobile number";
-    }
+  if (!payload.mobile?.trim()) {
+    err.mobile = "Mobile number is required";
+  } else if (!mobileRegex.test(payload.mobile)) {
+    err.mobile = "Enter a valid 10-digit mobile number";
+  }
 
-    if (!payload.airportName?.trim()) err.airportName = "Airport name required";
+  if (!payload.airportName?.trim()) err.airportName = "Airport name required";
 
-    if (!payload.postalCode?.trim()) err.postalCode = "Postal code is required";
-    else if (!postalCodeRegex.test(payload.postalCode))
-      err.postalCode = "Enter a valid postal code";
+  if (!payload.postalCode?.trim()) err.postalCode = "Postal code is required";
+  else if (!postalCodeRegex.test(payload.postalCode))
+    err.postalCode = "Enter a valid postal code";
 
-    if (!payload.dropOff) err.dropOff = "Drop-off date & time required";
-    if (!payload.pickUp) err.pickUp = "Pick-up date & time required";
+  if (!payload.dropOff) err.dropOff = "Drop-off date & time required";
+  if (!payload.pickUp) err.pickUp = "Pick-up date & time required";
 
-    if (payload.dropOff && payload.pickUp) {
-      const d = new Date(payload.dropOff);
-      const p = new Date(payload.pickUp);
-      if (isNaN(d.getTime()) || isNaN(p.getTime()))
-        err.pickUp = "Invalid date/time";
-      else if (p <= d) err.pickUp = "Pick-up must be after drop-off";
-    }
+  if (payload.dropOff && payload.pickUp) {
+    const d = new Date(payload.dropOff);
+    const p = new Date(payload.pickUp);
+    if (isNaN(d.getTime()) || isNaN(p.getTime()))
+      err.pickUp = "Invalid date/time";
+    else if (p <= d) err.pickUp = "Pick-up must be after drop-off";
+  }
 
-    if (!payload.viaEmail && !payload.viaSMS)
-      err.notifications = "Select at least one notification option";
+  if (!payload.viaEmail && !payload.viaSMS)
+    err.notifications = "Select at least one notification option";
 
-    return err;
-  };
+  return err;
+};
+
+
+
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -976,6 +1061,7 @@ useEffect(() => {
                         value={formData.email || ""}
                         onChange={handleInputChange}
                         required
+                        disabled={isExistingUser}
                       />{" "}
                       {errors.email && (
                         <div className="text-danger">{errors.email}</div>
@@ -994,6 +1080,7 @@ useEffect(() => {
                         value={formData.confirmEmail || ""}
                         onChange={handleInputChange}
                         required
+                        disabled={isExistingUser}
                       />{" "}
                       {errors.confirmEmail && (
                         <div className="text-danger">{errors.confirmEmail}</div>
@@ -1001,42 +1088,44 @@ useEffect(() => {
                     </Form.Group>
                   </Col>
 
-                  <Col md={6} lg={4}>
-                    <Form.Group className="custome-form-group">
-                      <Form.Label>Password *</Form.Label>
-                      <Form.Control
-                        type="password"
-                        name="password"
-                        placeholder="Enter your password"
-                        value={formData.password || ""}
-                        onChange={handleInputChange}
-                        required
-                      />{" "}
-                      {errors.password && (
-                        <div className="text-danger">{errors.password}</div>
-                      )}
-                    </Form.Group>
-                  </Col>
+                 {!isExistingUser && (
+  <>
+    <Col md={6} lg={4}>
+      <Form.Group className="custome-form-group">
+        <Form.Label>Password *</Form.Label>
+        <Form.Control
+          type="password"
+          name="password"
+          placeholder="Enter your password"
+          value={formData.password || ""}
+          onChange={handleInputChange}
+          required
+        />{" "}
+        {errors.password && (
+          <div className="text-danger">{errors.password}</div>
+        )}
+      </Form.Group>
+    </Col>
 
-                  <Col md={6} lg={4}>
-                    <Form.Group className="custome-form-group">
-                      <Form.Label>Confirm Password *</Form.Label>
-                      {/* duplicate name kept intentionally */}
-                      <Form.Control
-                        type="password"
-                        name="confirmPassword"
-                        placeholder="Confirm password"
-                        value={formData.confirmPassword || ""}
-                        onChange={handleInputChange}
-                        required
-                      />{" "}
-                      {errors.confirmPassword && (
-                        <div className="text-danger">
-                          {errors.confirmPassword}
-                        </div>
-                      )}
-                    </Form.Group>
-                  </Col>
+    <Col md={6} lg={4}>
+      <Form.Group className="custome-form-group">
+        <Form.Label>Confirm Password *</Form.Label>
+        <Form.Control
+          type="password"
+          name="confirmPassword"
+          placeholder="Confirm password"
+          value={formData.confirmPassword || ""}
+          onChange={handleInputChange}
+          required
+        />{" "}
+        {errors.confirmPassword && (
+          <div className="text-danger">{errors.confirmPassword}</div>
+        )}
+      </Form.Group>
+    </Col>
+  </>
+)}
+
 
                   <Col md={6} lg={4}>
                     <Form.Group className="custome-form-group">
