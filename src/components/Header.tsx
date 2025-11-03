@@ -61,15 +61,15 @@ const Header: React.FC = () => {
           <Navbar.Toggle aria-controls="nav" />
           <Navbar.Collapse id="nav" className="menu-bar">
             <Nav className="mx-auto">
-              <NavDropdown title="Locations" id="nav-dropdown-locations">
+              <NavDropdown title="Locations" id="nav-dropdown-locations" className="nav-dropdown-locations">
                 <NavDropdown.Item as={Link} to="/location">
-                  All Locations
+                  Toronto
                 </NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/location/city-a">
-                  City A
+                  Vancouver
                 </NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/location/city-b">
-                  City B
+                  ottawa
                 </NavDropdown.Item>
               </NavDropdown>
               <Nav.Link as={Link} to="/services">
@@ -81,13 +81,16 @@ const Header: React.FC = () => {
               <Nav.Link as={Link} to="/help">
                 Help
               </Nav.Link>
+              <Nav.Link as={Link} to="/signin" className="d-block d-md-none">
+                LOGIN/SIGN UP
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
 
           {/* ✅ Conditionally show profile or sign-in button */}
           {!user ? (
             <Button as={Link} to="/signin" variant="outline-primary" className="main-button">
-              Sign In / Sign Up
+              LOGIN/SIGN UP
             </Button>
           ) : (
             <Dropdown className="user-dropdown ms-2">

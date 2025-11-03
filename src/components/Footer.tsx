@@ -48,7 +48,7 @@ const Footer: React.FC = () => {
             <div className='border-horizontal'></div>
           </Col>
 
-          <Col md={5} className="d-flex justify-content-end ms-auto">
+          <Col md={5} className="d-md-flex justify-content-end ms-auto">
             <div className='footer-link'>
               <h3>Useful links</h3>
               <ul className="footer-navigation">
@@ -65,9 +65,8 @@ const Footer: React.FC = () => {
               <h3>Contact info</h3>
               <ul className="footer-contact">
                 <li><p>180 Attwell Dr, Suite 160, Etobicoke, ON M9W 5Z5</p></li>
-                <li><a href=''>Tel. 942-200-0043</a></li>
-                <li><a href=""></a></li>
-                <li><a href=''>Info@dropnpark.com</a></li>
+                <li><a href='tel:9422000043'>Tel. 942-200-0043</a></li>
+                <li><a href='mailto:info@dropnpark.com'>Info@dropnpark.com</a></li>
               </ul>
 
               <ul className="social-media-list">
@@ -92,7 +91,7 @@ const Footer: React.FC = () => {
         </Row>
 
         <Row className='copyright'>
-          <Col className='d-flex justify-content-between align-items-center'>
+          <Col className='d-md-flex justify-content-between align-items-center'>
             <small>Copyright © {new Date().getFullYear()} by <span>DropNPark</span> | All Rights Reserved</small>
             <p>Designed &amp; Developed by <span>Creatoactive Studios</span></p>
           </Col>

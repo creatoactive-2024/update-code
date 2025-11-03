@@ -103,7 +103,7 @@ const Pricing: React.FC = () => {
         <Row>
           <Col md={12} className="mx-auto">
             <div className="pricing-rates">
-              <div className="row">
+              <div className="row justify-content-center">
                 <div className="col-lg-3 col-md-3">
                   <div className="pricing-inner">
                     <h2 className="p-head">Valet Parking Service</h2>
@@ -111,8 +111,10 @@ const Pricing: React.FC = () => {
                     <h2 className="pricing-text">
                       ${valetPrice.toFixed(2)}
                     </h2>
-                    <p className="taxes-text">+ taxes and fuel surcharge</p>
-                                        <p className="taxes-text">+ Additional valet charges included</p>
+                   <div className="text-center my-3">
+                     <p className="taxes-text mb-0">+ taxes and fuel surcharge</p>
+                      <p className="taxes-text mb-0">+ Additional valet charges included</p>
+                      </div>
 
                    <Link
   to="/addonservices"
@@ -141,7 +143,10 @@ const Pricing: React.FC = () => {
                     <h2 className="pricing-text">
                       ${driveNDropPrice.toFixed(2)}
                     </h2>
-                    <p className="taxes-text">+ taxes and fuel surcharge</p>
+                     <div className="text-center my-3">
+                     <p className="taxes-text mb-0">+ taxes and fuel surcharge</p>
+                      <p className="taxes-text mb-0">+ Additional valet charges included</p>
+                      </div>
                     <Link
   to="/addonservices"
   state={{

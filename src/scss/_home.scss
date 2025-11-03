@@ -422,7 +422,7 @@ section .section-button{
                 align-items: center;
                 justify-content: center;
                 margin-top: 16px;
-                gap: 20px;
+                gap: 7px;
                 }
             li{
                 font-weight: 600;
@@ -433,7 +433,7 @@ section .section-button{
                 align-items: center;
                 gap: 4px;
                 @media (max-width: 768px) {
-                font-size: 9px;
+                font-size: 8px;
                 img{
                     width: 12px;
                 }
@@ -452,7 +452,7 @@ section .section-button{
         @media (max-width: 768px) {
            background: none;  
            box-shadow: none;
-          margin-top: 24px;
+          margin-top: 40px;
           color: $primary;  
           padding: 0;  
         }
@@ -515,7 +515,7 @@ section .section-button{
         }
 
         .view-btn {
-            background: #ff9f43;
+            background: $secondary;
             border: none;
             width: 100%;
             padding: 0.7rem;
@@ -527,13 +527,10 @@ section .section-button{
                  margin-top: 20px;
             }
             &:hover {
-            background: #ff7f00;
+            background: $primary;
             }
         }
         }
-
-        .react-datepicker-wrapper{width: 100%;}
-
 
 }
 
@@ -689,10 +686,15 @@ section .section-button{
 
 .how-it-works {
   background: #F6F6F6;
-
+    @media (max-width: 768px) {
+        background: $white;
+    }
   
   .tabs {
     margin-bottom: 36px;
+     @media (max-width: 455px) {
+              margin-bottom: 0;
+            }
     button {
       background: transparent;
       border: 1px solid $secondary;
@@ -706,6 +708,7 @@ section .section-button{
       @media (max-width: 768px) {
         font-size: 18px;
         padding: 16px 26px;
+        background: #F6F6F6;
       }
        @media (max-width: 455px) {
                font-size: 14px;

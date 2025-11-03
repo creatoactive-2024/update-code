@@ -98,11 +98,14 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../../img/logo.png";
 import close from "../../img/close.svg";
 import baseURL from "../utils/baseURL"
+import eye from "../../img/eye-show.svg"
 
 
 const SignIn: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -195,7 +198,7 @@ const SignIn: React.FC = () => {
           </div>
 
           <Col md={5} className="mx-auto">
-            <div className="signin-card p-4 rounded-4 shadow-sm">
+            <div className="signin-card">
               <div className="logo text-center mb-3">
                 <Link to="/">
                   <img src={logo} alt="Drop N Park" className="img-fluid" />
@@ -217,19 +220,28 @@ const SignIn: React.FC = () => {
                     required
                   />
                 </Form.Group>
+              <Form.Group className="mb-3 ">
+                <Form.Label>Your Password</Form.Label>
+                <div className="position-relative">
+               <Form.Control
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
 
-                <Form.Group className="mb-2">
-                  <Form.Label>Your Password</Form.Label>
-                  <Form.Control
-                    type="password"
-                    placeholder="Enter your password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                  />
-                </Form.Group>
+                {/* 👁 Image toggle */}
+                <img
+                  src={showPassword ? eye : eye}
+                  alt="Toggle visibility"
+                  className="toggle-password-img"
+                  onClick={() => setShowPassword(!showPassword)}
+                />
+                </div>
+              </Form.Group>
 
-                <div className="text-end mb-3">
+                <div className="text-end mb-3 forgot-pass">
                   <Link to="/forgot-password" className="small">
                     Forgot Password?
                   </Link>
@@ -257,7 +269,7 @@ const SignIn: React.FC = () => {
                 </Button>
               </Form>
 
-              <div className="text-center mt-4 small">
+              <div className="text-center mt-4 small sign-in-text">
                 <p>
                   Are you a travel agent?{" "}
                   <Link to="/" className="accent-link">

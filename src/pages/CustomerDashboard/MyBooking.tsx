@@ -532,13 +532,13 @@ const userId = storedUser?.id || storedUser?.user?.id;
                       <Row>
                         <Col md={4}>
   <div className="sub-box">
-    <p>Drop-off:</p>
+    <p>Drop Date & Time:</p>
     <h6>{new Date(b.dropOffDateTime).toLocaleString([], { 
       dateStyle: "medium", 
       timeStyle: "short" 
     })}</h6>
 
-    <p className="mt-2">Pick-up:</p>
+    <p className="mt-2">Pick-Up Date & Time:</p>
     <h6>{new Date(b.pickUpDateTime).toLocaleString([], { 
       dateStyle: "medium", 
       timeStyle: "short" 

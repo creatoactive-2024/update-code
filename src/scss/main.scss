@@ -42,6 +42,12 @@ body {
     border: none;
     line-height: 100%;
     letter-spacing: 0%;
+    @media (max-width: 768px) {
+        display: none;
+    }
+    &:hover{
+      background: $secondary;
+    }
 }
 
 
@@ -60,26 +66,18 @@ body {
         font-size: 18px;
         transition: all 0.2s;
         font-weight: 400;
-        color: #152B52;
-
-        &:focus {
-    background-color: #FFFFFF; // Active (focused) background
-    color: #333333;
-  }
-
-  // When input has text in it (not empty)
-  &:not(:placeholder-shown) {
-    background-color: #FFFFFF; // Same as active background
-  }
-
-  // Optional: for select elements (since they don't use placeholder-shown)
-  &.filled {
-    background-color: #FFFFFF;
-  }
+        color: rgba(0, 0, 0, 1);
         &:focus {
             border-color: $primary;
             box-shadow: 0 0 0 0.2rem rgba(11, 46, 103, 0.15);
+            background:#fff;
         }
+        &::placeholder {
+        color: rgba(90, 89, 87, 0.3);
+      }
+      &:not(:placeholder-shown) {
+        background: #fff;
+      }
     }
 }
 
@@ -120,14 +118,14 @@ body {
 }
 
 .inner-banner{
-   padding: 20px 0;
-    display: flex; background: #152b52;
+    padding: 20px 0px 20px !important;
+    display: flex;
     align-items: end;
     justify-content: center;
     position: relative;
     margin-bottom: 57px;
     height: 100%;
-    min-height: auto;
+    background: #152B52 !important;
     &::before{
         content: '';
         position: absolute;
@@ -154,32 +152,27 @@ body {
     }
 }
 .registration-banner{
-    //  background: url('../img/regi-banner.jpg') no-repeat center center;
-    //  background-size: cover;
-    background: #152b52;
+     background: url('../img/regi-banner.jpg') no-repeat center center;
+     background-size: cover;
 }
 .pricing-banner{
-  background: #152b52;
-    //  background: url('../img/pricing-banner.jpg') no-repeat center center;
-    // background-size: cover;
-    // &::before{
-    //     background: rgba(21, 43, 82, 0.65);
-    // }
-    
+     background: url('../img/pricing-banner.jpg') no-repeat center center;
+    background-size: cover;
+    &::before{
+        background: rgba(21, 43, 82, 0.65);
+    }
 }
 .addon-banner{
-    // background: url('../img/addon-services.jpg') no-repeat center center;
-    // background-size: cover;
-    // &::before{
-    //     background: rgba(21, 43, 82, 0.65);
-    // }
-    background: #152b52;
+    background: url('../img/addon-services.jpg') no-repeat center center;
+    background-size: cover;
+    &::before{
+        background: rgba(21, 43, 82, 0.65);
+    }
 }
 .booking-banner{
-      // background: url('../img/book-banner.jpg') no-repeat center center;
-      // background-size: cover;
-      // padding: 0px 0px 0px;
-      background: #152b52;
+      background: url('../img/book-banner.jpg') no-repeat center center;
+      background-size: cover;
+      padding: 0px 0px 0px;
 }
 
 
@@ -281,4 +274,7 @@ body {
     color: #999;
     font-weight: 500;
   }
+}
+.react-datepicker-wrapper{
+  width: 80%;
 }

@@ -468,7 +468,7 @@ const AddonServices: React.FC = () => {
                   className="book-btn w-100 mt-3"
                   onClick={handleBookNow}
                 >
-                  BOOK SERVICE
+                  PAY NOW
                 </Button>
               </div>
             </Col>
