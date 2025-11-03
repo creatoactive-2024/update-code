@@ -329,7 +329,7 @@ import edit from "../../img/edit.svg";
 import deleteIcon from "../../img/trash.svg";
 import view from "../../img/view.svg";
 import receipt from "../../img/receipt.svg";
-import profile from "../../img/profile-pic.jpg";
+import profile from "../../img/user_profile.jpg";
 
 import baseURL from "../utils/baseURL"
 

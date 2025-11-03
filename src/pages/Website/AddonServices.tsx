@@ -315,7 +315,7 @@ const AddonServices: React.FC = () => {
   // ✅ calculate subtotal, tax, total dynamically
   const addonsTotal = selected.reduce((sum, s) => sum + s.price, 0);
   const subtotal = basePrice + addonsTotal;
-  const tax = subtotal * 0.08; // 8% tax
+  const tax = subtotal * 0.13; // 13% tax
   const total = subtotal + tax;
 
   // ✅ booking summary for next page
@@ -455,7 +455,7 @@ const AddonServices: React.FC = () => {
                   <span>${subtotal.toFixed(2)}</span>
                 </div>
                 <div className="summary-item-sub">
-                  <p>Tax (8%)</p>
+                  <p>Tax (13%)</p>
                   <span>${tax.toFixed(2)}</span>
                 </div>
                 <hr />

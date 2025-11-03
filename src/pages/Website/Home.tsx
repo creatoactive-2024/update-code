@@ -160,81 +160,7 @@ const Home: React.FC = () => {
 
   return (
     <div className="home-page">
-      {/* <section className="hero-banner">
-        <Container>
-          <Row>
-            <Col md={6}>
-              <div className="hero-content">
-                <h1>Welcome to <span>DropNPark</span></h1>
-                <p>At DropNPark, we know that travel should begin with ease, not stress...</p>
-                <ul className="hero-list">
-                  <li><span><img src={hero1} alt="24/7" /></span>24/7 Available</li>
-                  <li><span><img src={hero2} alt="secure" /></span>Secure Facility</li>
-                  <li><span><img src={hero3} alt="curbside" /></span>Curbside Service</li>
-                </ul>
-              </div>
-            </Col>
-
-            <Col md={6}>
-              <div className="booking-form">
-                <h4>Book Your Premium Valet Parking</h4>
-                <Form onSubmit={handleSubmit}>
-                  <Form.Group>
-                    <Form.Label>Airport Name *</Form.Label>
-                    <div className="form-box">
-                      <div className="icon"><img src={book1} alt="location" /></div>
-                      <Form.Select value={airport} onChange={(e) => setAirport(e.target.value)}>
-                        <option value="Toronto">Toronto</option>
-                        <option value="Vancouver">Vancouver</option>
-                        <option value="Montreal">Montreal</option>
-                      </Form.Select>
-                    </div>
-                  </Form.Group>
-
-                  <Form.Group>
-  <Form.Label>Drop-Off Date & Time *</Form.Label>
-  <div className="form-box">
-    <div className="icon"><img src={book2} alt="calendar" /></div>
-    <DatePicker
-      selected={startDate}
-      onChange={(date) => setDateRange([date, endDate])}
-      showTimeSelect
-      timeIntervals={15}
-      dateFormat="MMM dd, yyyy hh:mm aa"
-      placeholderText="Select drop-off date & time"
-      className="react-datepicker-input"
-    />
-  </div>
-</Form.Group>
-
-<Form.Group>
-  <Form.Label>Pick-Up Date & Time *</Form.Label>
-  <div className="form-box">
-    <div className="icon"><img src={book2} alt="calendar" /></div>
-    <DatePicker
-      selected={endDate}
-      onChange={(date) => setDateRange([startDate, date])}
-      showTimeSelect
-      timeIntervals={15}
-      dateFormat="MMM dd, yyyy hh:mm aa"
-      placeholderText="Select pick-up date & time"
-      className="react-datepicker-input"
-      minDate={startDate}
-    />
-  </div>
-</Form.Group>
-
-
-                  <Button className="view-btn" type="submit">
-                    VIEW RATES
-                  </Button>
-                </Form>
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </section> */}
-
+     
 
 
       <section className="hero-banner">
@@ -534,7 +460,7 @@ const Home: React.FC = () => {
                 </span>
                 <div className='contact-info'>
                   <h4>Service Location</h4>
-                  <p>Toronto Pearson International Airport 6301 Silver Dart Drive Mississauga, ON L5P 1B2, Canada</p>
+                  <p>180 Attwell Dr, Suite 160, Etobicoke, ON M9W 5Z5</p>
                 </div>
               </div>
 
@@ -546,8 +472,8 @@ const Home: React.FC = () => {
                   <h4>Contact Details</h4>
                   <p>24/7 Customer Service</p>
                   <div className='phone-numbers'>
-                    <a href="tel:+15551234567">
-                      <span><img src={call} alt="call Icon" /></span>(555) 123-4567</a>
+                    <a href="tel:+942-200-0043">
+                      <span><img src={call} alt="call Icon" /></span>942-200-0043</a>
                     <a href="mailto:info@dropnpark.com">
                       <span><img src={email} alt="email Icon" /></span>info@dropnpark.com</a>
                   </div>

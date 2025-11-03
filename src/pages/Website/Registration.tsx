@@ -931,7 +931,7 @@ useEffect(() => {
             <div className="registration-form">
               <Form onSubmit={handleSubmit} noValidate>
                 <Row>
-                  <Col md={6} lg={4}>
+                  {/* <Col md={6} lg={4}>
                     <Form.Group className="custome-form-group">
                       <Form.Label>Airport Name *</Form.Label>
                       <Form.Control
@@ -947,7 +947,28 @@ useEffect(() => {
                         <div className="text-danger">{errors.airportName}</div>
                       )}
                     </Form.Group>
-                  </Col>
+                  </Col> */}
+                  <Col md={6} lg={4}>
+  <Form.Group className="custome-form-group">
+    <Form.Label>Airport Name *</Form.Label>
+    <Form.Select
+      name="airportName"
+      value={formData.airportName || ""}
+      onChange={handleInputChange}
+      required
+    >
+      <option value="">Select Airport</option>
+      <option value="Toronto">Toronto</option>
+      <option value="Vancouver">Vancouver</option>
+      <option value="Montreal">Montreal</option>
+    </Form.Select>
+
+    {errors.airportName && (
+      <div className="text-danger">{errors.airportName}</div>
+    )}
+  </Form.Group>
+</Col>
+
                   <Col md={6} lg={4}>
                     <Form.Group className="custome-form-group">
                       <Form.Label>Drop Off Date and Time *</Form.Label>
@@ -988,7 +1009,7 @@ useEffect(() => {
                         value={formData.service || ""}
                       >
                         <option value="">Select Service</option>
-                        <option value="Valet">Valet</option>
+                        <option value="Valet Parking Service">Valet Parking Service</option>
                         <option value="Drop N Drive">Drop N Drive</option>
                       </Form.Select>
                     </Form.Group>

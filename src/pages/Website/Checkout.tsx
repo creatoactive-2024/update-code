@@ -76,7 +76,7 @@ const Checkout: React.FC = () => {
   // ✅ Add-on totals
   const addonsTotal = selected.reduce((sum, s) => sum + s.price, 0);
   const subtotal = adjustedBasePrice + addonsTotal + (isValet ? 10 : 0); // valet fixed charge adds back $10
-  const tax = subtotal * 0.08;
+  const tax = subtotal * 0.13;
   const total = subtotal + tax;
 
   // ✅ Toggle service selection
@@ -177,6 +177,7 @@ const handleBookNow = async () => {
       ...formData,
       ...bookingData,
       totalAmount: total, // ✅ exact total
+      email: storedUser?.email || formData?.email || "", // ✅ ADD THIS LINE
     };
 
     const response = await fetch(`${baseURL}/api/users/create-booking`, {
@@ -316,7 +317,7 @@ const handleBookNow = async () => {
                   <span>${subtotal.toFixed(2)}</span>
                 </div>
                 <div className="summary-item-sub">
-                  <p>Tax (8%)</p>
+                  <p>Tax (13%)</p>
                   <span>${tax.toFixed(2)}</span>
                 </div>
                 <hr />
