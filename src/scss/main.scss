@@ -126,6 +126,9 @@ body {
     margin-bottom: 57px;
     height: 100%;
     background: #152B52 !important;
+    @media (max-width: 768px) {
+                     margin-bottom: 40px;
+                }
     &::before{
         content: '';
         position: absolute;
@@ -178,18 +181,28 @@ body {
 
 .title-card{
   margin: 48px 0;
+  @media (max-width: 768px) {
+       margin: 0px 0 24px;
+    }
   h3{
     font-size: 48px;
     font-weight: 700;
     color: $primary;
     margin-bottom: 16px;
     line-height: 100%;
+    @media (max-width: 768px) {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
   }
   p{
     font-weight: 400;
     font-size: 24px;
     color: $primary;
     line-height: 100%;
+    @media (max-width: 768px) {
+      font-size: 16px;
+    }
   }
 }
 

@@ -768,7 +768,7 @@ section .section-button{
             font-size: 24px;
             }
              @media (max-width: 455px) {
-               font-size: 20px;
+               font-size: 18px;
             }
         }
         p{
@@ -778,6 +778,9 @@ section .section-button{
             margin-bottom: 0;
             @media (max-width: 768px) {
             font-size: 16px;
+            }
+            @media (max-width: 455px) {
+               font-size: 12px;
             }
         }
     }

@@ -91,9 +91,9 @@ const Footer: React.FC = () => {
         </Row>
 
         <Row className='copyright'>
-          <Col className='d-md-flex justify-content-between align-items-center'>
+          <Col className='text-center'>
             <small>Copyright © {new Date().getFullYear()} by <span>DropNPark</span> | All Rights Reserved</small>
-            <p>Designed &amp; Developed by <span>Creatoactive Studios</span></p>
+            {/* <p>Designed &amp; Developed by <span>Creatoactive Studios</span></p> */}
           </Col>
         </Row>
       </Container>
