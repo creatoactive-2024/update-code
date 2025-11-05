@@ -52,7 +52,7 @@ const FindUs: React.FC = () => {
                       <span>
                         <img src={call} alt="Call Icon" />
                       </span>
-                      942-200-0043
+                      +1 942-200-0043
                     </a>
                     <a href="mailto:info@dropnpark.com">
                       <span>

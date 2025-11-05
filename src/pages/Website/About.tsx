@@ -193,12 +193,12 @@ const About: React.FC = () =>  {
                         <p className='contact-para-1'>Conveniently Located at Toronto Pearson</p>
                         <h5>Our valet lounge is strategically positioned for quick access to all terminals, ensuring your<br/> journey starts smoothly.</h5>
                         <div className='cont-wrap'>
-                        <p><span className='contact-head'>Address:</span> <span className='contact-content'>Toronto Pearson International Airport</span></p>
+                        <p><span className='contact-head'>Address:</span> <span className='contact-content'>180 Attwell Dr, Suite 160, Etobicoke, ON M9W 5Z5</span></p>
                         <p><span className='contact-head'>Hours:</span> <span className='contact-content'>24/7 - Always Open</span></p>
-                        <p><span className='contact-head'>Phone:</span> <span className='contact-content'><a href="tel:+919422000043">+1 (234) 567-890</a></span></p>
+                        <p><span className='contact-head'>Phone:</span> <span className='contact-content'><a href="tel:+19422000043">+1 942-200-0043</a></span></p>
                         <p><span className='contact-head'>Email:</span> <span className='contact-content'><a href='mailto:info@dropnpark.com'>info@dropnpark.com</a></span></p>
                         </div>
-                        <a role="button" className="main-button section-button btn btn-outline-primary">Get Direction</a>
+                        <a role="button" href="https://share.google/01diBFGmSHA38sQeE" target='_blank' className="main-button section-button btn btn-outline-primary">Get Direction</a>
                         </div>
                     </Row>
                 </Container>

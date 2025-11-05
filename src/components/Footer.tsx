@@ -69,7 +69,7 @@ const Footer: React.FC = () => {
               <h3>Contact info</h3>
               <ul className="footer-contact">
                 <li><p>180 Attwell Dr, Suite 160, Etobicoke, ON M9W 5Z5</p></li>
-                <li><a href="tel:+919422000043">Tel. 942-200-0043</a></li>
+                <li><a href="tel:+19422000043">Tel. +1 942-200-0043</a></li>
                 <li><a href='mailto:info@dropnpark.com'>Info@dropnpark.com</a></li>
               </ul>
 
