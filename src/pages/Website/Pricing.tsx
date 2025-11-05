@@ -104,7 +104,7 @@ const Pricing: React.FC = () => {
           <Col md={12} className="mx-auto">
             <div className="pricing-rates">
               <div className="row justify-content-center">
-                <div className="col-lg-3 col-md-3">
+                <div className="col-4">
                   <div className="pricing-inner">
                     <h2 className="p-head">Valet Parking Service</h2>
                     <p className="p-text">Save $40.00 based on our regular rate.</p>
@@ -136,7 +136,7 @@ const Pricing: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="col-lg-3 col-md-3">
+                <div className="col-4">
                   <div className="pricing-inner">
                     <h2 className="p-head">Drive N Drop</h2>
                     <p className="p-text">Save $40.00 based on our regular rate.</p>

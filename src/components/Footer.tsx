@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 import logo from '../img/footer-logo.png';
 import fb from '../img/facebook.svg';
 import insta from '../img/instagram.svg';
-import twtr from '../img/twitter.svg';
+// import twtr from '../img/twitter.svg';
+import ticktok from '../img/ticktok.svg';
+import linkdin from '../img/link.svg';
 import envelope from '../img/email.svg';
 
 const Footer: React.FC = () => {
@@ -52,12 +54,14 @@ const Footer: React.FC = () => {
             <div className='footer-link'>
               <h3>Useful links</h3>
               <ul className="footer-navigation">
-                <li><Link to="/location">Locations</Link></li>
-                <li><Link to="/services">Services</Link></li>
+                {/* <li><Link to="/location">Locations</Link></li>
+                <li><Link to="/services">Services</Link></li> */}
+                <li><Link to="/">Home</Link></li>
                 <li><Link to="/about">About us</Link></li>
+                <li><Link to="/faq">FAQs</Link></li>
                 <li><Link to="/contact">Contact Us</Link></li>
-                <li><Link to="/blogs">Blogs</Link></li>
-                <li><Link to="/help">Help</Link></li>
+                {/* <li><Link to="/blogs">Blogs</Link></li> */}
+                {/* <li><Link to="/help">Help</Link></li> */}
               </ul>
             </div>
 
@@ -65,24 +69,29 @@ const Footer: React.FC = () => {
               <h3>Contact info</h3>
               <ul className="footer-contact">
                 <li><p>180 Attwell Dr, Suite 160, Etobicoke, ON M9W 5Z5</p></li>
-                <li><a href='tel:9422000043'>Tel. 942-200-0043</a></li>
+                <li><a href="tel:+919422000043">Tel. 942-200-0043</a></li>
                 <li><a href='mailto:info@dropnpark.com'>Info@dropnpark.com</a></li>
               </ul>
 
               <ul className="social-media-list">
                 <li>
-                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                  <a href="https://www.facebook.com/profile.php?id=61583529952189" target="_blank" rel="noopener noreferrer">
                     <img src={fb} alt="facebook" />
                   </a>
                 </li>
                 <li>
-                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                  <a href="https://www.instagram.com/dropnpark_yyz/" target="_blank" rel="noopener noreferrer">
                     <img src={insta} alt="instagram" />
                   </a>
                 </li>
                 <li>
-                  <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-                    <img src={twtr} alt="twitter" />
+                  <a href="https://www.tiktok.com/@dropnpark_yyz" target="_blank" rel="noopener noreferrer">
+                    <img src={ticktok} alt="ticktok" />
+                  </a>
+                </li>
+                 <li>
+                  <a href="https://www.linkedin.com/in/drop-n-park-860823395/" target="_blank" rel="noopener noreferrer">
+                    <img src={linkdin} alt="Linkdin" />
                   </a>
                 </li>
               </ul>

@@ -948,7 +948,7 @@ useEffect(() => {
                       )}
                     </Form.Group>
                   </Col> */}
-                  <Col md={6} lg={4}>
+                  <Col md={6} lg={8}>
   <Form.Group className="custome-form-group">
     <Form.Label>Airport Name *</Form.Label>
     <Form.Select
@@ -1217,6 +1217,18 @@ useEffect(() => {
           </Form.Select>
         </Form.Group>
       </Col>
+      <Col md={6} lg={4}>
+                    <Form.Group className="custome-form-group">
+                      <Form.Label>Manufacturing Year</Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="ManufacturingYear"
+                        
+                        placeholder="Manufacturing Year"
+                        required
+                      />
+                    </Form.Group>
+                  </Col>
 
                   <Col md={6} lg={4}>
                     <Form.Group className="custome-form-group">

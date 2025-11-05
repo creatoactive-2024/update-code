@@ -93,7 +93,7 @@ const Header: React.FC = () => {
               <img src={closeIcon} alt="close menu" />
             </a>
             <Nav className="mx-auto" >
-              <NavDropdown title="Locations" id="nav-dropdown-locations" className="nav-dropdown-locations">
+              {/* <NavDropdown title="Locations" id="nav-dropdown-locations" className="nav-dropdown-locations">
                 <NavDropdown.Item as={Link} to="/location">
                   Toronto
                 </NavDropdown.Item>
@@ -103,16 +103,25 @@ const Header: React.FC = () => {
                 <NavDropdown.Item as={Link} to="/location">
                   ottawa
                 </NavDropdown.Item>
-              </NavDropdown>
-              <Nav.Link as={Link} to="/services" onClick={() => setIsOpen(false)}>
+              </NavDropdown> */}
+              {/* <Nav.Link as={Link} to="/services" onClick={() => setIsOpen(false)}>
                 Services
+              </Nav.Link> */}
+              <Nav.Link as={Link} to="/" onClick={() => setIsOpen(false)}>
+                Home
+              </Nav.Link>
+              <Nav.Link as={Link} to="/about" onClick={() => setIsOpen(false)}>
+                About Us
+              </Nav.Link>
+              <Nav.Link as={Link} to="/faq" onClick={() => setIsOpen(false)}>
+                FAQs
               </Nav.Link>
               <Nav.Link as={Link} to="/contact" onClick={() => setIsOpen(false)}>
                 Contact Us
               </Nav.Link>
-              <Nav.Link as={Link} to="/help" onClick={() => setIsOpen(false)}>
+              {/* <Nav.Link as={Link} to="/help" onClick={() => setIsOpen(false)}>
                 Help
-              </Nav.Link>
+              </Nav.Link> */}
               
               <Nav.Link as={Link} to="/signin" className="d-block d-md-none" onClick={() => setIsOpen(false)}>
                 login/sign up

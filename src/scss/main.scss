@@ -13,6 +13,7 @@
 @import './addon';
 @import './pricing';
 @import './PaymentSuccessful';
+@import './about';
 
 html, body, #root { height: 100%; }
 ul{
@@ -129,15 +130,7 @@ body {
     @media (max-width: 768px) {
                      margin-bottom: 40px;
                 }
-    &::before{
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(180deg, rgba(230, 133, 49, 0) 0%, rgba(0, 0, 0, 0.36) 50.48%, rgba(0, 0, 0, 0.6) 79.46%);
-    }
+    
     h1{
         font-size: 36px;
         font-weight: 400;
@@ -146,12 +139,28 @@ body {
         line-height: 120%;
         position: relative;
         z-index: 1;
+         @media (max-width: 768px) {
+                     font-size: 16px;
+                     margin-bottom: 16px;
+            }
 
         span{
             font-size: 48px;
             font-weight: 600;
             color: $white;
+             @media (max-width: 768px) {
+                     font-size: 24px;
+            }
         }
+    }
+    p{
+        font-size: 36px;
+        font-weight: 400;
+        line-height: 100%;
+        color: $white;
+        @media (max-width: 768px) {
+                    font-size: 16px;
+            }
     }
 }
 .registration-banner{
@@ -290,4 +299,25 @@ body {
 }
 .react-datepicker-wrapper{
   width: 80%;
+}
+
+.home-banner-dropdown{
+  position: relative;
+  .icon{
+    position: absolute;
+  }
+  .form-select{
+    width: 100%;
+    padding-left: 35px;
+    option{
+      background: $primary;
+      color: #fff;
+      &:hover{
+        background: $secondary !important;
+      }
+      &:focus {
+      box-shadow: none;
+    }
+    }
+  }
 }

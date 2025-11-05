@@ -6,10 +6,7 @@ import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
 import DatePicker from "react-datepicker";
 import FAQ from "../../components/faq";
-import Location from "../../img/location.svg";
-import call from "../../img/call.svg";
-import time from "../../img/time.svg";
-import email from "../../img/envelope.svg";
+
 import service1 from "../../img/srvc1.svg";
 import service2 from "../../img/srvc2.svg";
 import service3 from "../../img/srvc3.svg";
@@ -225,7 +222,7 @@ const Home: React.FC = () => {
      
 
 
-      <section className="hero-banner">
+      <section className="hero-banner" id="hero">
   <Container>
     <Row>
       <Col md={7}>
@@ -247,7 +244,7 @@ const Home: React.FC = () => {
           <Form onSubmit={handleSubmit}>
             <Form.Group>
               <Form.Label>Airport Name *</Form.Label>
-              <div className="form-box">
+              <div className="form-box home-banner-dropdown">
                 <div className="icon"><img src={book1} alt="location" /></div>
                 <Form.Select value={airport} onChange={(e) => setAirport(e.target.value)}>
                   <option value="Toronto">Toronto</option>
@@ -744,7 +741,7 @@ const Home: React.FC = () => {
         <Row>
           <Col md={8} className='mx-auto text-center'>
           <FAQ/>
-          <Button as={Link} to="/"  className="main-button section-button d-inline-block">
+          <Button as={Link} to="/faq"  className="main-button section-button d-inline-block">
                             View All FAQ’s
                 </Button>
           </Col>
@@ -757,74 +754,19 @@ const Home: React.FC = () => {
           <Col className="text-center">
             <div className='heading-wrapper'>
               <h2>Ready for Stress-Free Travel?</h2>
-              <Button as={Link} to="/" className="main-button d-block section-button">
-                            Book Your Spot Now
-                </Button>
+              <Button className="main-button d-block section-button"
+                  onClick={() => {
+                    const hero = document.getElementById("hero");
+                    hero?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                >
+                  Book Your Spot Now
+              </Button>
             </div>
           </Col>
         </Row>
       </Container>
     </section>
-    <section className='section-padding contact-section'>
-      <Container>
-        <Row>
-          <Col className="text-center">
-            <div className='heading-wrapper'>
-              <h2>Find Us</h2>
-              <p>Conveniently located at Toronto Pearson International Airport</p>
-            </div>
-          </Col>
-        </Row>
-        <Row className="justify-content-center">
-          <Col md={7} className="">
-            <div className='map-box h-100'>
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d184552.30943582457!2d-79.37805805!3d43.7182412!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4cb90d7c63ba5%3A0x323555502ab4c477!2sToronto%2C%20ON%2C%20Canada!5e0!3m2!1sen!2sin!4v1761454435339!5m2!1sen!2sin" width="100%" height="100%"  loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-          </Col>
-          <Col md={5} className="">
-            <div className='Contact-details-wrapper'>
-              <div className='contact-box'>
-                <span>
-                  <img src={Location} alt="Location Icon" />
-                </span>
-                <div className='contact-info'>
-                  <h4>Service Location</h4>
-                  <p>180 Attwell Dr, Suite 160, Etobicoke, ON M9W 5Z5</p>
-                </div>
-              </div>
-
-              <div className='contact-box'>
-                <span>
-                  <img src={call} alt="call Icon" />
-                </span>
-                <div className='contact-info'>
-                  <h4>Contact Details</h4>
-                  <p>24/7 Customer Service</p>
-                  <div className='phone-numbers'>
-                    <a href="tel:+942-200-0043">
-                      <span><img src={call} alt="call Icon" /></span>942-200-0043</a>
-                    <a href="mailto:info@dropnpark.com">
-                      <span><img src={email} alt="email Icon" /></span>info@dropnpark.com</a>
-                  </div>
-                </div>
-              </div>
-
-              <div className='contact-box'>
-                <span>
-                  <img src={time} alt="time Icon" />
-                </span>
-                <div className='contact-info'>
-                  <h4>Operating Hours</h4>
-                  <p>Open 24 hours a day<br></br>7 days a week<br></br>365 days a year</p>
-                </div>
-              </div>
-            </div>
-          </Col>
-        </Row>
-      </Container>
-    </section>
-
-      
     </div>
   );
 };

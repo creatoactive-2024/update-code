@@ -16,6 +16,8 @@ import Registration from '@/pages/Website/Registration';
 import Pricing from './pages/Website/Pricing';
 import PaymentSuccessful from './pages/Website/PaymentSuccessful';
 import Checkout from './pages/Website/Checkout';
+import About from './pages/Website/About';
+import TandC from './pages/Website/Terms&Condition';
 
 import MyBooking from '@/pages/CustomerDashboard/MyBooking';
 import MyProfile from '@/pages/CustomerDashboard/MyProfile';
@@ -41,6 +43,7 @@ const AppRoutes: React.FC = () => (
   <Routes>
     <Route path='/' element={<Home />} />
     <Route path='/location' element={<Location />} />
+    <Route path='/about' element={<About />} />
     <Route path='/services' element={<Services />} />
     <Route path='/addonservices' element={<AddonServices />} />
     <Route path='/contact' element={<ContactUs />} />
@@ -52,6 +55,7 @@ const AppRoutes: React.FC = () => (
     <Route path='/pricing' element={<Pricing/>} />
     <Route path='/paymentsuccessful' element={<PaymentSuccessful/>} />
     <Route path='/checkout' element={<Checkout/>} />
+    <Route path='/termsandCondition' element={<TandC/>} />
 
     <Route path='/checkoutstripe' element={<CheckoutButton/>} />
 
