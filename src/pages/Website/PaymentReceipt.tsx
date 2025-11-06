@@ -1,8 +1,49 @@
-import React from "react";
+// import React from "react";
+import React, { useEffect, useState } from "react"
 import { Container, Row, Col, Table, Button } from "react-bootstrap";
+import { useLocation, Link } from "react-router-dom";
 import Paidcheck from "../../img/paid-check.svg";
+import baseURL from "../utils/baseURL"
+
+interface Booking {
+  bookingNumber: string;
+  airportName: string;
+  dropOffDateTime: string;
+  pickUpDateTime: string;
+  noOfDays: number;
+  parkingService: { name: string; price: number };
+  addons: { name: string; price: number }[];
+  vehicle: { make: string; type: string; color: string; licensePlate: string };
+  totalAmount: number;
+  createdAt: string;
+  user: { name: string; email: string; phone?: string };
+}
 
 const Receipt: React.FC = () => {
+
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const bookingId = queryParams.get("bookingId"); 
+
+  const [booking, setBooking] = useState<Booking | null>(null);
+  
+    useEffect(() => {
+      if (bookingId) {
+        fetch(`${baseURL}/api/users/booking/${bookingId}`)
+          .then((res) => res.json())
+          .then((data) => setBooking(data))
+          .catch((err) => console.error("Error fetching booking:", err));
+      }
+    }, [bookingId]);
+  
+    if (!booking) {
+      return (
+        <div className="text-center py-5">
+          <h3>Loading your booking details...</h3>
+        </div>
+      );
+    }
+
   return (
     <div>
         <div className="inner-banner addon-banner">
@@ -35,7 +76,7 @@ const Receipt: React.FC = () => {
           <div className="receipt-info">
             <span className="paid"><img src={Paidcheck} alt="check" /> Paid</span>
             <p>Receipt #: RCP-51783604</p>
-            <p>Booking ID: BK-WG6JYFLA-019</p>
+            <p>Booking ID: {booking.bookingNumber}</p>
           </div>
         </div>
 
@@ -46,13 +87,17 @@ const Receipt: React.FC = () => {
         <div className="info-card">
           <h5>Customer Information</h5>
           <Row>
-            <Col md={4}><strong>Name:</strong> <p>Nasir Shaikh</p></Col>
-            <Col md={4}><strong>Email:</strong> <p>nasirshaikh007@gmail.com</p></Col>
-            <Col md={4}><strong>Drop-Off Date:</strong> <p>10th-Nov-2025 01:00 PM</p></Col>
+            <Col md={4}><strong>Name:</strong> <p>{" "}
+  {booking.user
+    ? `${booking.user?.firstName || ""} ${booking.user.lastName || ""}`.trim() ||
+      "N/A"
+    : "N/A"}</p></Col>
+            <Col md={4}><strong>Email:</strong> <p>{booking.user?.email || "N/A"}</p></Col>
+            <Col md={4}><strong>Drop-Off Date:</strong> <p>{new Date(booking.dropOffDateTime).toLocaleString()}</p></Col>
 
-            <Col md={4}><strong>Phone Number:</strong> <p>+1 416 1234567</p></Col>
-            <Col md={4}><strong>Booking Date:</strong> <p>10th-Nov-2025</p></Col>
-            <Col md={4}><strong>Pick Up Date:</strong> <p>14th-Nov-2025 08:00 AM</p></Col>
+            <Col md={4}><strong>Phone Number:</strong> <p> {booking.user?.phone || "N/A"}</p></Col>
+            <Col md={4}><strong>Booking Date:</strong> <p>{new Date(booking.createdAt).toLocaleString()}</p></Col>
+            <Col md={4}><strong>Pick Up Date:</strong> <p>{new Date(booking.pickUpDateTime).toLocaleString()}</p></Col>
           </Row>
         </div>
 
@@ -72,10 +117,10 @@ const Receipt: React.FC = () => {
             </thead>
             <tbody>
               <tr>
-                <td>Nissan</td>
-                <td>Leaf</td>
-                <td>Red</td>
-                <td>ABXC 007</td>
+                <td>{booking.vehicle.make}</td>
+                <td>{booking.vehicle.type}</td>
+                <td>{booking.vehicle.color}</td>
+                <td>{booking.vehicle.licensePlate}</td>
                 <td>Alberta</td>
                 <td>Yes</td>
               </tr>
@@ -99,15 +144,27 @@ const Receipt: React.FC = () => {
             <tbody>
               <tr>
                 <td>
-                  Valet Parking Service
+                  {booking.parkingService.name}
                   <div className="small-text">(Fixed valet charge)</div>
                 </td>
-                <td>3 days</td>
-                <td>$57.00</td>
-                <td>$169.99</td>
+                <td>{booking.noOfDays} days</td>
+                <td>${booking.parkingService.price.toFixed(2)}</td>
+                <td>${booking.parkingService.price.toFixed(2)}</td>
               </tr>
 
-              <tr>
+              {booking.addons.map((addon, index) => (
+                 <tr key={index}>
+                    <td>
+                      {addon.name}
+                      <div className="small-text">Deep cleaning with ceramic coating protection</div>
+                    </td>
+                    <td>1</td>
+                    <td>${addon.price.toFixed(2)}</td>
+                    <td>${addon.price.toFixed(2)}</td>
+              </tr>
+              ))}
+
+              {/* <tr>
                 <td>
                   Car Wash & Detailing
                   <div className="small-text">Deep cleaning with ceramic coating protection</div>
@@ -136,7 +193,7 @@ const Receipt: React.FC = () => {
                 <td>1</td>
                 <td>$65.47</td>
                 <td>$65.47</td>
-              </tr>
+              </tr> */}
             </tbody>
           </Table>
         </div>
@@ -145,7 +202,7 @@ const Receipt: React.FC = () => {
         <div className="totals-box">
           <Row>
             <Col>Subtotal</Col>
-            <Col className="text-end">$278.74</Col>
+            <Col className="text-end">${booking.totalAmount.toFixed(2)}</Col>
           </Row>
           <Row>
             <Col>Tax (13%)</Col>
@@ -154,7 +211,7 @@ const Receipt: React.FC = () => {
 
           <Row className="total-amount">
             <Col><strong>Total Amount</strong></Col>
-            <Col className="text-end"><strong>$314.98</strong></Col>
+            <Col className="text-end"><strong>${booking.totalAmount.toFixed(2)}</strong></Col>
           </Row>
         </div>
 

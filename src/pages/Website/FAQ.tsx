@@ -21,17 +21,17 @@ const FAQpage: React.FC<FAQSectionProps> = ({ showAll = false }) => {
     {
       question: "What services do you offer?",
       answer:
-        "We offer valet parking, airport transfers, and premium add-on services like car wash and assistance.",
+        "We provide airport valet parking, including curbside pickup, secure parking, luggage assistance, and convenient return delivery.",
     },
     {
       question: "What are your working hours?",
       answer:
-        "We operate 24/7 for your convenience. You can book, drop off, or pick up your car anytime.",
+        "Our services are available 24 hours a day, 7 days a week, ensuring you get the support you need whenever you need it.",
     },
     {
       question: "What should I bring on the day of my flightttt?",
       answer:
-        "Simply visit our website, choose your airport, select a date and time, and confirm your booking online.",
+        "Please bring your vehicle keys and booking confirmation for a smooth handover.",
     },
     {
       question: "Can I modify or cancel my booking?",
@@ -54,22 +54,22 @@ const FAQpage: React.FC<FAQSectionProps> = ({ showAll = false }) => {
     {
       question: "How can I make my reservation?",
       answer:
-        "We offer valet parking, airport transfers, and premium add-on services like car wash and assistance.",
+        "Reservations can be made easily online via our website or by calling our friendly customer service team.",
     },
     {
       question: "How can I confirm my reservation?",
       answer:
-        "We operate 24/7 for your convenience. You can book, drop off, or pick up your car anytime.",
+        "Once your booking is complete, you will receive a confirmation email or message for your reference.",
     },
     {
       question: "Can I modify or cancel my booking?",
       answer:
-        "Simply visit our website, choose your airport, select a date and time, and confirm your booking online.",
+        "Yes, bookings can be modified or cancelled online or through our customer service, following our cancellation policy.",
     },
     {
       question: "For how many days can I make a booking?",
       answer:
-        "Yes, you can easily modify or cancel your booking from your account dashboard before your scheduled time.",
+        "Bookings can be made for any duration, whether short-term or long-term, according to your travel needs.",
     },
     
   ];
@@ -78,28 +78,29 @@ const FAQpage: React.FC<FAQSectionProps> = ({ showAll = false }) => {
     {
       question: "What payment methods do you accept?",
       answer:
-        "We offer valet parking, airport transfers, and premium add-on services like car wash and assistance.",
+        "We accept cash, debit, and credit cards to provide flexible payment options.",
     },
     {
       question: "Is my credit card information secure?",
       answer:
-        "We operate 24/7 for your convenience. You can book, drop off, or pick up your car anytime.",
+        "Yes, all payments are processed securely through encrypted channels to ensure your information is safe.",
     },
     {
       question: "If my booking is cancelled, how can I get a refund?",
       answer:
-        "Simply visit our website, choose your airport, select a date and time, and confirm your booking online.",
+        "Refunds are processed as per our cancellation policy, directly to the original payment method.",
     },
     {
       question: "Are there any additional fees I should be aware of?",
       answer:
-        "Yes, you can easily modify or cancel your booking from your account dashboard before your scheduled time.",
+        "No, all charges are transparent and included at the time of booking, with no hidden costs.",
     },
     {
       question: "Why am I charged for a full day if I stay just a few hours over my reservation?",
-      answer:
-        "Yes, you can easily modify or cancel your booking from your account dashboard before your scheduled time.",
-    },
+      answer: `At Drop N Park, we understand that travel plans don’t always go exactly as scheduled. That’s why we offer a 3-hour grace period after your scheduled return time—completely free of charge.<br /><br />
+      If you exceed that 3-hour window, a flat late fee of $XX + tax will be applied. This fee covers the additional time your vehicle occupies our facility beyond your reserved period.<br /><br />
+      Please note that Drop N Park does not offer hourly rates. Our pricing is based on a 24-hour daily rate structure, which is standard in airport parking services.`
+    }
     
   ];
 
@@ -108,17 +109,17 @@ const FAQpage: React.FC<FAQSectionProps> = ({ showAll = false }) => {
     {
       question: "Do you provide vehicle insurance while it is parked?",
       answer:
-        "We offer valet parking, airport transfers, and premium add-on services like car wash and assistance.",
+        "Yes, all vehicles are insured and stored securely in our monitored facility.",
     },
     {
       question: "What if I forget to inform DropNPark about my pickup or arrival?",
       answer:
-        "We operate 24/7 for your convenience. You can book, drop off, or pick up your car anytime.",
+        "Simply contact our customer service team immediately, and we will assist you promptly.",
     },
     {
       question: "What should I do if my flight is delayed?",
       answer:
-        "Simply visit our website, choose your airport, select a date and time, and confirm your booking online.",
+        "Please inform us of any delays, and our valet team will adjust the pickup or delivery accordingly.",
     },
     
     
@@ -128,7 +129,7 @@ const FAQpage: React.FC<FAQSectionProps> = ({ showAll = false }) => {
     {
       question: "How can I contact customer service?",
       answer:
-        "We offer valet parking, airport transfers, and premium add-on services like car wash and assistance.",
+        "You can reach our team via phone or email, and we’ll be happy to assist you. (Phone No : +1 942-200-0043, Email Id: info@dropnpark.com)",
     },
     
     
@@ -139,7 +140,7 @@ const FAQpage: React.FC<FAQSectionProps> = ({ showAll = false }) => {
 
   const displayedFaqs = showAll ? faqs : faqs.slice(0, 3);
   const reservatonFaqs = showAll ? reservations : reservations.slice(0, 4);
-  const paymentFaqs = showAll ? payment : payment.slice(0, 4);
+  const paymentFaqs = showAll ? payment : payment.slice(0, 5);
   const serviceFaqs = showAll ? service : service.slice(0, 3);
   const contactFaqs = showAll ? contact : contact.slice(0);
 
@@ -208,7 +209,7 @@ const FAQpage: React.FC<FAQSectionProps> = ({ showAll = false }) => {
               {paymentFaqs.map((item, index) => (
                 <Accordion.Item eventKey={index.toString()} key={index}>
                   <Accordion.Header>{item.question}</Accordion.Header>
-                  <Accordion.Body><p>{item.answer}</p></Accordion.Body>
+                  <Accordion.Body><p dangerouslySetInnerHTML={{ __html: item.answer }} /></Accordion.Body>
                 </Accordion.Item>
               ))}
             </Accordion>

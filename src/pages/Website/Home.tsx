@@ -57,7 +57,15 @@ const getCanadaNow = () => {
 // Compare a date against Canada time
 const isBeforeCanadaNow = (date) => {
   const now = getCanadaNow();
-  return date < now;
+  // return date < now;
+
+  const selectedDate = new Date(date);
+  selectedDate.setHours(0, 0, 0, 0);
+
+  const canadaDate = new Date(now);
+  canadaDate.setHours(0, 0, 0, 0);
+
+  return selectedDate < canadaDate;
 };
 
 // Generate the start of the day in local Canada time
@@ -666,7 +674,7 @@ const Home: React.FC = () => {
                 <div className="stars">★★★★★</div>
                 <p className="feedback">“{t.feedback}”</p>
                 <div className="user-info">
-                  <img src={t.image} alt={t.name} />
+                  {/* <img src={t.image} alt={t.name} /> */}
                   <div>
                     <h5>{t.name}</h5>
                     <span>{t.role}</span>

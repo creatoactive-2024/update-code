@@ -684,7 +684,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   const submitter: HTMLButtonElement | null = nativeEvent?.submitter || null;
   const submitText = submitter?.textContent?.trim().toUpperCase() || "";
 
-  if (!submitText.includes("REGISTER")) return;
+  // if (!submitText.includes("REGISTER")) return;
 
   const form = e.currentTarget;
   const fd = new FormData(form);
@@ -1373,12 +1373,22 @@ useEffect(() => {
                   </div>
 
                   <div className="d-flex registration-btns">
-                    <Button
+                    {/* <Button
                       variant="primary"
                       type="submit"
                       className="primary-btn"
                     >
                      CONTINUE
+                    </Button> */}
+
+                    <Button
+                      variant="primary"
+                      type="submit"
+                      className="primary-btn"
+                      name="action"
+                      value={isExistingUser ? "continue" : "register"}
+                    >
+                      {isExistingUser ? "CONTINUE" : "REGISTER"}
                     </Button>
                   </div>
 
