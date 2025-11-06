@@ -14,8 +14,9 @@
 @import './pricing';
 @import './PaymentSuccessful';
 @import './about';
+@import './receipt';
 
-html, body, #root { height: 100%; }
+html, body{ height: 100%; }
 ul{
     margin: 0;
     padding: 0;
@@ -301,23 +302,107 @@ body {
   width: 80%;
 }
 
-.home-banner-dropdown{
+// .home-banner-dropdown{
+//   position: relative;
+//   .icon{
+//     position: absolute;
+//   }
+//   .form-select{
+//     width: 100%;
+//     padding-left: 35px;
+//     option{
+//       background: $primary;
+//       color: #fff;
+//       &:hover{
+//         background: $secondary !important;
+//       }
+//       &:focus {
+//       box-shadow: none;
+//     }
+//     }
+//   }
+// }
+
+
+.custom-dd-wrapper {
+  width: 100%;
   position: relative;
-  .icon{
-    position: absolute;
-  }
-  .form-select{
-    width: 100%;
-    padding-left: 35px;
-    option{
-      background: $primary;
-      color: #fff;
-      &:hover{
-        background: $secondary !important;
-      }
-      &:focus {
-      box-shadow: none;
+  margin-bottom: 16px;
+  background: rgba(21, 43, 82, 0.8);
+  border-radius: 10px;
+
+  .custom-dd {
+    
+    padding: 11px 24px;
+    font-size: 12px;
+    line-height: 120%;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    position: relative;
+    color: rgba(255, 255, 255, 0.45);
+
+
+    .left-icon {
+      width: 24px;
+      height: 24px;
     }
+
+    .selected-text {
+      flex: 1;
+      font-size: 16px;
+    }
+
+    .arrow {
+      width: 0;
+      height: 0;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-top: 10px solid #ff8a26;
+      transition: 0.3s ease;
+      transform: rotate(-90deg);
+    }
+
+    .rotate {
+      transform: rotate(0deg);
     }
   }
+
+  .dropdown-list {
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.35s ease, opacity 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .dropdown-list.open {
+    max-height: 200px;
+    opacity: 1;
+  }
+
+  .dropdown-item {
+    color: #fff;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 0px 65px;
+    &:hover {
+      color: #ff8a26;
+    }
+    &:last-child{
+      margin-bottom: 20px;
+    }
+  }
+
+  .dropdown-item.disabled {
+    color: #78839a;
+    opacity: 0.5;
+    cursor: not-allowed;
+    
+    &:hover {
+      color: #78839a;
+    }
+}
 }

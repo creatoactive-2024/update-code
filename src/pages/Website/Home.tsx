@@ -212,6 +212,15 @@ const Home: React.FC = () => {
     navigate("/pricing", { state: bookingData });
   };
 
+  const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState("Select Location");
+
+  const options = [
+  { label: "Toronto", disabled: false },
+  { label: "Vancouver", disabled: true },
+  { label: "Ottawa", disabled: true },
+];
+
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
   const [index, setIndex] = useState(0);
 
@@ -242,7 +251,7 @@ const Home: React.FC = () => {
         <div className="booking-form">
           <h4>Book Your Premium Valet Parking</h4>
           <Form onSubmit={handleSubmit}>
-            <Form.Group>
+            {/* <Form.Group>
               <Form.Label>Airport Name *</Form.Label>
               <div className="form-box home-banner-dropdown">
                 <div className="icon"><img src={book1} alt="location" /></div>
@@ -252,7 +261,34 @@ const Home: React.FC = () => {
                   <option value="Montreal">Montreal</option>
                 </Form.Select>
               </div>
-            </Form.Group>
+            </Form.Group> */}
+            <Form.Label>Airport Name *</Form.Label>
+            <div className="custom-dd-wrapper">
+              <div className="custom-dd" onClick={() => setOpen(!open)}>
+                <img src={book1} className="left-icon" alt="icon" />
+                <span className="selected-text">{selected}</span>
+                <span className={`arrow ${open ? "rotate" : ""}`}></span>
+              </div>
+
+              <div className={`dropdown-list ${open ? "open" : ""}`}>
+                {options.map((opt) => (
+                  <div
+                    key={opt.label}
+                    className={`dropdown-item ${opt.disabled ? "disabled" : ""}`}
+                    onClick={() => {
+                      if (!opt.disabled) {
+                        setSelected(opt.label);
+                        setOpen(false);
+                      }
+                    }}
+                  >
+                    {opt.label}
+                  </div>
+                ))}
+              </div>
+
+            </div>
+            
 
             {/* Drop-Off */}
             <Form.Group>

@@ -1378,7 +1378,7 @@ useEffect(() => {
                       type="submit"
                       className="primary-btn"
                     >
-                      REGISTER
+                     CONTINUE
                     </Button>
                   </div>
 

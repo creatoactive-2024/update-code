@@ -35,7 +35,7 @@ const FindUs: React.FC = () => {
                 </span>
                 <div className="contact-info">
                   <h4>Service Location</h4>
-                  <p>180 Attwell Dr, Suite 160, Etobicoke, ON M9W 5Z5</p>
+                  <a href="https://share.google/01diBFGmSHA38sQeE" target='_blank' className="text-white">180 Attwell Dr, Etobicoke, ON M9W 5Z5</a>
                 </div>
               </div>
 

@@ -15,6 +15,7 @@ import SignIn from '@/pages/Website/SignIn';
 import Registration from '@/pages/Website/Registration';
 import Pricing from './pages/Website/Pricing';
 import PaymentSuccessful from './pages/Website/PaymentSuccessful';
+import PaymentReceipt from './pages/Website/PaymentReceipt';
 import Checkout from './pages/Website/Checkout';
 import About from './pages/Website/About';
 import TandC from './pages/Website/Terms&Condition';
@@ -54,6 +55,7 @@ const AppRoutes: React.FC = () => (
     <Route path='/registration' element={<Registration />} />
     <Route path='/pricing' element={<Pricing/>} />
     <Route path='/paymentsuccessful' element={<PaymentSuccessful/>} />
+    <Route path='/paymentreceipt' element={<PaymentReceipt/>} />
     <Route path='/checkout' element={<Checkout/>} />
     <Route path='/termsandCondition' element={<TandC/>} />
 
