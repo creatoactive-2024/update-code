@@ -29,7 +29,7 @@ const FAQpage: React.FC<FAQSectionProps> = ({ showAll = false }) => {
         "Our services are available 24 hours a day, 7 days a week, ensuring you get the support you need whenever you need it.",
     },
     {
-      question: "What should I bring on the day of my flightttt?",
+      question: "What should I bring on the day of my flight?",
       answer:
         "Please bring your vehicle keys and booking confirmation for a smooth handover.",
     },
