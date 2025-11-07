@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import "./FileUpload.scss";
+
 import { FaCloudUploadAlt } from "react-icons/fa";
 import uploadImg from "../image/upload.svg";
 const FileUpload: React.FC = () => {

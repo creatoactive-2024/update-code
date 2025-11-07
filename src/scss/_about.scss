@@ -159,6 +159,7 @@ section.our-values {
         padding: 24px 16px;
         border-radius: 10px;
         min-height: 325px;
+        background: rgba(255, 255, 255, 1);
 
         .values-icn {
             width: 40px;
@@ -234,6 +235,7 @@ section.our-values {
         font-size: 16px;
         line-height: 100%;
         font-weight: 400;
+        color: $primary;
     }
 
     .team-img {
@@ -259,11 +261,13 @@ section.our-values {
         font-weight: 700;
         line-height: 100%;
         margin: 0;
+        color: $primary;
     }
 
     p {
         font-size: 16px;
         font-weight: 400;
+        color: $primary;
     }
      @media (max-width: 767px) {
                  .row{flex-direction: column; gap:30px}
@@ -333,3 +337,138 @@ h5 {
 
             }
 }
+
+
+.ab-page{
+    @media (max-width: 767px) {
+        .contactpage-section{
+            padding: 24px 0;
+            .main-button{
+              display: block !important;
+            }
+            .cont-wrap{
+                span{
+                    flex-shrink: 0;
+                }
+            }
+        }
+        .inner-banner{
+            margin-bottom: 0;
+        }
+        .inner-about-section{
+            padding-top: 0;
+            .container{
+                .row{
+                    flex-direction: column-reverse;
+                    .about-img-wrap{
+                        padding: 0;
+                        .about-img{
+                            border-radius: 0;
+                            height: 217px;
+                            img{
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                            }
+                        }
+                    }
+                    .upper-para{
+                        font-size: 16px;
+                        h2{
+                            font-size: 24px;
+                            font-weight: 600;
+                        }
+                    }
+                }
+            }
+        }
+        .our-values{
+            padding: 24px 0;
+        }
+        .about-mission{
+            .container{
+                padding: 0;
+                .mission{
+                    padding: 16px;
+                    border-radius: 0;
+                    h2{
+                        font-size: 24px;
+                    }
+                    p{
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+        .our-joruney{
+            padding: 36px 0px;
+            .for-psudo{
+                width: auto;
+                padding-top: 16px;
+                &::before{
+                    height: 90%;
+                    left: 50%;
+                    width: 8px;
+                    top: auto;
+                    transform: translateX(-50%);
+                }
+                
+            }
+        }
+        .prof-team{
+            padding: 0;
+            .prof-team-img{
+                padding: 0;
+                .team-img{
+                    border-radius: 0;
+                    height: 228px;
+                    img{
+                        width: 100%;
+                        object-fit: cover;
+                        height:100%;
+                    }
+                }
+                
+                
+            }
+            .team-info{
+                    padding-bottom: 24px;
+                    h4{
+                        font-size: 16px;
+                    }
+                }
+                .cont-wrap{
+                    p{
+                        span{
+                            flex-shrink: 0;
+                        }
+                    }
+                }
+                
+        }
+        
+    }
+}
+
+
+
+        .abvalue-blocks {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            @media (max-width: 768px) {
+            margin-top:24px;
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 1rem;
+            padding-bottom: 10px;
+            &::-webkit-scrollbar {
+                display: none;
+            }
+            .value-card {
+                flex: 0 0 85%;
+                scroll-snap-align: start;
+            }
+            }
+        }

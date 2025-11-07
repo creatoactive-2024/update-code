@@ -1,41 +1,73 @@
 // @import '@/scss/_variables';
+@import './AddNewBooking';
+@import './AddNewDriver';
+@import './AddNewSupervisor';
+@import './Dashboard';
+@import './DriverBooking';
+@import './FileUpload';
+@import './SelectDriver';
+@import './VariablesAdmin';
+@import './AdDriverDashboard.scss';
+@import './SelectSupervisor';
+@import './Coupons';
+@import './Reports';
 
 .admin-layout {
   height: 100vh;
 
   .admin-sidebar {
-    width: 276px;
+    width: 100%;
     background-color: #152B52;
     border-right: 1px solid #dee2e6;
+    max-width: 280px;
 
-    .nav-link{color: #ffffff; display: flex;}
+    .nav-link {
+      color: #ffffff;
+      display: flex;
+    }
+
+    @media (max-width: 1024px) {
+      width: 23%;
+    }
+
+    .sidebar {
+      width: 100%;
+      padding: 0;
+      position: static;
+
+      .sidebar__menu {
+        list-style: none;
+        padding: 37px 31px;
+        margin: 0;
+      }
+    }
   }
 
   .admin-main {
     display: flex;
     flex-direction: column;
+    width: 60%;
 
     .admin-topbar {
-    height: 60px;
-    background-color: #f1f3f6;
-    border-bottom: none;
-    display: flex;
-    align-items: center;
-    padding: 50px 20px;
-    box-shadow: none !important;
-    z-index: 1000;
+      height: 60px;
+      background-color: #f1f3f6;
+      border-bottom: none;
+      display: flex;
+      align-items: center;
+      padding: 50px 20px;
+      box-shadow: none !important;
+      z-index: 1000;
 
       .admin-topbar {
-    height: 60px;
-    background-color: #f1f3f6;
-    border-bottom: none;
-    display: flex
-;
-    align-items: center;
-    padding: 0 20px;
-    box-shadow: none !important;
-    z-index: 1000;
-}
+        height: 60px;
+        background-color: #f1f3f6;
+        border-bottom: none;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        box-shadow: none !important;
+        z-index: 1000;
+      }
     }
 
     .admin-content {

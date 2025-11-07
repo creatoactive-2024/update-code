@@ -102,9 +102,8 @@ const Pricing: React.FC = () => {
 
         <Row>
           <Col md={12} className="mx-auto">
-            <div className="pricing-rates">
-              <div className="row justify-content-center">
-                <div className="col-4">
+              <div className="pricing-rates">
+                <div className="col col-md-6 col-lg-4 pricing-card">
                   <div className="pricing-inner">
                     <h2 className="p-head">Valet Parking Service</h2>
                     <p className="p-text">Save $40.00 based on our regular rate.</p>
@@ -136,7 +135,7 @@ const Pricing: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="col-4">
+                <div className="col col-md-6 col-lg-4 pricing-card">
                   <div className="pricing-inner">
                     <h2 className="p-head">Drive N Drop</h2>
                     <p className="p-text">Save $40.00 based on our regular rate.</p>
@@ -167,7 +166,6 @@ const Pricing: React.FC = () => {
                   </div>
                 </div>
               </div>
-            </div>
           </Col>
         </Row>
       </Container>
@@ -178,7 +176,7 @@ const Pricing: React.FC = () => {
           <div className="heading-wrapper text-center">
             <h2>Find Your Perfect Parking Space</h2>
           </div>
-          <div className="row align-items-stretch">
+          <div className="row align-items-stretch find-space-section">
             <div className="col-md-3 col-lg-3">
               <div className="for-row-flex">
                 <div>
@@ -208,7 +206,7 @@ const Pricing: React.FC = () => {
               </div>
             </div>
 
-            <div className="col-md-6 col-lg-6">
+            <div className="col-md-6 col-lg-6 img-park">
               <div className="parking-img">
                 <img src={parkingImg} alt="parking" />
               </div>

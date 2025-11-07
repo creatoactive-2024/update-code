@@ -8,23 +8,36 @@
             width: 48px;
             right: 0;
         }
+        @media (max-width: 768px) {
+             right: 15px !important;
+      }
     }
 }
   .signin-card {
     width: 100%;
     position: relative;
     animation: fadeInUp 0.6s ease;
+   
 
-    .logo img {
+    .logo{
+       @media (max-width: 768px) {
+              max-width: 300px;
+              margin: 0px auto;
+      }
+    img {
       height: 100%;
       object-fit: contain;
     }
+  }
     h5{
         font-weight: 700;
         font-size: 40px;
         line-height: 100%;
         margin-bottom: 54px;
         color: $primary;
+        @media (max-width: 768px) {
+          font-size: 24px;
+        }
     }
 
     .text-accent {
@@ -116,7 +129,13 @@
             a{
                 color: $primary;
                 text-decoration: underline;
+                @media (max-width: 768px) {
+              font-size: 16px;
+            }
 
+            }
+            @media (max-width: 768px) {
+              font-size: 12px;
             }
         }
         hr{

@@ -1,5 +1,5 @@
 import React from 'react'
-import "./AddNewDriver.scss";
+
 import FileUpload from './FileUpload';
 
 const AddNewSupervisor: React.FC = () => {
@@ -17,7 +17,7 @@ const AddNewSupervisor: React.FC = () => {
         <input type="text" id="firstName" name="firstName" placeholder='Enter your first name' />
       </div>
 
-      <div className="form-group">
+      <div className="form-group">   
         <label htmlFor="lastName">Last Name *</label>
         <input type="text" id="lastName" name="lastName" placeholder='Enter your Last name'/>
       </div>
@@ -43,6 +43,14 @@ const AddNewSupervisor: React.FC = () => {
       <div className="form-group">
         <label htmlFor="Mobileno">Driver License Number *</label>
         <input type="text" id="Mobile No" name="lastName" placeholder='DL123456789'/>
+      </div>
+      <div className="form-group">
+        <label htmlFor="Mobileno">Password *</label>
+        <input type="text" id="Mobile No" name="lastName" placeholder='Enter password'/>
+      </div>
+      <div className="form-group">
+        <label htmlFor="Mobileno">Confirm Password *</label>
+        <input type="text" id="Mobile No" name="lastName" placeholder='Confirm password'/>
       </div>
     </div>
 

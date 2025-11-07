@@ -37,7 +37,9 @@ import Coupons from '@/pages/AdminPanel/pages/Coupons';
 import AddNewBooking from './pages/AdminPanel/pages/AddNewBooking';
 import AddNewDriver from './pages/AdminPanel/pages/AddNewDriver';
 import AddNewSupervisor from './pages/AdminPanel/pages/AddNewSupervisor';
-
+import SelectDriver from './pages/AdminPanel/pages/SelectDriver';
+import AdDriverDashboard from './pages/AdminPanel/pages/AdDriverDashboard';
+import SelectSupervisor from './pages/AdminPanel/pages/SelectSupervisor';
 
 
 const AppRoutes: React.FC = () => (
@@ -75,11 +77,14 @@ const AppRoutes: React.FC = () => (
       <Route path="dashboard" element={<AdminDashboard />} />
       <Route path="users" element={<Users />} />
       <Route path="bookings" element={<Bookings />} />
-      <Route path="reports" element={<Reports />} />
-      <Route path="coupons" element={<Coupons />} />
+      <Route path="driver-daily-report" element={<Reports />} />
+      <Route path="coupon-management" element={<Coupons />} />
       <Route path="add-booking" element={<AddNewBooking />} />
       <Route path="add-driver" element={<AddNewDriver />} />
+      <Route path="select-driver" element={<SelectDriver />} />
       <Route path="add-supervisor" element={<AddNewSupervisor/>} />
+      <Route path="drivers-dashboard" element={<AdDriverDashboard/>} />
+      <Route path="select-supervisor" element={<SelectSupervisor/>} />
     </Route>
 
   </Routes>

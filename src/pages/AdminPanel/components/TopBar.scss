@@ -1,3 +1,11 @@
+$primary: #152B52;
+$secondary: #E68531;
+$dark-gray: #D9D9D9;
+$muted: #5A5957;
+$body-bg: #F6F6F6;
+$white: #FFFFFF;
+$poppins-font: 'Poppins', sans-serif;
+$roboto-font: 'Roboto', sans-serif;
 .admin-layout .admin-main .admin-topbar {
     height: auto;
     background-color: #fff;
@@ -39,3 +47,68 @@
 }
 }
 }
+
+.navbar-nav .dropdown-menu{
+    border-radius: 0;
+    background: transparent;
+    border: none;
+    padding: 0;
+    a{
+      font-weight: 500;
+      font-size: 18px;
+    }
+  }
+ .navbar .menu-bar .nav-link{
+       font-size: 24px;
+      font-weight: 700;
+      color: $primary;
+      margin: 15px 0;
+      text-transform: capitalize;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: $secondary;
+      }
+    }
+       .user-role,.user-name {display: none;}
+     .user-dropdown .dropdown-toggle::after{content: none;}
+     .user-dropdown .user-info{
+        gap: 0;
+       }
+     .user-dropdown .dropdown-menu-custom{
+        left: -109px;
+        border: none;
+    border-radius: 10px;
+    min-width: 144px;
+    background: #fff;
+    padding: 10px 0px;
+       }
+       .mobile-navbar .mobile-menu{
+        justify-content: start !important;
+       }
+       .navbar-nav{
+        margin-top: 0;
+        padding: 16px 25px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        width: 100%;
+        height: 100%;
+       }
+     .navbar .menu-bar .nav-link {
+    padding: 0px;
+
+    
+      }
+.site-header .user-dropdown .dropdown-toggle-custom {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    display: flex
+;
+    align-items: center;
+    padding: 0;
+    cursor: pointer;
+}
+      
+    

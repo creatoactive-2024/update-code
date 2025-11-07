@@ -1,0 +1,23 @@
+.drivers-dashboard-wrap {
+    display: flex;
+    gap: 16px;
+
+    .dirvers-dash-blocks {
+    padding: 16px;
+    border-radius: 10px;
+    
+}
+
+.dirvers-dash-blocks:nth-child(1) {
+    background-color: #BFE2FF;
+    color: #152B52;
+  }
+  .dirvers-dash-blocks:nth-child(2) {
+    background-color: #FFC2DA;
+    color: #152B52;
+  }
+  .dirvers-dash-blocks:nth-child(3) {
+    background-color: #D5FFB1;
+    color: #152B52;
+  }
+}

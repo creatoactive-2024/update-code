@@ -1,5 +1,5 @@
 import React from 'react'
-import "./AddNewBooking.scss";
+
 import Calender from '../components/Calender';
 const AddNewBooking: React.FC = () => {
   return (

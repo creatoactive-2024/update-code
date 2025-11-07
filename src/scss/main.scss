@@ -140,6 +140,10 @@ body {
         line-height: 120%;
         position: relative;
         z-index: 1;
+        @media (max-width: 1200px) {
+                     font-size: 24px;
+                     margin-bottom: 16px;
+            }
          @media (max-width: 768px) {
                      font-size: 16px;
                      margin-bottom: 16px;
@@ -149,6 +153,9 @@ body {
             font-size: 48px;
             font-weight: 600;
             color: $white;
+            @media (max-width: 1200px) {
+                     font-size: 18px;
+            }
              @media (max-width: 768px) {
                      font-size: 24px;
             }
@@ -159,6 +166,9 @@ body {
         font-weight: 400;
         line-height: 100%;
         color: $white;
+        @media (max-width: 1200px) {
+                     font-size: 18px;
+            }
         @media (max-width: 768px) {
                     font-size: 16px;
             }
@@ -278,7 +288,11 @@ body {
   font-size: 24px;
   color: #999;
   margin-bottom: 51px;
-
+  @media (max-width: 768px) {
+        font-size: 14px;
+        gap: 8px;
+         margin-bottom: 36px;
+    }
   .breadcrumb-item {
     color: #9b9b9b;
     transition: color 0.3s ease;
@@ -405,4 +419,12 @@ body {
       color: #78839a;
     }
 }
+}
+
+.dropdown-menu.show{
+  opacity: 1;
+  z-index: 9999999;
+}
+.dropdown .dropdown-menu{
+  top: 110% !important;
 }

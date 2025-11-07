@@ -27,7 +27,7 @@ const Footer: React.FC = () => {
               <Link to="/">
                 <img src={logo} alt="Drop N Park" className='footer-logo' />
               </Link>
-              <h6>Sign up here for regular updates on new events and offers</h6>
+              {/* <h6>Sign up here for regular updates on new events and offers</h6>
               <Form onSubmit={handleSubmit} className="d-flex justify-content-center form-wrap">
                 <InputGroup className="subscribe-input">
                 <img src={envelope} alt="Email"  className="email-icon"/>
@@ -42,7 +42,7 @@ const Footer: React.FC = () => {
                     SEND NOW
                   </Button>
                 </InputGroup>
-              </Form>
+              </Form> */}
             </div>
           </Col>
 

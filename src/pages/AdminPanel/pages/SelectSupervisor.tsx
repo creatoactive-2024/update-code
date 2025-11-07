@@ -3,30 +3,21 @@ import React, { useState } from "react";
 import { FaSort, FaSortUp, FaSortDown } from "react-icons/fa";
 import FileUpload from './FileUpload';
 import { useNavigate } from 'react-router-dom';
-import { FaCalendarAlt } from "react-icons/fa";
-import { FaCaretRight } from "react-icons/fa";
-import exrep from '../../../img/export-report.svg';
-
-
-
-
+// import Edit from '../../../img/edit-blue.svg';
+// import Delete from '../../../img/delete-red.svg';
 interface Booking {
   id: number;
-  date: string;
-  tb: number;
-  dropo: number;
-  picku: number;
-  eraning: string;
+  cname: string;
+  emailaddress: string;
+  mobile: number;
+  driverli: string;
 
 }
 
 type SortDirection = "asc" | "desc" | null;
 
-const Reports: React.FC = () => {
+const SelectSupervisor: React.FC = () => {
      const [isModalOpen, setIsModalOpen] = useState(false);
-     
-     const [viewType, setViewType] = useState("");
-     const [date, setDate] = useState("");
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -41,75 +32,60 @@ const Reports: React.FC = () => {
   const [data, setData] = useState<Booking[]>([
     {
       id: 1,
-      date: "Thu, Oct 09, 2025",
-      tb: 23,
-      dropo: 70,
-      picku: 6,
-      eraning:"$4,250.00"
+      cname: "Mujahid Shaikh",
+      emailaddress: "Mujahid.shaikh@gmail.com",
+      mobile: 9995552223,
+      driverli: "D6101 - 40706 - 60905",
  
     },
     {
       id: 2,
-      date: "Thu, Oct 09, 2025",
-      tb: 23,
-      dropo: 70,
-      picku: 6,
-      eraning:"$4,250.00"
- 
+      cname: "Aman Sandhu",
+      emailaddress: "Mujahid.shaikh@gmail.com",
+      mobile: 9995552223,
+      driverli: "D6101 - 40706 - 60905",
     },
     {
       id: 3,
-      date: "Thu, Oct 09, 2025",
-      tb: 23,
-      dropo: 70,
-      picku: 6,
-      eraning:"$4,250.00"
- 
+      cname: "Rohit Sharma",
+      emailaddress: "Mujahid.shaikh@gmail.com",
+      mobile: 9995552223,
+      driverli: "D6101 - 40706 - 60905",
     },
     {
       id: 4,
-      date: "Thu, Oct 09, 2025",
-      tb: 23,
-      dropo: 70,
-      picku: 6,
-      eraning:"$4,250.00"
- 
+      cname: "Ms Dhoni",
+      emailaddress: "Mujahid.shaikh@gmail.com",
+      mobile: 9995552223,
+      driverli: "D6101 - 40706 - 60905",
     },
     {
       id: 5,
-      date: "Thu, Oct 09, 2025",
-      tb: 23,
-      dropo: 70,
-      picku: 6,
-      eraning:"$4,250.00"
- 
+      cname: "Jorden Cox",
+      emailaddress: "Mujahid.shaikh@gmail.com",
+      mobile: 9995552223,
+      driverli: "D6101 - 40706 - 60905",
     },
     {
       id: 6,
-      date: "Thu, Oct 09, 2025",
-      tb: 23,
-      dropo: 70,
-      picku: 6,
-      eraning:"$4,250.00"
- 
+      cname: "ian ward",
+      emailaddress: "Mujahid.shaikh@gmail.com",
+      mobile: 9995552223,
+      driverli: "D6101 - 40706 - 60905",
     },
     {
       id: 7,
-      date: "Thu, Oct 09, 2025",
-      tb: 23,
-      dropo: 70,
-      picku: 6,
-      eraning:"$4,250.00"
- 
+      cname: "Jock Itch",
+      emailaddress: "Mujahid.shaikh@gmail.com",
+      mobile: 9995552223,
+      driverli: "D6101 - 40706 - 60905",
     },
     {
       id: 8,
-      date: "Thu, Oct 09, 2025",
-      tb: 23,
-      dropo: 70,
-      picku: 6,
-      eraning:"$4,250.00"
- 
+      cname: "Ricky Martin",
+      emailaddress: "Mujahid.shaikh@gmail.com",
+      mobile: 9995552223,
+      driverli: "D6101 - 40706 - 60905",
     },
   ]);
 
@@ -159,84 +135,25 @@ const Reports: React.FC = () => {
     return <FaSort />;
   };
 
-
   const headers: { label: string; key: keyof Booking | "actions" }[] = [
     // { label: "No", key: "id" },
-    { label: "Date", key: "date" },
-    { label: "Total Bookings", key: "tb" },
-    { label: "Drop-offs", key: "dropo" },
-    { label: "Pick-ups", key: "picku" },
-    { label: "Earnings", key: "eraning" },
-    // { label: "ACTIONS", key: "actions" },
+    { label: "NAME", key: "cname" },
+    { label: "EMAIL ADDRESS", key: "emailaddress" },
+    { label: "MOBILE", key: "mobile" },
+    { label: "DRIVER LICENCE NUMBER", key: "driverli" },
+    { label: "ACTIONS", key: "actions" },
     
   ];
 
     const navigate = useNavigate();
-
+    const goToAbout = () => navigate("/admin/add-driver");
   return (
     <>
-    <div className='report-page-wrap'>
-    
-    <button  className="report-export">
-          <span><img src={exrep}/></span>Export Report
+    <div className='select-driver-wrap'>
+    <h2 className='driver-inner-headings'>Select Supervisor</h2>
+    <button onClick={goToAbout} className="open-modal-btn">
+          + Add New Booking
         </button>
-    </div>
-    <div>
-      <div className="box-wrapper">
-      <div className="l-side">
-      <div className="date-input-wrapper">
-       <input
-          type="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-          className={`date-input ${!date ? "placeholder-shown" : ""}`}
-        />
-        <span className="placeholder-text">{!date ? "Start Date" : ""}</span>
-        <FaCalendarAlt className="calendar-icon" />
-      </div>
-
-      <div className="date-input-wrapper">
-       <input
-          type="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-          className={`date-input ${!date ? "placeholder-shown" : ""}`}
-        />
-        <span className="placeholder-text">{!date ? "End Date" : ""}</span>
-        <FaCalendarAlt className="calendar-icon" />
-      </div>
-
-      <div className="select-wrapper">
-        <select
-          value={viewType}
-          onChange={(e) => setViewType(e.target.value)}
-          className={`custom-select ${!viewType ? "placeholder" : ""}`}
-        >
-          <option value="" disabled hidden>
-            View Type
-          </option>
-          <option value="daily">Daily</option>
-          <option value="weekly">Weekly</option>
-          <option value="monthly">Monthly</option>
-        </select>
-        <FaCaretRight className="select-icon" />
-      </div>
-    </div>
-    <div className="r-side">
-      <button  className="report-apply">
-          Apply Filter
-        </button>
-      </div>
-    </div>
-      {/* {date && <p className="selected">Selected Date: {date}</p>} */}
-    </div>
-  
-
-    <div className="coupons-dashboard-wrap">
-      <div className="coupons-dash-blocks"><h4>116</h4><p>Total Booking</p></div>
-      <div className="coupons-dash-blocks"><h4>$28,300.00</h4><p>Total Earnings</p></div>
-      <div className="coupons-dash-blocks"><h4>68</h4><p>Drop-offs</p></div>
-      <div className="coupons-dash-blocks"><h4>48</h4><p>Pick Ups</p></div>
     </div>
     <div className="booking-table-container">
       <div className="table-wrapper">
@@ -255,17 +172,18 @@ const Reports: React.FC = () => {
             {currentData.map((row) => (
               <tr key={row.id}>
                 {/* <td>{row.id}</td> */}
-                <td>{row.date}</td>
-                <td>{row.tb}</td>
-                <td>{row.dropo}</td>
-                <td>{row.picku}</td>
-                <td>{row.eraning}</td>
+                <td>{row.cname}</td>
+                <td>{row.emailaddress}</td>
+                <td>{row.mobile}</td>
+                <td>{row.driverli}</td>
      
 
-                {/* <td>
-                  <button className="action-btn">{<img src={Edit}/>}</button>
-                  <button className="action-btn delete" onClick={openModal}>{<img src={Delete}/>}</button>
-                </td> */}
+                <td>
+                  {/* <button className="action-btn">{<img src={Edit}/>} edit</button>
+                  <button className="action-btn delete" onClick={openModal}>{<img src={Delete}/>} delet</button> */}
+                  <button className="action-btn"> edit</button>
+                  <button className="action-btn delete" onClick={openModal}> delet</button>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -311,4 +229,4 @@ const Reports: React.FC = () => {
   )
 }
 
-export default Reports 
+export default SelectSupervisor

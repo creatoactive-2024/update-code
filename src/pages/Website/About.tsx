@@ -41,7 +41,7 @@ const About: React.FC = () =>  {
 
                             <p>When you return, one quick call ensures your car is ready curbside, and in moments, you're back on the road — comfortable, relaxed, and free from the usual airport parking headaches.</p>
                         </div>
-                        <div className='col-md-6 col-lg-6'>
+                        <div className='col-md-6 col-lg-6 about-img-wrap'>
                             <div className='about-img'>
                                 <img src={AboutU} alt='about img' />
                             </div>
@@ -101,8 +101,8 @@ const About: React.FC = () =>  {
                         <p>The principles that guide everything we do</p>
                     </div>
 
-                    <Row>
-                        <div className='col-md-3 col-lg-3'>
+                    <div className='abvalue-blocks'>
+                        <div className='value-card'>
                             <div className='inner-values-blocks'>
                                 <div className='values-icn'><img src={Val1}/></div>
                                 <h3>Customer First</h3>
@@ -111,7 +111,7 @@ const About: React.FC = () =>  {
                                 <p>Customer satisfaction</p>
                             </div>
                         </div>
-                        <div className='col-md-3 col-lg-3'>
+                        <div className='value-card'>
                             <div className='inner-values-blocks'>
                                 <div className='values-icn'><img src={Val2}/></div>
                                 <h3>Safety & Security</h3>
@@ -120,7 +120,7 @@ const About: React.FC = () =>  {
                                 <p>Customer satisfaction</p>
                             </div>
                         </div>
-                        <div className='col-md-3 col-lg-3'>
+                        <div className='value-card'>
                             <div className='inner-values-blocks'>
                                 <div className='values-icn'><img src={Val3}/></div>
                                 <h3>Excellence</h3>
@@ -129,7 +129,7 @@ const About: React.FC = () =>  {
                                 <p>Customer satisfaction</p>
                             </div>
                         </div>
-                        <div className='col-md-3 col-lg-3'>
+                        <div className='value-card'>
                             <div className='inner-values-blocks'>
                                 <div className='values-icn'><img src={Val4}/></div>
                                 <h3>Professional Team</h3>
@@ -138,18 +138,18 @@ const About: React.FC = () =>  {
                                 <p>Customer satisfaction</p>
                             </div>
                         </div>
-                    </Row>
+                    </div>
                 </Container>
             </section>
             <section className='prof-team'>
                 <Container>
                     <Row className='align-items-center'>
-                        <div className='col-lg-6 col-md-6'>
+                        <div className='col-lg-6 col-md-6 prof-team-img'>
                                 <div className='team-img'>
                                 <img src={Team} alt='about img' />
                             </div>
                         </div>
-                        <div className='col-lg-6 col-md-6'>
+                        <div className='col-lg-6 col-md-6 team-info'>
                             <p className='upper-team-line'>Meet Our Professional Team</p>
                             <h4>Our team is the heart of DropNPark. Every member is carefully selected, extensively trained, and passionate about delivering exceptional service.</h4>
                             <ul>

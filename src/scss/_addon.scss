@@ -69,6 +69,45 @@
         background: $secondary;
       }
     }
+    @media (max-width: 768px) {
+  .heading-wrapper p{
+    font-size: 14px;
+  }
+  h5{
+    font-size: 16px;
+  }
+  p{
+    font-size: 12px;
+  }
+  h6{
+    font-size: 24px;
+  }
+  .card-body{
+    padding: 16px;
+    flex-direction: column;
+    align-items: start !important;
+  }
+  .add-btn{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-size: 12px !important;
+    max-width: 116px !important;
+    border-radius: 10px 0px !important;
+    font-weight: 400 !important;
+            padding: 4px 22px !important;
+  }
+  .service-icon{
+    width: 36px;
+    height: 36px;
+    img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+}
   }
 
   .order-summary {
@@ -178,3 +217,45 @@
   }
 
 }
+
+@media (max-width: 768px) {
+  .addon-service{
+    .heading-wrapper{
+      p{
+        font-size: 14px;
+      }
+    }
+  }
+  .addon-service .amenities-wrapp {
+    margin-bottom: 0px;
+    margin-top: 0px;
+    padding-bottom: 0;
+}
+}
+
+.aminities-box-wrap {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    @media (max-width: 768px) {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 1rem;
+      padding-bottom: 10px;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      .amenities-box {
+        flex: 0 0 55%;
+        scroll-snap-align: start;
+        gap: 12px;
+        img{
+          width: 51px;
+        }
+        h4{
+          font-size: 16px;
+        }
+      }
+    }
+  }

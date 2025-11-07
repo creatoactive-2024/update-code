@@ -1,0 +1,28 @@
+.coupons-dashboard-wrap {
+    display: flex;
+    gap: 16px;
+
+    .coupons-dash-blocks {
+    padding: 16px;
+    border-radius: 10px;
+    width: 207px;
+    margin: 0 0 24px;
+    }
+
+.coupons-dash-blocks:nth-child(1) {
+    background-color: #C2CCFF;
+    color: #152B52;
+  }
+  .coupons-dash-blocks:nth-child(2) {
+    background-color: #BFE2FF;
+    color: #152B52;
+  }
+  .coupons-dash-blocks:nth-child(3) {
+    background-color: #FFE1BF;
+    color: #152B52;
+  }
+  .coupons-dash-blocks:nth-child(4) {
+    background-color: #F8FFC2;
+    color: #152B52;
+  }
+}

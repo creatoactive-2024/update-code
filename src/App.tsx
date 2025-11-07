@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import AppRoutes from './AppRoutes';
 import Header from './components/Header';
@@ -12,14 +12,23 @@ const App: React.FC = () => {
   const isAboutInRoute = location.pathname === '/about';
   const isContactInRoute = location.pathname === '/contact';
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <>
       {!isAdminRoute && !isSignInRoute && <Header />}
       <AppRoutes />
       {!isAdminRoute && !isSignInRoute && !isAboutInRoute && !isContactInRoute && <FindUs />}
-      {!isAdminRoute && <Footer />}
+      {!isAdminRoute && !(isSignInRoute && isMobile) && <Footer />}
     </>
   );
 };
 
 export default App;
+

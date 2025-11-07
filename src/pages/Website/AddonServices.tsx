@@ -484,32 +484,28 @@ const AddonServices: React.FC = () => {
               <h2>Parking Amenities</h2>
             </div>
           </Row>
-          <Row>
-            <Col sm={6} md={3}>
+          <div className="aminities-box-wrap">
+            
               <div className="amenities-box">
                 <img src={amenities1} title="park" />
                 <h4>Open Air & Covered Parking</h4>
               </div>
-            </Col>
-            <Col sm={6} md={3}>
+            
               <div className="amenities-box">
                 <img src={amenities2} title="hours" />
                 <h4>Parking Open 24 Hours</h4>
               </div>
-            </Col>
-            <Col sm={6} md={3}>
+            
               <div className="amenities-box">
                 <img src={amenities3} title="reservation" />
                 <h4>Guaranteed Reservations</h4>
               </div>
-            </Col>
-            <Col sm={6} md={3}>
+           
               <div className="amenities-box">
                 <img src={amenities4} title="evcharge" />
                 <h4>Electric Vehicle Charging</h4>
               </div>
-            </Col>
-          </Row>
+            </div>
         </Container>
       </section>
     </div>

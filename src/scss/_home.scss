@@ -44,6 +44,13 @@
                     display: flex;
                     justify-content: space-between;
                     width: 100%;
+                    @media (max-width: 1200px) {
+                        flex-direction: column;
+                        gap: 6px;
+                    }
+                    @media (max-width: 512px) {
+                        flex-direction: column;
+                    }
                     a{
                         font-size: 16px;
                         font-weight: 400;

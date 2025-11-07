@@ -270,12 +270,12 @@ const SignIn: React.FC = () => {
               </Form>
 
               <div className="text-center mt-4 small sign-in-text">
-                <p>
+                {/* <p>
                   Are you a travel agent?{" "}
                   <Link to="/" className="accent-link">
                     Access the Travel Agent Sign In
                   </Link>
-                </p>
+                </p> */}
                 <hr />
                 <p>
                   Not a member?{" "}

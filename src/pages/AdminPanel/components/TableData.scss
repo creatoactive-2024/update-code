@@ -14,6 +14,10 @@
 
     .calendar-input{margin: 0;}
     input.input-field{padding:15px 12px !important; gap: 50px;}
+
+    @media (max-width: 1024px) {
+                gap: 25px;
+            }
 }
 
     button.open-modal-btn {
@@ -43,14 +47,25 @@
 
 .search-wrap-t {
     background: #d9d9d9;
-    padding: 0 0 0 24px;
-    width: 249px;
+    width: 296px;
     border-radius: 10px;
     display: flex;
-    gap: 10px;
+    gap: 5px;
 
+.btn{border-radius: 10px;
+    background: transparent;
+    border: none;  transition: transform 0.3s ease, color 0.3s ease;
+  &:hover {background-color: transparent; transform: scale(1.2);}
+  }
+    .search-bx{border: none;
+    background-color: transparent;
+    padding: 15px 0;
+    outline: none;
+    width: 80%;}
 
-    .search-bx{border:none; background-color: transparent; padding: 15px 0; outline: none;}
+    @media (max-width: 1024px) {
+                width: 250px;
+            }
 }
 .search-input {
   width: 100%;
@@ -84,11 +99,13 @@
   border-radius: 10px;
   background: #D5D5D5;
   padding: 5px;
+  overflow-x: auto; /* Enables horizontal scroll */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile */
 
   .responsive-table {
-    width: 100%;
+    width: 2300px;
     border-collapse: collapse;
-    min-width: 800px;
+    min-width: 500px;
     background-color: #D9D9D9;
 
     thead > tr {background-color: #D9D9D9;}

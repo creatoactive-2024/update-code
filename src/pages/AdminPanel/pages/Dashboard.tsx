@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import "../scss/Dashboard.scss"
+
 import { BsCheck2Circle } from "react-icons/bs";
 import TableData from '../components/TableData';
 import Topbar from '../components/Topbar';

@@ -1,5 +1,5 @@
 import React from 'react'
-import "./AddNewDriver.scss";
+
 import FileUpload from './FileUpload';
 
 const AddNewDriver: React.FC = () => {
@@ -44,11 +44,21 @@ const AddNewDriver: React.FC = () => {
         <label htmlFor="Mobileno">Driver License Number *</label>
         <input type="text" id="Mobile No" name="lastName" placeholder='DL123456789'/>
       </div>
+       <div className="form-group">
+        <label htmlFor="Mobileno">Password *</label>
+        <input type="text" id="Mobile No" name="lastName" placeholder='Enter password'/>
+      </div>
+      <div className="form-group">
+        <label htmlFor="Mobileno">Confirm Password *</label>
+        <input type="text" id="Mobile No" name="lastName" placeholder='Confirm password'/>
+      </div>
     </div>
 
+    <div className="form-group">
     <h2 className='form-inner-headings'>Upload Driver License (JPG/PDF)</h2>
     <FileUpload/>
-
+    </div>
+ 
     <div className="form-gridd">
       <div className="form-group"><button type="submit" className="submit-btn">REGISTER</button></div>
     </div>

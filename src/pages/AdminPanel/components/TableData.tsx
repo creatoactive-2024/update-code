@@ -189,11 +189,14 @@
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Calender from "./Calender";
 import Serc from "../image/search.svg";
 import "./TableData.scss";
 import baseURL from "../../utils/baseURL";
+import View from '../../../img/view.svg';
+import Edit from '../../../img/edit.svg';
+import { Button } from "react-bootstrap";
 
 function TableData() {
   const [data, setData] = useState([]);
@@ -233,7 +236,16 @@ function TableData() {
                 ? b.addons.map((a) => a.name).join(", ")
                 : "No Add-ons",
               cardet: `${b.vehicle?.make || ""} ${b.vehicle?.type || ""}`,
-              actions: "View/Edit",
+               actions: (
+      <div style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
+        <NavLink to={`/admin`} title="View">
+          <img src={View} alt="View" width={20} height={20} />
+        </NavLink>
+        <NavLink to={`/admin/add-booking`} title="Edit">
+          <img src={Edit} alt="Edit" width={20} height={20} />
+        </NavLink>
+      </div>
+    ),
             }));
           setData(filtered);
         }
@@ -295,7 +307,7 @@ function TableData() {
         <div className="search-wrap-table">
           <Calender />
           <div className="search-wrap-t">
-            <img src={Serc} />
+            <Button><img src={Serc} /></Button>
             <input
               type="text"
               placeholder="search"

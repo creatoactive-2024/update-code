@@ -72,8 +72,9 @@
       font-size: 18px;
       font-weight: 600;
       color: $primary;
-      margin-bottom: -5px;
+      margin-bottom: 4px;
       line-height: 100%;
+      display: block;
     }
 
     .user-email {
@@ -88,6 +89,7 @@
       font-size: 14px;
       color: #999;
       line-height: 100%;
+      display: block;
     }
     
   }
@@ -123,6 +125,11 @@
   display: none;
 }
 }
+@media (max-width: 1200px) {
+  .user-role,.user-name {display: none !important;}
+       .site-header .user-dropdown .dropdown-toggle::after{content: none !important;}
+}
+
 
 @media (max-width: 768px) {
   .mobile-navbar {
@@ -265,3 +272,24 @@
       visibility: visible;
     }
   }
+
+  @media (max-width: 1200px) {
+    .site-header .navbar .menu-bar .nav-link {
+    font-size: 16px;
+    padding: 0px 8px;
+  }
+  }
+
+  @media (max-width: 992px) {
+  .main-button{
+        padding: 10px 16px !important;
+        font-size: 12px !important;
+  }
+  .site-header .navbar .menu-bar .nav-link {
+    font-size: 14px;
+    padding: 0px 5px;
+  }
+  .site-header .navbar .brand-logo img {
+      width: 184px;
+  }
+}
