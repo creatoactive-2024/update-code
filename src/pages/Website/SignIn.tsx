@@ -94,7 +94,7 @@
 
 import React, { useState } from "react";
 import { Form, Button, Container, Row, Col, Alert, Spinner } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import logo from "../../img/logo.png";
 import close from "../../img/close.svg";
 import baseURL from "../utils/baseURL"
@@ -102,6 +102,9 @@ import eye from "../../img/eye-show.svg"
 
 
 const SignIn: React.FC = () => {
+  
+    const location = useLocation();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -109,6 +112,10 @@ const SignIn: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  const bookingData = location.state || {};
+  const bookingDetails = location.state;
+  console.log("dataaa", bookingDetails);
 
   // Basic front-end validation
   const validateForm = (): boolean => {
@@ -157,6 +164,12 @@ const SignIn: React.FC = () => {
       if (user?.lastName) localStorage.setItem("lastName", user.lastName);
       if (user?.role) localStorage.setItem("role", user.role);
 
+      if (bookingDetails && Object.keys(bookingDetails).length > 0) {
+        // alert("Registration successful!");
+        navigate("/registration", { state: bookingDetails });
+        return;
+      }
+
       // Role-based redirection
       switch (user?.role) {
         case "admin":
@@ -179,6 +192,17 @@ const SignIn: React.FC = () => {
       setError(err.message || "Something went wrong.");
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleRegisterClick = (e) => {
+    e.preventDefault(); // prevent <Link> default navigation
+    if (bookingDetails && Object.keys(bookingDetails).length > 0) {
+      // Pass bookingDetails to registration page
+      navigate("/registration", { state: bookingDetails });
+    } else {
+      // Just navigate normally
+      navigate("/registration");
     }
   };
 
@@ -279,9 +303,12 @@ const SignIn: React.FC = () => {
                 <hr />
                 <p>
                   Not a member?{" "}
-                  <Link to="/registration" className="accent-link">
+                  {/* <Link to="/registration" className="accent-link">
                     Register
-                  </Link>{" "}
+                  </Link>{" "} */}
+                   <a href="/registration" onClick={handleRegisterClick} className="accent-link">
+                    Register
+                  </a>{" "}
                   and start earning valuable rewards with every stay.
                 </p>
               </div>

@@ -483,22 +483,25 @@ const validatePayload = (payload: any) => {
     err.mobile = "Enter a valid 10-digit mobile number";
   }
 
-  if (!payload.airportName?.trim()) err.airportName = "Airport name required";
+  if (isExistingUser) {
+    if (!payload.airportName?.trim()) err.airportName = "Airport name required";
+
+    if (!payload.dropOff) err.dropOff = "Drop-off date & time required";
+    if (!payload.pickUp) err.pickUp = "Pick-up date & time required";
+
+    if (payload.dropOff && payload.pickUp) {
+      const d = new Date(payload.dropOff);
+      const p = new Date(payload.pickUp);
+      if (isNaN(d.getTime()) || isNaN(p.getTime()))
+        err.pickUp = "Invalid date/time";
+      else if (p <= d) err.pickUp = "Pick-up must be after drop-off";
+    }
+
+  }
 
   if (!payload.postalCode?.trim()) err.postalCode = "Postal code is required";
   else if (!postalCodeRegex.test(payload.postalCode))
     err.postalCode = "Enter a valid postal code";
-
-  if (!payload.dropOff) err.dropOff = "Drop-off date & time required";
-  if (!payload.pickUp) err.pickUp = "Pick-up date & time required";
-
-  if (payload.dropOff && payload.pickUp) {
-    const d = new Date(payload.dropOff);
-    const p = new Date(payload.pickUp);
-    if (isNaN(d.getTime()) || isNaN(p.getTime()))
-      err.pickUp = "Invalid date/time";
-    else if (p <= d) err.pickUp = "Pick-up must be after drop-off";
-  }
 
   if (!payload.viaEmail && !payload.viaSMS)
     err.notifications = "Select at least one notification option";
@@ -769,19 +772,33 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     }
 
     // ✅ Always save returned user info
-    localStorage.setItem("userData", JSON.stringify(data.user || {}));
+    const { token, user } = data;
+    // localStorage.setItem("user", JSON.stringify(user || {}));
+
+    localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+
+      if (user?.firstName) localStorage.setItem("firstName", user.firstName);
+      if (user?.lastName) localStorage.setItem("lastName", user.lastName);
+      if (user?.role) localStorage.setItem("role", user.role);
+
+      window.dispatchEvent(new Event("userUpdated"));
+
 
     // ✅ If no logged-in user in localStorage, store new user ID for booking
    if (!userId && data.user && data.user._id) {
-  console.log("🆕 New user created (not saving to localStorage):", data.user._id);
-}
+      console.log("🆕 New user created (not saving to localStorage):", data.user._id);
+   }
 
-    alert("Registration successful! Redirecting to checkout...");
+    
 
     if (!bookingData || Object.keys(bookingData).length === 0) {
+      alert("Registration successful!");
       navigate("/signin");
       return;
     }
+
+    alert("Registration successful! Redirecting to checkout...");
 
     // ✅ Always pass new user ID to checkout
     navigate("/checkout", {
@@ -930,91 +947,79 @@ useEffect(() => {
             <span className="mandatory-warn">* Mandatory fields</span>
             <div className="registration-form">
               <Form onSubmit={handleSubmit} noValidate>
-                <Row>
-                  {/* <Col md={6} lg={4}>
-                    <Form.Group className="custome-form-group">
-                      <Form.Label>Airport Name *</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="airportName"
-                        placeholder="Enter Airport name & terminal"
-                        value={formData.airportName || ""}
-                        onChange={handleInputChange}
-                        required
-                        // value managed by DOM/FormData, not component state (keeps markup unchanged)
-                      />
-                      {errors.airportName && (
-                        <div className="text-danger">{errors.airportName}</div>
-                      )}
-                    </Form.Group>
-                  </Col> */}
-                  <Col md={6} lg={8}>
-  <Form.Group className="custome-form-group">
-    <Form.Label>Airport Name *</Form.Label>
-    <Form.Select
-      name="airportName"
-      value={formData.airportName || ""}
-      onChange={handleInputChange}
-      required
-    >
-      <option value="">Select Airport</option>
-      <option value="Toronto">Toronto</option>
-      <option value="Vancouver">Vancouver</option>
-      <option value="Montreal">Montreal</option>
-    </Form.Select>
+                
+                  {isExistingUser && (
+                  <>
+                    <Row>
+                      <Col md={6} lg={8}>
+                        <Form.Group className="custome-form-group">
+                          <Form.Label>Airport Name *</Form.Label>
+                          <Form.Select
+                            name="airportName"
+                            value={formData.airportName || ""}
+                            onChange={handleInputChange}
+                            required
+                          >
+                            <option value="">Select Airport</option>
+                            <option value="Toronto">Toronto</option>
+                            <option value="Vancouver">Vancouver</option>
+                            <option value="Montreal">Montreal</option>
+                          </Form.Select>
 
-    {errors.airportName && (
-      <div className="text-danger">{errors.airportName}</div>
-    )}
-  </Form.Group>
-</Col>
+                          {errors.airportName && (
+                            <div className="text-danger">{errors.airportName}</div>
+                          )}
+                        </Form.Group>
+                      </Col>
 
-                  <Col md={6} lg={4}>
-                    <Form.Group className="custome-form-group">
-                      <Form.Label>Drop Off Date and Time *</Form.Label>
-                      <Form.Control
-                        type="datetime-local"
-                        name="dropOff"
-                        value={formData.dropOff || ""}
-                        onChange={handleInputChange}
-                        required
-                      />
-                      {errors.dropOff && (
-                        <div className="text-danger">{errors.dropOff}</div>
-                      )}
-                    </Form.Group>
-                  </Col>
-                  <Col md={6} lg={4}>
-                    <Form.Group className="custome-form-group">
-                      <Form.Label>Pick Up Date and Time *</Form.Label>
-                      <Form.Control
-                        type="datetime-local"
-                        name="pickUp"
-                        value={formData.pickUp || ""}
-                        onChange={handleInputChange}
-                        required
-                      />
-                      {errors.pickUp && (
-                        <div className="text-danger">{errors.pickUp}</div>
-                      )}
-                    </Form.Group>
-                  </Col>
+                      <Col md={6} lg={4}>
+                        <Form.Group className="custome-form-group">
+                          <Form.Label>Drop Off Date and Time *</Form.Label>
+                          <Form.Control
+                            type="datetime-local"
+                            name="dropOff"
+                            value={formData.dropOff || ""}
+                            onChange={handleInputChange}
+                            required
+                          />
+                          {errors.dropOff && (
+                            <div className="text-danger">{errors.dropOff}</div>
+                          )}
+                        </Form.Group>
+                      </Col>
+                      <Col md={6} lg={4}>
+                        <Form.Group className="custome-form-group">
+                          <Form.Label>Pick Up Date and Time *</Form.Label>
+                          <Form.Control
+                            type="datetime-local"
+                            name="pickUp"
+                            value={formData.pickUp || ""}
+                            onChange={handleInputChange}
+                            required
+                          />
+                          {errors.pickUp && (
+                            <div className="text-danger">{errors.pickUp}</div>
+                          )}
+                        </Form.Group>
+                      </Col>
 
-                  <Col md={6} lg={4}>
-                    <Form.Group className="custome-form-group">
-                      <Form.Label>Service</Form.Label>
-                      <Form.Select
-                        name="service"
-                        onChange={handleInputChange}
-                        value={formData.service || ""}
-                      >
-                        <option value="">Select Service</option>
-                        <option value="Valet Parking Service">Valet Parking Service</option>
-                        <option value="Drop N Drive">Drop N Drive</option>
-                      </Form.Select>
-                    </Form.Group>
-                  </Col>
-                </Row>
+                      <Col md={6} lg={4}>
+                        <Form.Group className="custome-form-group">
+                          <Form.Label>Service</Form.Label>
+                          <Form.Select
+                            name="service"
+                            onChange={handleInputChange}
+                            value={formData.service || ""}
+                          >
+                            <option value="">Select Service</option>
+                            <option value="Valet Parking Service">Valet Parking Service</option>
+                            <option value="Drop N Drive">Drop N Drive</option>
+                          </Form.Select>
+                        </Form.Group>
+                      </Col>
+                    </Row>
+                  </>
+                  )}
 
                 <h5 className="section-title">Your Information</h5>
                 <Row>

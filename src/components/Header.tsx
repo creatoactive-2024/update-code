@@ -7,6 +7,7 @@ import hp2 from "../img/hp2.svg";
 import hp3 from "../img/hp3.svg";
 import menuIcon from "../img/mobile-menu.svg"; // your hamburger image
 import closeIcon from "../img/close.svg"; // your close icon
+import { UserContext } from "../pages/context/UserContext";
 
 const Header: React.FC = () => {
   const [user, setUser] = useState<any>(null);
@@ -41,6 +42,18 @@ const Header: React.FC = () => {
     };
 
     loadUserData();
+
+    // 👇 listen for storage changes (same tab or another tab)
+    window.addEventListener("storage", loadUserData);
+
+    // 👇 also watch for a custom event from your registration page
+    window.addEventListener("userUpdated", loadUserData);
+
+    return () => {
+      window.removeEventListener("storage", loadUserData);
+      window.removeEventListener("userUpdated", loadUserData);
+    };
+
   }, []); // runs once when header mounts
 
   // ✅ Logout functionality

@@ -15,7 +15,7 @@ import baseURL from "../utils/baseURL"
 
 interface Service {
   id: number;
-  title: string;
+  name: string;
   desc: string;
   price: number;
   img: string;
@@ -24,28 +24,28 @@ interface Service {
 const services: Service[] = [
   {
     id: 1,
-    title: "Car Wash & Detailing",
+    name: "Car Wash & Detailing",
     desc: "Deep cleaning with ceramic coating protection",
     price: 33.74,
     img: car,
   },
   {
     id: 2,
-    title: "Oil Change & Maintenance",
+    name: "Oil Change & Maintenance",
     desc: "Pre-schedule a routine oil change",
     price: 45.0,
     img: oil,
   },
   {
     id: 3,
-    title: "EV Charging",
+    name: "EV Charging",
     desc: "We guarantee a full charge upon your return",
     price: 82.54,
     img: ev,
   },
   {
     id: 4,
-    title: "Fuel Fill-Up",
+    name: "Fuel Fill-Up",
     desc: "We’ll top off your tank just before your return",
     price: 65.47,
     img: fuel,
@@ -250,10 +250,10 @@ const handleBookNow = async () => {
                   <Card.Body className="d-flex align-items-center justify-content-between">
                     <div className="d-flex align-items-center gap-3">
                       <div className="service-icon">
-                        <img src={service.img} alt={service.title} />
+                        <img src={service.img} alt={service.name} />
                       </div>
                       <div>
-                        <h5>{service.title}</h5>
+                        <h5>{service.name}</h5>
                         <p>{service.desc}</p>
                         <h6>${service.price.toFixed(2)}</h6>
                       </div>
@@ -305,7 +305,7 @@ const handleBookNow = async () => {
                 ) : (
                   selected.map((s) => (
                     <div key={s.id} className="summary-item-sub">
-                      <p>{s.title}</p>
+                      <p>{s.name}</p>
                       <span>${s.price.toFixed(2)}</span>
                     </div>
                   ))

@@ -428,16 +428,16 @@ const userId = storedUser?.id || storedUser?.user?.id;
       <>
         <h2>{`${firstName} ${lastName}`}</h2>
         <a href={`mailto:${email}`}>{email}</a>
-        <span>{role.charAt(0).toUpperCase() + role.slice(1)}</span>
+        {/* <span>{role.charAt(0).toUpperCase() + role.slice(1)}</span> */}
       </>
     );
   })()}
 </div>
 
               </div>
-              <div className="profile-btn">
+              {/* <div className="profile-btn">
                 <Button className="btn btn-primary">Active Account</Button>
-              </div>
+              </div> */}
             </Col>
           </Row>
         </Container>

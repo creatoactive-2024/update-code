@@ -379,122 +379,7 @@ const MyProfile: React.FC = () => {
     }
 
     const handleCanceeel  = async (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      const nativeEvent: any = (e as any).nativeEvent;
-      const submitter: HTMLButtonElement | null = nativeEvent?.submitter || null;
-      const submitText = submitter?.textContent?.trim().toUpperCase() || "";
-    
-      if (submitText.includes("Cancel")) {
-        // handle cancel logic
-        return;
-    }
-    
-      const form = e.currentTarget;
-      const fd = new FormData(form);
-    
-      const readCheckbox = (form: HTMLFormElement, id: string): boolean => {
-        const checkbox = form.querySelector(`#${id}`) as HTMLInputElement | null;
-        return checkbox ? checkbox.checked : false;
-      };
-    
-      // 🔹 Get user ID from localStorage
-      const storedUserStr = localStorage.getItem("user");
-      const storedUser = storedUserStr ? JSON.parse(storedUserStr) : null;
-      const userId = storedUser?._id || storedUser?.id || null;
-    
-      // 🔹 Build payload
-      const payload: any = {
-        role: "customer",
-        airportName: String(fd.get("airportName") || "").trim(),
-        dropOff: String(fd.get("dropOff") || ""),
-        pickUp: String(fd.get("pickUp") || ""),
-        service: String(fd.get("service") || ""),
-        firstName: String(fd.get("firstName") || "").trim(),
-        lastName: String(fd.get("lastName") || "").trim(),
-        postalCode: String(fd.get("postalCode") || "").trim(),
-        email: String(fd.get("email") || "").trim(),
-        confirmEmail: String(fd.get("confirmEmail") || "").trim(),
-        password: String(fd.get("password") || ""),
-        confirmPassword: String(fd.get("confirmPassword") || ""),
-        mobile: String(fd.get("mobile") || "").trim(),
-        vehicle: {
-          make: String(fd.get("make") || "").trim(),
-          type: String(fd.get("type") || "").trim(),
-          color: String(fd.get("color") || "").trim(),
-          licensePlate: String(fd.get("licensePlate") || "").trim(),
-          provinceOrState: String(fd.get("provincestate") || "").trim(),
-          isElectric: String(fd.get("elevehicle") || "").toLowerCase() === "yes",
-        },
-        viaEmail: readCheckbox(form, "email"),
-        viaSMS: readCheckbox(form, "sms"),
-        dropOffDateTime: String(fd.get("dropOff") || ""),
-        pickUpDateTime: String(fd.get("pickUp") || ""),
-        serviceSelected: String(fd.get("service") || ""),
-      };
-    
-      const validationErrors = validatePayload(payload);
-      setErrors(validationErrors);
-      if (Object.keys(validationErrors).length > 0) return;
-    
-      const body = {
-        id: userId,
-        role: payload.role,
-        firstName: payload.firstName,
-        lastName: payload.lastName,
-        email: payload.email,
-        password: payload.password,
-        phone: payload.mobile,
-        postalCode: payload.postalCode,
-        vehicle: payload.vehicle,
-        airportName: payload.airportName,
-        dropOffDateTime: payload.dropOffDateTime,
-        pickUpDateTime: payload.pickUpDateTime,
-        serviceSelected: payload.serviceSelected,
-        notificationSettings: {
-          receiveReservationEmails: !!payload.viaEmail,
-          receiveReservationSMS: !!payload.viaSMS,
-        },
-      };
-    
-      try {
-        setSubmitting(true);
-    
-        const res = await fetch(`${baseURL}/api/users/register-or-update`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
-        });
-    
-        const data = await res.json();
-        if (!res.ok) {
-          alert(data.message || "Registration failed");
-          return;
-        }
-    
-        // ✅ Always save returned user info
-        localStorage.setItem("userData", JSON.stringify(data.user || {}));
-    
-        // ✅ If no logged-in user in localStorage, store new user ID for booking
-       if (!userId && data.user && data.user._id) {
-      console.log("🆕 New user created (not saving to localStorage):", data.user._id);
-    }
-    
-        alert("Your details are updated successfully.");
-    
-        // if (!bookingData || Object.keys(bookingData).length === 0) {
-          
-        // }
-
-        // navigate("/signin");
-        // return;
-    
-        // ✅ Always pass new user ID to checkout
-      } catch (err) {
-        console.error("Registration error:", err);
-        alert("Server error. Please try again.");
-      } finally {
-        setSubmitting(false);
-      }
+      
     };
   
 
@@ -512,15 +397,15 @@ const MyProfile: React.FC = () => {
                 <div className='profile-info'>
                   <h2>{formData.firstName || ""} {formData.lastName || ""}</h2>
                   <a href='mailto:johndoe@gmail.com'>{formData.email || ""}</a>
-                  <span>Customer</span>
+                  {/* <span>Customer</span> */}
                 </div>
               </div>
-              <div className='profile-btn'>
+              {/* <div className='profile-btn'>
                 <span>
                   Member Since 2024
                 </span>
                 <Button className="btn btn-primary">Active Account</Button>
-              </div>
+              </div> */}
             </Col>
           </Row>
         </Container>
