@@ -348,11 +348,11 @@ const AddonServices: React.FC = () => {
     console.log("Booking Summary:", bookingSummary);
 
     // navigate("/registration", { state: bookingSummary });
-    if (isExistingUser) {
+    // if (isExistingUser) {
       navigate("/registration", { state: bookingSummary });
-    } else {
-      navigate("/signin", { state: bookingSummary });
-    }
+    // } else {
+    //   navigate("/signin", { state: bookingSummary });
+    // }
     
   };
 
@@ -489,7 +489,7 @@ const AddonServices: React.FC = () => {
                   className="book-btn w-100 mt-3"
                   onClick={handleBookNow}
                 >
-                  PAY NOW
+                  BOOK SERVICE
                 </Button>
               </div>
             </Col>

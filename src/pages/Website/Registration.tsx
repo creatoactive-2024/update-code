@@ -357,9 +357,9 @@ useEffect(() => {
   if (storedUser) {
     try {
       const parsed = JSON.parse(storedUser);
-      if (parsed?.id) {
+      // if (parsed?.id) {
         setIsExistingUser(true);
-      }
+      // }
     } catch (err) {
       console.error("Error parsing stored user:", err);
     }
@@ -440,7 +440,7 @@ const validatePayload = (payload: any) => {
   const err: Record<string, string> = {};
 
   const storedUser = localStorage.getItem("user");
-  const isExistingUser = storedUser && JSON.parse(storedUser)?.id;
+  const isExistingUser = storedUser && (JSON.parse(storedUser)?.id || JSON.parse(storedUser)?._id);
 
   if (!payload.firstName?.trim()) err.firstName = "First name is required";
   if (!payload.lastName?.trim()) err.lastName = "Last name is required";
@@ -483,7 +483,7 @@ const validatePayload = (payload: any) => {
     err.mobile = "Enter a valid 10-digit mobile number";
   }
 
-  if (isExistingUser) {
+  if (bookingData && Object.keys(bookingData).length > 0) {
     if (!payload.airportName?.trim()) err.airportName = "Airport name required";
 
     if (!payload.dropOff) err.dropOff = "Drop-off date & time required";
@@ -722,6 +722,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       type: String(fd.get("type") || "").trim(),
       color: String(fd.get("color") || "").trim(),
       licensePlate: String(fd.get("licensePlate") || "").trim(),
+      manufacturingYear : String(fd.get("manufacturingYear") || "").trim(),
       provinceOrState: String(fd.get("provincestate") || "").trim(),
       isElectric: String(fd.get("elevehicle") || "").toLowerCase() === "yes",
     },
@@ -865,6 +866,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
           type: latestVehicle.type || "",
           color: latestVehicle.color || "",
           licensePlate: latestVehicle.licensePlate || "",
+          manufacturingYear : latestVehicle.manufacturingYear || "",
           provincestate: latestVehicle.provinceOrState || "",
           elevehicle: latestVehicle.isElectric ? "yes" : "no",
         }));
@@ -891,6 +893,17 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 
     fetchUserData();
   }, []);
+
+  const handleSignInClick = (e) => {
+    e.preventDefault(); // prevent <Link> default navigation
+    if (bookingDetails && Object.keys(bookingDetails).length > 0) {
+      // Pass bookingDetails to registration page
+      navigate("/signin", { state: bookingDetails });
+    } else {
+      // Just navigate normally
+      navigate("/signin");
+    }
+  };
 
   useEffect(() => {
     if (location.state) {
@@ -944,11 +957,22 @@ useEffect(() => {
       <Container>
         <Row>
           <Col md={12} className="mx-auto">
+           {!isExistingUser && (
+              <>
+                  <p className="signin-text">
+                    Already have an account?&nbsp;
+                    <a href="/registration" onClick={handleSignInClick} className="accent-link">
+                      Sign In
+                    </a>
+                  </p>
+              </>
+           )}
+          
             <span className="mandatory-warn">* Mandatory fields</span>
             <div className="registration-form">
               <Form onSubmit={handleSubmit} noValidate>
                 
-                  {isExistingUser && (
+                  {bookingData && Object.keys(bookingData).length > 0 && (
                   <>
                     <Row>
                       <Col md={6} lg={8}>
@@ -1227,8 +1251,8 @@ useEffect(() => {
                       <Form.Label>Manufacturing Year</Form.Label>
                       <Form.Control
                         type="text"
-                        name="ManufacturingYear"
-                        
+                        name="manufacturingYear"
+                        onChange={handleInputChange}
                         placeholder="Manufacturing Year"
                         required
                       />
@@ -1407,9 +1431,7 @@ useEffect(() => {
                     <Link to="">Terms & Conditions</Link> and{" "}
                     <Link to="">Privacy Policy</Link>.
                   </p>
-                  <p>
-                    Already have an account? <Link to="/signin">Sign In</Link>
-                  </p>
+                  
                 </div>
               </Form>
             </div>

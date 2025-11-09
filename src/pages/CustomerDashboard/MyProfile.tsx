@@ -193,7 +193,9 @@ const MyProfile: React.FC = () => {
         const err: Record<string, string> = {};
 
         const storedUser = localStorage.getItem("user");
-        const isExistingUser = storedUser && JSON.parse(storedUser)?.id;
+        const isExistingUser = storedUser && (JSON.parse(storedUser)?.id || JSON.parse(storedUser)?._id);
+
+        console.log(storedUser);
 
         if (!payload.firstName?.trim()) err.firstName = "First name is required";
         if (!payload.lastName?.trim()) err.lastName = "Last name is required";
@@ -263,6 +265,8 @@ const MyProfile: React.FC = () => {
        
         // return;
 
+        
+
 
         e.preventDefault();
       const nativeEvent: any = (e as any).nativeEvent;
@@ -316,6 +320,7 @@ const MyProfile: React.FC = () => {
       
     
       const validationErrors = validatePayload(payload);
+      
       setErrors(validationErrors);
       if (Object.keys(validationErrors).length > 0) return;
     

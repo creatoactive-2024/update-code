@@ -157,6 +157,7 @@ const Checkout: React.FC = () => {
 // };
 
 const handleBookNow = async () => {
+  
   try {
     const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
     // ✅ Try user ID from localStorage first, then from formData
@@ -179,6 +180,8 @@ const handleBookNow = async () => {
       totalAmount: total, // ✅ exact total
       email: storedUser?.email || formData?.email || "", // ✅ ADD THIS LINE
     };
+
+    console.log("Booking Summary", bookingSummary);
 
     const response = await fetch(`${baseURL}/api/users/create-booking`, {
       method: "POST",

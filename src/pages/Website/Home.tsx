@@ -304,32 +304,49 @@ const Home: React.FC = () => {
               <div className="form-box">
                 <div className="icon"><img src={book2} alt="calendar" /></div>
                 <DatePicker
-  selected={startDate}
-  onChange={(date) => {
-    if (isBeforeCanadaNow(date)) {
-      alert("You cannot select a past date or time (Canada time).");
-      return;
-    }
-    if (endDate && date > endDate) {
-      setDateRange([date, null]);
-    } else {
-      setDateRange([date, endDate]);
-    }
-  }}
-  showTimeSelect
-  timeIntervals={15}
-  dateFormat="MMM dd, yyyy hh:mm aa"
-  placeholderText="Select drop-off date & time"
-  className="react-datepicker-input"
-  minDate={getCanadaNow()} // disables past dates
-  minTime={
-    startDate &&
-    startDate.toDateString() === getCanadaNow().toDateString()
-      ? getCanadaNow() // disables past times for today
-      : getStartOfCanadaDay(startDate || getCanadaNow())
-  }
-  maxTime={getEndOfCanadaDay(startDate || getCanadaNow())}
-/>
+                  selected={startDate}
+                  onChange={(date) => {
+                    const now = getCanadaNow();
+
+                    // If user selects today
+                    if (date && date.toDateString() === now.toDateString()) {
+                      // Round current time to next 15-minute interval
+                      const nextSlot = new Date(now);
+                      nextSlot.setMinutes(Math.ceil(now.getMinutes() / 15) * 15, 0, 0);
+
+                      // Force date’s time to the nextSlot’s time if the default (12:00 AM) is invalid
+                      if (date.getHours() === 0 && date.getMinutes() === 0) {
+                        date.setHours(nextSlot.getHours());
+                        date.setMinutes(nextSlot.getMinutes());
+                      }
+                    }
+
+                    if (isBeforeCanadaNow(date)) {
+                      alert("You cannot select a past date or time (Canada time).");
+                      return;
+                    }
+
+                    if (endDate && date > endDate) {
+                      setDateRange([date, null]);
+                    } else {
+                      setDateRange([date, endDate]);
+                    }
+                  }}
+                  showTimeSelect
+                  timeIntervals={15}
+                  dateFormat="MMM dd, yyyy hh:mm aa"
+                  placeholderText="Select drop-off date & time"
+                  className="react-datepicker-input"
+                  minDate={getCanadaNow()}
+                  minTime={
+                    startDate &&
+                    startDate.toDateString() === getCanadaNow().toDateString()
+                      ? getCanadaNow()
+                      : getStartOfCanadaDay(startDate || getCanadaNow())
+                  }
+                  maxTime={getEndOfCanadaDay(startDate || getCanadaNow())}
+                  onKeyDown={(e) => e.preventDefault()}  
+                />
 
               </div>
             </Form.Group>
@@ -339,37 +356,56 @@ const Home: React.FC = () => {
               <Form.Label>Pick-Up Date & Time *</Form.Label>
               <div className="form-box">
                 <div className="icon"><img src={book2} alt="calendar" /></div>
-                <DatePicker
-  selected={endDate}
-  onChange={(date) => {
-    if (isBeforeCanadaNow(date)) {
-      alert("You cannot select a past date or time (Canada time).");
-      return;
-    }
-    if (startDate && date < startDate) {
-      alert("Pick-Up time cannot be before Drop-Off time.");
-      return;
-    }
-    setDateRange([startDate, date]);
-  }}
-  showTimeSelect
-  timeIntervals={15}
-  dateFormat="MMM dd, yyyy hh:mm aa"
-  placeholderText="Select pick-up date & time"
-  className="react-datepicker-input"
-  minDate={startDate || getCanadaNow()}
-  minTime={
-    startDate &&
-    endDate &&
-    endDate.toDateString() === startDate.toDateString()
-      ? startDate // disables earlier times on same date
-      : getStartOfCanadaDay(endDate || getCanadaNow())
-  }
-  maxTime={getEndOfCanadaDay(endDate || getCanadaNow())}
-/>
 
+                <DatePicker
+                  selected={endDate}
+                  onChange={(date) => {
+                    const now = getCanadaNow();
+
+                    if (isBeforeCanadaNow(date)) {
+                      alert("You cannot select a past date or time (Canada time).");
+                      return;
+                    }
+
+                    if (startDate) {
+                      // ✅ If same day as drop-off
+                      if (date.toDateString() === startDate.toDateString()) {
+                        // If pickup is before OR equal to drop-off, shift it forward
+                        if (date <= startDate) {
+                          // Move pickup to the next available 15-minute slot
+                          const adjusted = new Date(startDate);
+                          adjusted.setMinutes(
+                            Math.ceil(startDate.getMinutes() / 15) * 15 + 15, // one slot after drop-off
+                            0,
+                            0
+                          );
+                          setDateRange([startDate, adjusted]);
+                          return;
+                        }
+                      }
+                    }
+
+                    setDateRange([startDate, date]);
+                  }}
+                  showTimeSelect
+                  timeIntervals={15}
+                  dateFormat="MMM dd, yyyy hh:mm aa"
+                  placeholderText="Select pick-up date & time"
+                  className="react-datepicker-input"
+                  minDate={startDate || getCanadaNow()}
+                  minTime={
+                    startDate &&
+                    endDate &&
+                    endDate.toDateString() === startDate.toDateString()
+                      ? new Date(startDate.getTime() + 15 * 60000) // disables drop-off and earlier times
+                      : getStartOfCanadaDay(endDate || getCanadaNow())
+                  }
+                  maxTime={getEndOfCanadaDay(endDate || getCanadaNow())}
+                  onKeyDown={(e) => e.preventDefault()} 
+                />
               </div>
             </Form.Group>
+
 
             <Button className="view-btn" type="submit">
               VIEW RATES

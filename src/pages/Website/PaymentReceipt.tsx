@@ -1,5 +1,7 @@
 // import React from "react";
-import React, { useEffect, useState } from "react"
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
+import React, { useEffect, useState, useRef  } from "react"
 import { Container, Row, Col, Table, Button } from "react-bootstrap";
 import { useLocation, Link } from "react-router-dom";
 import Paidcheck from "../../img/paid-check.svg";
@@ -26,6 +28,7 @@ const Receipt: React.FC = () => {
   const bookingId = queryParams.get("bookingId"); 
 
   const [booking, setBooking] = useState<Booking | null>(null);
+  const receiptRef = useRef<HTMLDivElement | null>(null);
   
     useEffect(() => {
       if (bookingId) {
@@ -44,6 +47,34 @@ const Receipt: React.FC = () => {
       );
     }
 
+    const handleDownloadPDF = async () => {
+      
+      if (!receiptRef.current) return;
+
+      const element = receiptRef.current;
+      const canvas = await html2canvas(element, { scale: 2 });
+      const imgData = canvas.toDataURL("image/png");
+
+      const pdf = new jsPDF("p", "mm", "a4");
+      const imgWidth = 190;
+      const pageHeight = 295;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      let heightLeft = imgHeight;
+      let position = 10;
+
+      pdf.addImage(imgData, "PNG", 10, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+
+      while (heightLeft >= 0) {
+        position = heightLeft - imgHeight + 10;
+        pdf.addPage();
+        pdf.addImage(imgData, "PNG", 10, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+
+      pdf.save(`Receipt-${booking.bookingNumber}.pdf`);
+    };
+
   return (
     <div>
         <div className="inner-banner addon-banner">
@@ -56,15 +87,31 @@ const Receipt: React.FC = () => {
                             </Row>
                         </Container>
       </div>
-    <section className="receipt-section">
+
+<section className="receipt-section">
+  <Container>
+              <div className="top-actions">
+                    {/* <Button className="dark-btn">⬇ Download Receipt</Button> */}
+                    <button
+                        className="btn btn-secondary btn-lg"
+                        onClick={handleDownloadPDF}
+                      >
+                        ⬇ Download Receipt
+                      </button>
+                    {/* <Button className="dark-btn">🆕 New Booking</Button> */}
+                    <Link to="/" className="btn btn-secondary btn-lg">🆕 New Booking</Link>
+                  </div>
+          </Container>
+</section>
+
+          
+      
+
+    <section className="receipt-section" ref={receiptRef}>
         
       <Container>
 
-        {/* Top Buttons */}
-        <div className="top-actions">
-          <Button className="dark-btn">⬇ Download Receipt</Button>
-          <Button className="dark-btn">🆕 New Booking</Button>
-        </div>
+        
 
         {/* Paid Badge */}
         <div className="paid-box d-flex justify-between">
@@ -218,7 +265,7 @@ const Receipt: React.FC = () => {
         {/* Confirmation */}
         <div className="confirmation-box">
           <h5>Confirmation Sent</h5>
-          <p>A copy of this receipt has been sent to nasirshaikh@gmail.com</p>
+          <p>A copy of this receipt has been sent to {booking.user?.email || "N/A"}</p>
         </div>
 
       </Container>
