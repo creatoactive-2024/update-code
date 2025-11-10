@@ -97,8 +97,8 @@ import { Form, Button, Container, Row, Col, Alert, Spinner } from "react-bootstr
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import logo from "../../img/logo.png";
 import close from "../../img/close.svg";
-import baseURL from "../utils/baseURL"
-import eye from "../../img/eye-show.svg"
+import baseURL from "../utils/baseURL";
+import eye from "../../img/eye-show.svg";
 
 
 const SignIn: React.FC = () => {
@@ -266,7 +266,7 @@ const SignIn: React.FC = () => {
               </Form.Group>
 
                 <div className="text-end mb-3 forgot-pass">
-                  <Link to="/forgot-password" className="small">
+                  <Link to="/forgotpassword" className="small">
                     Forgot Password?
                   </Link>
                 </div>

@@ -27,6 +27,7 @@
     img {
       height: 100%;
       object-fit: contain;
+          max-width: 100%;
     }
   }
     h5{
@@ -39,7 +40,7 @@
           font-size: 24px;
         }
     }
-
+    
     .text-accent {
       color: $secondary;
     }
@@ -154,4 +155,48 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+
+.forgot-screen{
+  h5{
+    margin-bottom: 24px;
+  }
+  .auth-discription{
+      font-size: 18px;
+      line-height: 120%;
+      color: $muted;
+      text-align: center;
+      margin-bottom: 24px;
+       @media (max-width: 768px) {
+              font-size: 14px;
+        }
+  }
+}
+
+.errormsg{
+      font-size: 18px;
+      line-height: 100%;
+      color: #DE0004;
+      margin-top: 12px;
+      display: block;
+      margin-bottom: 24px;
+}
+.successmsg{
+  font-size: 18px;
+      line-height: 100%;
+      color: #00C31D;
+      margin-top: 12px;
+      display: block;
+      margin-bottom: 24px;
+}
+
+.strength{
+  font-size: 18px;
+      line-height: 100%;
+      margin-top: 12px;
+      color: $muted;
+      span{
+        color: #00C31D;
+      }
 }

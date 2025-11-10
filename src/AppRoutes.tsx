@@ -12,6 +12,9 @@ import Help from '@/pages/Website/Help';
 import FAQ from '@/pages/Website/FAQ';
 import ViewRates from '@/pages/Website/ViewRates';
 import SignIn from '@/pages/Website/SignIn';
+import ForgotPassword from '@/pages/Website/ForgotPassword';
+import ResetPassword from '@/pages/Website/ResetPassword';
+import PasswordUpdate from '@/pages/Website/PasswordUpdate';
 import Registration from '@/pages/Website/Registration';
 import Pricing from './pages/Website/Pricing';
 import PaymentSuccessful from './pages/Website/PaymentSuccessful';
@@ -54,6 +57,9 @@ const AppRoutes: React.FC = () => (
     <Route path='/faq' element={<FAQ />} />
     <Route path='/rates' element={<ViewRates />} />
     <Route path='/signin' element={<SignIn />} />
+    <Route path='/forgotpassword' element={<ForgotPassword />} />
+    <Route path='/resetpassword' element={<ResetPassword />} />
+    <Route path='/passwordupdate' element={<PasswordUpdate />} />
     <Route path='/registration' element={<Registration />} />
     <Route path='/pricing' element={<Pricing/>} />
     <Route path='/paymentsuccessful' element={<PaymentSuccessful/>} />

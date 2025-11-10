@@ -9,6 +9,9 @@ const App: React.FC = () => {
   const location = useLocation();
   const isAdminRoute = location.pathname.startsWith('/admin');
   const isSignInRoute = location.pathname === '/signin';
+  const isForgotPassRoute = location.pathname === '/forgotpassword';
+  const isResetPassRoute = location.pathname === '/resetpassword';
+  const isPassupdateRoute = location.pathname === '/passwordupdate';
   const isAboutInRoute = location.pathname === '/about';
   const isContactInRoute = location.pathname === '/contact';
 
@@ -22,10 +25,10 @@ const App: React.FC = () => {
 
   return (
     <>
-      {!isAdminRoute && !isSignInRoute && <Header />}
+      {!isAdminRoute && !isSignInRoute && !isForgotPassRoute && !isResetPassRoute && !isPassupdateRoute && <Header />}
       <AppRoutes />
-      {!isAdminRoute && !isSignInRoute && !isAboutInRoute && !isContactInRoute && <FindUs />}
-      {!isAdminRoute && !(isSignInRoute && isMobile) && <Footer />}
+      {!isAdminRoute && !isSignInRoute && !isAboutInRoute && !isContactInRoute && !isForgotPassRoute && !isResetPassRoute && !isPassupdateRoute && <FindUs />}
+      {!isAdminRoute && !(isSignInRoute &&  isMobile) && !(isForgotPassRoute &&  isMobile) && !(isResetPassRoute &&  isMobile) && !(isPassupdateRoute &&  isMobile) && <Footer />}
     </>
   );
 };
