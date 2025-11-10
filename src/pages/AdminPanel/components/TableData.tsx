@@ -235,7 +235,7 @@ function TableData() {
               addons: b.addons?.length
                 ? b.addons.map((a) => a.name).join(", ")
                 : "No Add-ons",
-              cardet: `${b.vehicle?.make || ""} ${b.vehicle?.type || ""}`,
+              cardet: `${b.vehicle?.make || ""} - ${b.vehicle?.type || ""} - ${b.vehicle?.manufacturingYear || ""}`,
                actions: (
       <div style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
         <NavLink to={`/admin`} title="View">

@@ -364,7 +364,10 @@ const MyBooking: React.FC = () => {
   // Replace this with logged-in user's id from auth/localStorage
 // ✅ Get logged-in user's ID properly from localStorage
 const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
-const userId = storedUser?.id || storedUser?.user?.id;
+const userId = storedUser?.id || storedUser?._id;
+
+console.log("User Details", storedUser)
+console.log("User ID", userId)
 
   useEffect(() => {
     const fetchBookings = async () => {

@@ -47,6 +47,11 @@ const Receipt: React.FC = () => {
       );
     }
 
+    const total = booking.totalAmount;
+    const taxRate = 0.13;
+    const subtotal = total / (1 + taxRate); // reverse-calculate subtotal
+    const tax = total - subtotal;
+
     const handleDownloadPDF = async () => {
       
       if (!receiptRef.current) return;
@@ -249,11 +254,11 @@ const Receipt: React.FC = () => {
         <div className="totals-box">
           <Row>
             <Col>Subtotal</Col>
-            <Col className="text-end">${booking.totalAmount.toFixed(2)}</Col>
+            <Col className="text-end">${subtotal.toFixed(2)}</Col>
           </Row>
           <Row>
             <Col>Tax (13%)</Col>
-            <Col className="text-end">$36.24</Col>
+            <Col className="text-end">${tax.toFixed(2)}</Col>
           </Row>
 
           <Row className="total-amount">

@@ -308,6 +308,7 @@ import React, { useEffect, useState } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import baseURL from "../utils/baseURL"
+import carData from "../../data/car_data.json";
 
 const Registration: React.FC = () => {
   const location = useLocation();
@@ -325,12 +326,12 @@ const Registration: React.FC = () => {
 
 
 //  🔹 Dummy relational data: Make → Models
-const modelOptions: Record<string, string[]> = {
-  Acura: ["ILX", "MDX", "RDX", "TLX"],
-  "Alfa Romeo": ["Giulia", "Stelvio", "Tonale"],
-  AMC: ["AMX", "Gremlin", "Hornet"],
-  Audi: ["A3", "A4", "A6", "Q5", "Q7"],
-};
+// const modelOptions: Record<string, string[]> = {
+//   Acura: ["ILX", "MDX", "RDX", "TLX"],
+//   "Alfa Romeo": ["Giulia", "Stelvio", "Tonale"],
+//   AMC: ["AMX", "Gremlin", "Hornet"],
+//   Audi: ["A3", "A4", "A6", "Q5", "Q7"],
+// };
 
 
 const [isExistingUser, setIsExistingUser] = useState(false);
@@ -350,6 +351,7 @@ const [isExistingUser, setIsExistingUser] = useState(false);
       ...prev,
       type: "",
     }));
+    
   };
 
 useEffect(() => {
@@ -505,6 +507,30 @@ const validatePayload = (payload: any) => {
 
   if (!payload.viaEmail && !payload.viaSMS)
     err.notifications = "Select at least one notification option";
+
+  const vehicle = Array.isArray(payload.vehicle)
+    ? payload.vehicle[0]
+    : payload.vehicle;
+
+  if (!vehicle?.make?.trim()) err.make = "Vehicle make is required";
+  if (!vehicle?.type?.trim()) err.type = "Vehicle model is required";
+
+  if (!vehicle?.manufacturingYear?.trim()) {
+    err.manufacturingYear = "Manufacturing year is required";
+  } else if (!/^(19|20)\d{2}$/.test(vehicle.manufacturingYear)) {
+    err.manufacturingYear = "Enter a valid year (e.g. 2021)";
+  }
+
+  if (!vehicle?.color?.trim()) err.color = "Vehicle color is required";
+
+  if (!vehicle?.licensePlate?.trim())
+    err.licensePlate = "License plate is required";
+
+  if (!vehicle?.provinceOrState?.trim() && !vehicle?.provincestate?.trim())
+    err.provincestate = "Province/State is required";
+
+  if (vehicle?.isElectric === undefined || vehicle?.isElectric === "")
+    err.elevehicle = "Please select if vehicle is electric";
 
   return err;
 };
@@ -717,15 +743,15 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     password: String(fd.get("password") || ""),
     confirmPassword: String(fd.get("confirmPassword") || ""),
     mobile: String(fd.get("mobile") || "").trim(),
-    vehicle: {
-      make: String(fd.get("make") || "").trim(),
-      type: String(fd.get("type") || "").trim(),
-      color: String(fd.get("color") || "").trim(),
-      licensePlate: String(fd.get("licensePlate") || "").trim(),
-      manufacturingYear : String(fd.get("manufacturingYear") || "").trim(),
-      provinceOrState: String(fd.get("provincestate") || "").trim(),
-      isElectric: String(fd.get("elevehicle") || "").toLowerCase() === "yes",
-    },
+    vehicle: [{
+          make: String(fd.get("make") || "").trim(),
+          type: String(fd.get("type") || "").trim(),
+          color: String(fd.get("color") || "").trim(),
+          licensePlate: String(fd.get("licensePlate") || "").trim(),
+          manufacturingYear : String(fd.get("manufacturingYear") || "").trim(),
+          provinceOrState: String(fd.get("provincestate") || "").trim(),
+          isElectric: String(fd.get("elevehicle") || "").toLowerCase() === "yes",
+        }],
     viaEmail: readCheckbox(form, "email"),
     viaSMS: readCheckbox(form, "sms"),
     dropOffDateTime: String(fd.get("dropOff") || ""),
@@ -735,6 +761,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 
   const validationErrors = validatePayload(payload);
   setErrors(validationErrors);
+  // console.log(validationErrors);
   if (Object.keys(validationErrors).length > 0) return;
 
   const body = {
@@ -756,6 +783,8 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       receiveReservationSMS: !!payload.viaSMS,
     },
   };
+
+  console.log("Form Data ", body)
 
   try {
     setSubmitting(true);
@@ -1205,7 +1234,7 @@ useEffect(() => {
                 <h5 className="section-title">Vehicle Information</h5>
                 <Row>
                    <Col md={6} lg={4}>
-        <Form.Group className="custome-form-group">
+        {/* <Form.Group className="custome-form-group">
           <Form.Label>Make</Form.Label>
           <Form.Select
             name="make"
@@ -1220,31 +1249,57 @@ useEffect(() => {
             <option value="AMC">AMC</option>
             <option value="Audi">Audi</option>
           </Form.Select>
-        </Form.Group>
+        </Form.Group> */}
+        <Form.Group className="custome-form-group">
+        <Form.Label>Make</Form.Label>
+        <Form.Select
+          name="make"
+          value={formData.make || ""}
+          onChange={handleMakeChange}
+        >
+          <option disabled value="">
+            Vehicle Make
+          </option>
+
+          {/* Dynamically render makes from JSON */}
+          {Object.keys(carData).map((make) => (
+            <option key={make} value={make}>
+              {make}
+            </option>
+          ))}
+        </Form.Select>
+         {errors.make  && (
+                        <div className="text-danger">{errors.make }</div>
+                      )}
+      </Form.Group>
       </Col>
 
       <Col md={6} lg={4}>
         <Form.Group className="custome-form-group">
-          <Form.Label>Model</Form.Label>
-          <Form.Select
-            name="type"
-            value={formData.type || ""}
-            onChange={handleInputChange} // 👈 same as before
-            disabled={!selectedMake} // disable until a make is picked
-          >
-            <option disabled value="">
-              {selectedMake ? "Select Model" : "Select Make First"}
-            </option>
+        <Form.Label>Model</Form.Label>
+        <Form.Select
+          name="type"
+          value={formData.type || ""}
+          onChange={handleInputChange}
+          disabled={!selectedMake}
+        >
+          <option disabled value="">
+            {selectedMake ? "Select Model" : "Select Make First"}
+          </option>
 
-            {/* Dynamically show models for selected make */}
-            {selectedMake &&
-              modelOptions[selectedMake]?.map((model) => (
-                <option key={model} value={model}>
-                  {model}
-                </option>
-              ))}
-          </Form.Select>
-        </Form.Group>
+          {/* Dynamically render models for selected make */}
+          {selectedMake &&
+            carData[selectedMake]?.map((model: string) => (
+              <option key={model} value={model}>
+                {model}
+              </option>
+            ))}
+        </Form.Select>
+
+        {errors.type   && (
+                        <div className="text-danger">{errors.type  }</div>
+                      )}
+      </Form.Group>
       </Col>
       <Col md={6} lg={4}>
                     <Form.Group className="custome-form-group">
@@ -1252,10 +1307,14 @@ useEffect(() => {
                       <Form.Control
                         type="text"
                         name="manufacturingYear"
+                        value = {formData.manufacturingYear || ""}
                         onChange={handleInputChange}
                         placeholder="Manufacturing Year"
                         required
                       />
+                      {errors.manufacturingYear   && (
+                        <div className="text-danger">{errors.manufacturingYear   }</div>
+                      )}
                     </Form.Group>
                   </Col>
 
@@ -1283,6 +1342,9 @@ useEffect(() => {
                         <option value="White">White</option>
                         <option value="Yellow">Yellow</option>
                       </Form.Select>
+                      {errors.color && (
+                        <div className="text-danger">{errors.color}</div>
+                      )}
                     </Form.Group>
                   </Col>
 
@@ -1297,6 +1359,9 @@ useEffect(() => {
                         placeholder="License Plate"
                         required
                       />
+                      {errors.licensePlate  && (
+                        <div className="text-danger">{errors.licensePlate }</div>
+                      )}
                     </Form.Group>
                   </Col>
 
@@ -1353,6 +1418,9 @@ useEffect(() => {
                         <option value="Virginia">Virginia</option>
                         <option value="Washington">Washington</option>
                       </Form.Select>
+                      {errors.provincestate   && (
+                        <div className="text-danger">{errors.provincestate  }</div>
+                      )}
                     </Form.Group>
                   </Col>
 
@@ -1367,6 +1435,9 @@ useEffect(() => {
                         <option value="yes">Yes</option>
                         <option value="no">No</option>
                       </Form.Select>
+                      {errors.elevehicle    && (
+                        <div className="text-danger">{errors.elevehicle   }</div>
+                      )}
                     </Form.Group>
                   </Col>
                 </Row>

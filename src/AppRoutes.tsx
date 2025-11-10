@@ -59,6 +59,7 @@ const AppRoutes: React.FC = () => (
     <Route path='/signin' element={<SignIn />} />
     <Route path='/forgotpassword' element={<ForgotPassword />} />
     <Route path='/resetpassword' element={<ResetPassword />} />
+    <Route path="/resetpassword/:token" element={<ResetPassword />} />
     <Route path='/passwordupdate' element={<PasswordUpdate />} />
     <Route path='/registration' element={<Registration />} />
     <Route path='/pricing' element={<Pricing/>} />

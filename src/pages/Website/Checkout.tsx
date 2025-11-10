@@ -179,6 +179,10 @@ const handleBookNow = async () => {
       ...bookingData,
       totalAmount: total, // ✅ exact total
       email: storedUser?.email || formData?.email || "", // ✅ ADD THIS LINE
+      vehicle:
+        Array.isArray(formData?.vehicle) && formData.vehicle.length > 0
+          ? formData.vehicle[0]
+          : formData.vehicle || {},
     };
 
     console.log("Booking Summary", bookingSummary);

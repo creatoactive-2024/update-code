@@ -5,6 +5,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 // import { Link } from 'react-router-dom';
 import profile from '../../img/user_profile.jpg';
 import baseURL from "../utils/baseURL"
+import carData from "../../data/car_data.json";
 
 
 const MyProfile: React.FC = () => {
@@ -26,12 +27,12 @@ const MyProfile: React.FC = () => {
   //   const mobileRegex = /^\+?[0-9]{8,15}$/;
         const mobileRegex = /^[0-9]{10}$/;
 
-        const modelOptions: Record<string, string[]> = {
-        Acura: ["ILX", "MDX", "RDX", "TLX"],
-        "Alfa Romeo": ["Giulia", "Stelvio", "Tonale"],
-        AMC: ["AMX", "Gremlin", "Hornet"],
-        Audi: ["A3", "A4", "A6", "Q5", "Q7"],
-        };
+        // const modelOptions: Record<string, string[]> = {
+        // Acura: ["ILX", "MDX", "RDX", "TLX"],
+        // "Alfa Romeo": ["Giulia", "Stelvio", "Tonale"],
+        // AMC: ["AMX", "Gremlin", "Hornet"],
+        // Audi: ["A3", "A4", "A6", "Q5", "Q7"],
+        // };
 
       const [isExistingUser, setIsExistingUser] = useState(false);
 
@@ -302,14 +303,16 @@ const MyProfile: React.FC = () => {
         password: String(fd.get("password") || ""),
         confirmPassword: String(fd.get("confirmPassword") || ""),
         mobile: String(fd.get("mobile") || "").trim(),
-        vehicle: {
-          make: String(fd.get("make") || "").trim(),
-          type: String(fd.get("type") || "").trim(),
-          color: String(fd.get("color") || "").trim(),
-          licensePlate: String(fd.get("licensePlate") || "").trim(),
-          provinceOrState: String(fd.get("provincestate") || "").trim(),
-          isElectric: String(fd.get("elevehicle") || "").toLowerCase() === "yes",
-        },
+        vehicle: [
+          {
+            make: String(fd.get("make") || "").trim(),
+            type: String(fd.get("type") || "").trim(),
+            color: String(fd.get("color") || "").trim(),
+            licensePlate: String(fd.get("licensePlate") || "").trim(),
+            provinceOrState: String(fd.get("provincestate") || "").trim(),
+            isElectric: String(fd.get("elevehicle") || "").toLowerCase() === "yes",
+          }
+        ],
         viaEmail: readCheckbox(form, "email"),
         viaSMS: readCheckbox(form, "sms"),
         dropOffDateTime: String(fd.get("dropOff") || ""),
@@ -356,9 +359,21 @@ const MyProfile: React.FC = () => {
           alert(data.message || "Registration failed");
           return;
         }
+
+        const { token, user } = data;
+    // localStorage.setItem("user", JSON.stringify(user || {}));
+
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+
+      if (user?.firstName) localStorage.setItem("firstName", user.firstName);
+      if (user?.lastName) localStorage.setItem("lastName", user.lastName);
+      if (user?.role) localStorage.setItem("role", user.role);
+
+      window.dispatchEvent(new Event("userUpdated"));
     
         // ✅ Always save returned user info
-        localStorage.setItem("userData", JSON.stringify(data.user || {}));
+        // localStorage.setItem("userData", JSON.stringify(data.user || {}));
     
         // ✅ If no logged-in user in localStorage, store new user ID for booking
        if (!userId && data.user && data.user._id) {
@@ -553,7 +568,7 @@ const MyProfile: React.FC = () => {
                         <h5 className="section-title">Vehicle Information</h5>
                         <Row>
                             <Col md={6} lg={4}>
-                            <Form.Group className="custome-form-group">
+                            {/* <Form.Group className="custome-form-group">
                             <Form.Label>Make</Form.Label>
                             <Form.Select
                                 name="make"
@@ -565,28 +580,49 @@ const MyProfile: React.FC = () => {
                                 <option value="AMC">AMC</option>
                                 <option value="Audi">Audi</option>
                             </Form.Select>
-                        </Form.Group>
+                        </Form.Group> */}
+                              <Form.Group className="custome-form-group">
+                                <Form.Label>Make</Form.Label>
+                                <Form.Select
+                                  name="make"
+                                  value={formData.make || ""}
+                                  onChange={handleMakeChange}
+                                >
+                                  <option disabled value="">
+                                    Vehicle Make
+                                  </option>
+                        
+                                  {/* Dynamically render makes from JSON */}
+                                  {Object.keys(carData).map((make) => (
+                                    <option key={make} value={make}>
+                                      {make}
+                                    </option>
+                                  ))}
+                                </Form.Select>
+                              </Form.Group>
                             </Col>
                             <Col md={6} lg={4}>
                             <Form.Group className="custome-form-group">
-                            <Form.Label>Type</Form.Label>
-                            <Form.Select
+                              <Form.Label>Model</Form.Label>
+                              <Form.Select
                                 name="type"
                                 value={formData.type || ""}
-                                 onChange={handleInputChange} // 👈 same as before
+                                onChange={handleInputChange}
                                 disabled={!selectedMake}
-                            >
+                              >
                                 <option disabled value="">
-                                {selectedMake ? "Select Model" : "Select Make First"}
+                                  {selectedMake ? "Select Model" : "Select Make First"}
                                 </option>
+
+                                {/* Dynamically render models for selected make */}
                                 {selectedMake &&
-                                modelOptions[selectedMake]?.map((model) => (
+                                  carData[selectedMake]?.map((model: string) => (
                                     <option key={model} value={model}>
-                                    {model}
+                                      {model}
                                     </option>
-                                ))}
-                            </Form.Select>
-                        </Form.Group>
+                                  ))}
+                              </Form.Select>
+                            </Form.Group>
                             </Col>
                             <Col md={6} lg={4}>
                             <Form.Group className="custome-form-group">
