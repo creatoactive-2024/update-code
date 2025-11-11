@@ -20,8 +20,9 @@
         display: none;
       }
       .pricing-card {
-        flex: 0 0 85%;
+        flex: 0 0 90%;
         scroll-snap-align: start;
+        padding:5px;
       }
     }
 .pricing-inner {
