@@ -15,6 +15,7 @@ const App: React.FC = () => {
   const isPassupdateRoute = location.pathname === '/passwordupdate';
   const isAboutInRoute = location.pathname === '/about';
   const isContactInRoute = location.pathname === '/contact';
+  const isTandCInRoute = location.pathname === '/termsandCondition';
 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
@@ -40,7 +41,8 @@ const App: React.FC = () => {
         !isContactInRoute &&
         !isForgotPassRoute &&
         !isResetPassRoute &&
-        !isPassupdateRoute && <FindUs />}
+        !isPassupdateRoute && 
+        !isTandCInRoute && <FindUs />}
 
       {!isAdminRoute &&
         !(isSignInRoute && isMobile) &&

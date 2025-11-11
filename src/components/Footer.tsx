@@ -60,7 +60,7 @@ const Footer: React.FC = () => {
                 <li><Link to="/about">About us</Link></li>
                 <li><Link to="/faq">FAQs</Link></li>
                 <li><Link to="/contact">Contact Us</Link></li>
-                {/* <li><Link to="/blogs">Blogs</Link></li> */}
+                <li><Link to="/termsandCondition">Terms & Condititon</Link></li>
                 {/* <li><Link to="/help">Help</Link></li> */}
               </ul>
             </div>

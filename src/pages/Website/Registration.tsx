@@ -1499,7 +1499,7 @@ useEffect(() => {
                   <p className="mb-32">
                     By registering, you agree to DropNPark
                     <br />
-                    <Link to="">Terms & Conditions</Link> and{" "}
+                    <Link to="/termsandCondition">Terms & Conditions</Link> and{" "}
                     <Link to="">Privacy Policy</Link>.
                   </p>
                   
