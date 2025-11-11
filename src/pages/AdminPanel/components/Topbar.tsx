@@ -77,7 +77,7 @@ const [isOpen, setIsOpen] = useState(false);
       const handleSignOut = () => {
         localStorage.clear(); // clear all user data
         setUser(null); // instantly hide profile menu
-        navigate("/signin"); // redirect to sign-in page
+        navigate("/admin/signin"); // redirect to sign-in page
       };
     
     
@@ -98,7 +98,13 @@ const [isOpen, setIsOpen] = useState(false);
           </div>
           <div className="drop-content">
             <p><span><img src={prf}/></span> My Profile</p>
-            <p><span><img src={lgt}/></span> Logout</p>
+            <p 
+            onClick={handleSignOut} 
+            className="cursor-pointer flex items-center gap-2 hover:text-red-600"
+          >
+            <span><img src={lgt} alt="Logout" className="w-5 h-5" /></span> 
+            Logout
+          </p>
           </div>
           {/* <a href="#" onClick={handleLinkClick}>
             Profile

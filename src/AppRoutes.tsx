@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import ProtectedAdminRoute from "@/components/ProtectedAdminRoute";
 
 import CheckoutButton from '@/pages/Website/CheckoutButton';
 
@@ -43,6 +44,7 @@ import AddNewSupervisor from './pages/AdminPanel/pages/AddNewSupervisor';
 import SelectDriver from './pages/AdminPanel/pages/SelectDriver';
 import AdDriverDashboard from './pages/AdminPanel/pages/AdDriverDashboard';
 import SelectSupervisor from './pages/AdminPanel/pages/SelectSupervisor';
+import AdminSignIn from './pages/AdminPanel/pages/SignIn';
 
 
 const AppRoutes: React.FC = () => (
@@ -78,8 +80,10 @@ const AppRoutes: React.FC = () => (
     <Route path='/dashboard' element={<DriverDashboard />} />
     <Route path='/driverregistration' element={<DriverRegistration />} />
 
+    <Route path="/admin/signin" element={<AdminSignIn />} />
 
-    <Route path="/admin" element={<AdminLayout />}>
+
+    {/* <Route path="/admin" element={<AdminLayout />}>
       <Route index element={<AdminDashboard />} />
       <Route path="dashboard" element={<AdminDashboard />} />
       <Route path="users" element={<Users />} />
@@ -92,6 +96,22 @@ const AppRoutes: React.FC = () => (
       <Route path="add-supervisor" element={<AddNewSupervisor/>} />
       <Route path="drivers-dashboard" element={<AdDriverDashboard/>} />
       <Route path="select-supervisor" element={<SelectSupervisor/>} />
+    </Route> */}
+    <Route element={<ProtectedAdminRoute />}>
+      <Route path="/admin" element={<AdminLayout />}>
+        <Route index element={<AdminDashboard />} />
+        <Route path="dashboard" element={<AdminDashboard />} />
+        <Route path="users" element={<Users />} />
+        <Route path="bookings" element={<Bookings />} />
+        <Route path="driver-daily-report" element={<Reports />} />
+        <Route path="coupon-management" element={<Coupons />} />
+        <Route path="add-booking" element={<AddNewBooking />} />
+        <Route path="add-driver" element={<AddNewDriver />} />
+        <Route path="select-driver" element={<SelectDriver />} />
+        <Route path="add-supervisor" element={<AddNewSupervisor />} />
+        <Route path="drivers-dashboard" element={<AdDriverDashboard />} />
+        <Route path="select-supervisor" element={<SelectSupervisor />} />
+      </Route>
     </Route>
 
   </Routes>

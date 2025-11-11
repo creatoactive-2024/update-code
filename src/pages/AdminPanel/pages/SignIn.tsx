@@ -95,10 +95,10 @@
 import React, { useState } from "react";
 import { Form, Button, Container, Row, Col, Alert, Spinner } from "react-bootstrap";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import logo from "../../img/logo.png";
-import close from "../../img/close.svg";
-import baseURL from "../utils/baseURL";
-import eye from "../../img/eye-show.svg";
+import logo from "../../../img/logo.png";
+import close from "../../../img/close.svg";
+import baseURL from "../../utils/baseURL";
+import eye from "../../../img/eye-show.svg";
 
 
 const SignIn: React.FC = () => {
@@ -164,6 +164,12 @@ const SignIn: React.FC = () => {
       if (user?.lastName) localStorage.setItem("lastName", user.lastName);
       if (user?.role) localStorage.setItem("role", user.role);
 
+      if (bookingDetails && Object.keys(bookingDetails).length > 0) {
+        // alert("Registration successful!");
+        navigate("/registration", { state: bookingDetails });
+        return;
+      }
+
       // Role-based redirection
       switch (user?.role) {
         case "admin":
@@ -206,13 +212,13 @@ const SignIn: React.FC = () => {
         <Row className="position-relative">
           {/* Close button */}
           <div className="close-btn position-absolute end-0 top-0">
-            <Button
+            {/* <Button
               variant="link"
               onClick={() => navigate("/")}
               className="p-0"
             >
               <img src={close} alt="Close" width="24" height="24" />
-            </Button>
+            </Button> */}
           </div>
 
           <Col md={5} className="mx-auto">
@@ -223,7 +229,7 @@ const SignIn: React.FC = () => {
                 </Link>
               </div>
 
-              <h5 className="text-center mb-4">Sign In</h5>
+              <h5 className="text-center mb-4">Admin  Sing In</h5>
 
               {error && <Alert variant="danger">{error}</Alert>}
 
@@ -287,25 +293,7 @@ const SignIn: React.FC = () => {
                 </Button>
               </Form>
 
-              <div className="text-center mt-4 small sign-in-text">
-                {/* <p>
-                  Are you a travel agent?{" "}
-                  <Link to="/" className="accent-link">
-                    Access the Travel Agent Sign In
-                  </Link>
-                </p> */}
-                <hr />
-                <p>
-                  Not a member?{" "}
-                  {/* <Link to="/registration" className="accent-link">
-                    Register
-                  </Link>{" "} */}
-                   <a href="/registration" onClick={handleRegisterClick} className="accent-link">
-                    Register
-                  </a>{" "}
-                  and start earning valuable rewards with every stay.
-                </p>
-              </div>
+              
             </div>
           </Col>
         </Row>
