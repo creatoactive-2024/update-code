@@ -307,7 +307,7 @@
 import React, { useEffect, useState } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import baseURL from "../utils/baseURL"
+import baseURL from "../utils/baseURL";
 import carData from "../../data/car_data.json";
 
 const Registration: React.FC = () => {

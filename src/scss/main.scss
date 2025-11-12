@@ -16,6 +16,7 @@
 @import './about';
 @import './receipt';
 @import './tandc';
+@import './driverdashboard';
 
 html, body{ height: 100%; }
 ul{
@@ -62,6 +63,7 @@ body {
         color: $muted;
     }
     input, select, textarea{
+      position: relative;
         border-radius: 10px;
         border: 1px solid $primary;
         background: #F6F6F6;
@@ -70,6 +72,7 @@ body {
         transition: all 0.2s;
         font-weight: 400;
         color: rgba(0, 0, 0, 1);
+        appearance: auto;
         &:focus {
             border-color: $primary;
             box-shadow: 0 0 0 0.2rem rgba(11, 46, 103, 0.15);
@@ -82,7 +85,7 @@ body {
         background: #fff;
       }
     }
-}
+  }
 
 .checkbox-group {
     margin-top: 17px;

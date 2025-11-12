@@ -1,0 +1,228 @@
+.driver-dashboard {
+  padding-bottom: 40px;
+    .headar-logo{
+        text-align: center;
+        img{
+            max-width: 387px;
+            margin: 34px auto;
+            width: 100%;
+        }
+    }
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    .user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: max-content;
+
+    .user-avatar {
+      width: 73px;
+      height: 73px;
+      background: $primary;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 500;
+      line-height: 100%;
+      font-size: 24px;
+    }
+    h5{
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 100%;
+        color: $primary;
+    }
+    p{
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 100%;
+        color: $primary;
+    }
+  }
+    .logout-btn {
+        background: #001d3d;
+        border: none;
+        padding: 14px 40px;
+        border-radius: 10px;
+        display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 18px;
+      line-height: 100%;
+      font-weight: 500;
+      width: max-content;
+      }
+
+    
+  }
+  .tab-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+     margin-top: 33px;
+    margin-bottom: 16px;
+    .filter-tabs {
+   
+    display: flex;
+    gap: 16px;
+    width: max-content;
+    button {
+      border-radius: 10px;
+      background:transparent;
+      color: #D9D9D9;
+      border: none;
+      padding: 10px;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 100%;
+      border: 1px solid #D9D9D9;
+
+      &.active {
+        background: $primary;
+        color: #fff;
+        border: 1px solid $primary;
+      }
+    }
+  }
+  .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+     width: max-content;
+      .filter-btn {
+        background: #5A5957;
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        padding: 10px;
+        gap: 6px;
+        display: flex;
+        align-items: center;
+        font-size: 18px;
+        font-weight: 500;
+        &::after{
+            content: none;
+        }
+        &:hover {
+          background: #e9ecef;
+        }
+      }
+
+      
+    }
+  }
+
+  .state-icon-transparent{
+        background: transparent !important;
+    }
+
+  
+
+  .stats-row {
+    margin-bottom: 30px;
+    
+    .stats-card {
+      border-radius: 10px;
+      color: #fff;
+      text-align: center;
+      padding: 15px 0;
+
+      h6 {
+        margin-bottom: 5px;
+      }
+    }
+  }
+
+  .assigned-tasks {
+    margin-top: 36px;
+    h4 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 100%;
+      color: $primary;
+      margin-bottom: 16px;
+    }
+
+    .no-tasks {
+      text-align: center;
+      color: #888;
+      font-style: italic;
+    }
+  }
+
+  .task-card {
+    background: $primary;
+    border-radius: 10px;
+    color: #fff;
+    margin-bottom: 20px;
+    overflow: hidden;
+    padding: 24px 36px;
+
+    .task-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+      .priority-tag {
+        padding: 3px 8px;
+        font-size: 12px;
+        border-radius: 5px;
+        &.high {
+          background: #ff2d2d;
+        }
+        &.normal {
+          background: #00bf63;
+        }
+        &.low {
+          background: #ffb703;
+        }
+      }
+    }
+
+    .task-details {
+      list-style: none;
+      margin: 0;
+      padding: 15px;
+
+      li {
+        margin-bottom: 5px;
+      }
+    }
+
+    .vehicle-details {
+      background: #f7931e;
+      color: #fff;
+      padding: 10px 15px;
+
+      h6 {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+    }
+
+    .action-buttons {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 15px;
+
+      button {
+        width: 48%;
+        border-radius: 8px;
+      }
+    }
+
+    // &.high {
+    //   border: 2px solid #ff2d2d;
+    // }
+  }
+}

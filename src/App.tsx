@@ -16,6 +16,7 @@ const App: React.FC = () => {
   const isAboutInRoute = location.pathname === '/about';
   const isContactInRoute = location.pathname === '/contact';
   const isTandCInRoute = location.pathname === '/termsandCondition';
+  const isDriverDashboardRoute = location.pathname === '/dashboard';
 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
@@ -31,7 +32,8 @@ const App: React.FC = () => {
         !isSignInRoute &&
         !isForgotPassRoute &&
         !isResetPassRoute &&
-        !isPassupdateRoute && <Header />}
+        !isPassupdateRoute && 
+        !isDriverDashboardRoute && <Header />}
 
       <AppRoutes />
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { Link } from 'react-router-dom';
-import profile from '../../img/profile-pic.jpg';
+// import profile from '../../img/profile-pic.jpg';
 import FileUpload from '@/components/FileUpload';
 
 const DriverRegistration: React.FC = () => {
@@ -149,7 +149,7 @@ const DriverRegistration: React.FC = () => {
                         <FileUpload />
                         
                         <div className="d-flex registration-btns">
-                            <Button variant="primary" type="submit" className=" primary-btn">
+                            <Button variant="primary" type="submit" className="primary-btn" href='/dashboard'>
                                 Update
                             </Button>
                         </div>

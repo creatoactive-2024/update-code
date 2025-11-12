@@ -252,7 +252,7 @@ import amenities1 from "../../img/amen-1.svg";
 import amenities2 from "../../img/amen-2.svg";
 import amenities3 from "../../img/amen-3.svg";
 import amenities4 from "../../img/amen-4.svg";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 
 interface Service {
   id: number;
@@ -429,6 +429,25 @@ const AddonServices: React.FC = () => {
                   </Card.Body>
                 </Card>
               ))}
+              <Card className="service-card mb-3">
+                <div className="d-md-flex coupon-card w-100 px-3 py-4 gap-4">
+                    <Form.Group className="custome-form-group">
+                       <Form.Control
+                       type="text"
+                       placeholder="Enter coupon code"
+                       required
+                       />
+                   </Form.Group>
+                   <div className="d-flex registration-btns w-100">
+                     <Button variant="primary" type="submit" className="me-3 primary-btn">
+                         Redeem
+                     </Button>
+                     <Link to="" className="btn btn-secondary secondary-btn">
+                         Cancel
+                     </Link>
+                 </div>
+                </div>
+              </Card>
             </Col>
 
             {/* Right Column: Order Summary */}
