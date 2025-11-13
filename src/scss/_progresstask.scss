@@ -1,0 +1,304 @@
+.progress-task-bar{
+    margin-top: 69px;
+    .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    h6 {
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 120%;
+      color: $primary;
+      margin-bottom: 0;
+    }
+    .type {
+      color: $primary;
+      font-weight: 300;
+      font-size: 18px;
+      line-height: 120%;
+    }
+    span{
+        font-weight: 600;
+       font-size: 18px;
+      line-height: 120%; 
+       color: $primary;
+    }
+    }
+    .bottom-progress{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 18px;
+        line-height: 100%;
+        font-weight: 400;
+        color: #152B52;
+    }
+    .progress {
+      height: 12px;
+      border-radius: 10px;
+      margin-bottom: 16px;
+      margin-top: 16px;
+      background: rgba(217, 217, 217, 0.25);
+    }
+    .bg-primary{
+            background-color: #152B52 !important;
+    }
+    .bg-success{
+        background-color: #00BA48 !important;
+    }
+  
+}
+
+  
+
+
+.progress-task {
+  max-width: 946px;
+  margin: 40px auto 0;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+
+  
+
+  .tabs {
+    display: flex;
+    justify-content: space-between;
+    margin: 25px 0;
+    .tab-item {
+      text-align: center;
+      color: #aaa;
+      width: 18%;
+      .icon-circle {
+        width: 73px;
+        height: 73px;
+        border: 2px solid #ccc;
+        border-radius: 50%;
+        margin: 0 auto 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+      }
+
+      &.active .icon-circle {
+        background: #0b1d4d;
+        color: #fff;
+        border-color: #0b1d4d;
+      }
+
+      &.done .icon-circle {
+        background: #00BA48;
+        color: #fff;
+        border-color: #00BA48;
+        img{
+            filter: brightness(0) invert(1);
+        }
+      }
+
+      span {
+        font-size: 18px;
+        font-weight: 400;
+        color: $primary;
+        line-height: 100%;
+        width: 80%;
+        display: block;
+        text-align: center;
+        margin: 16px auto 0;
+      }
+    }
+  }
+
+  .form-section {
+    background: $primary;
+    color: #fff;
+    padding: 24px;
+    border-radius: 10px;
+    height: 392px;
+
+    h5 {
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 100%;
+      margin-bottom: 6px;
+    }
+    p{
+        font-weight: 300;
+      font-size: 16px;
+      line-height: 100%;
+    }
+    .inner-form{
+        margin-top: 50px;
+    }
+
+    .form-control {
+      background: #D9D9D9;
+      border: none;
+      border-radius: 10px;
+      padding:6px 10px;
+      font-weight: 600;
+      font-size: 24px;
+      color: $primary;
+      line-height: 100%;
+      margin-bottom: 28px;
+    }
+    .parking-lot-box{
+        padding:16px 24px;
+        h6{
+            font-weight: 600;
+            font-size: 24px;
+            line-height: 100%;
+            color: $primary;
+        }
+        p{
+            font-weight: 300;
+            font-size: 16px;
+            line-height: 100%;
+            color: $primary;
+        }
+    }
+    .w-14{
+        width: 16px;
+    }
+    .ready-box {
+      background: #d9d9d9;
+      border-radius: 8px;
+      padding: 16px;
+      color: #0e234b;
+      margin-bottom: 16px;
+
+      .ready-header {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 6px;
+
+        h6 {
+          font-weight: 600;
+          font-size: 24px;
+          line-height: 100%;
+          color: $primary;
+          margin: 0px;
+        }
+
+        
+      }
+
+      p {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 300;
+        color: $primary;
+      }
+    }
+
+    .summary-box {
+      background: #d9d9d9;
+      border-radius: 8px;
+      padding: 16px;
+      color: #0e234b;
+
+      h6 {
+        font-weight: 600;
+          font-size: 24px;
+          line-height: 100%;
+          color: $primary;
+          margin: 0px 0px 16px;
+      }
+
+      .summary-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+
+        p {
+          margin: 0 0px 16px;
+          font-weight: 300;
+          font-size: 16px;
+        }
+      }
+    }
+
+    .form-label{
+        font-size: 16px;
+        line-height: 100%;
+        font-weight: 300;
+        margin-bottom: 6px;
+        display: flex;
+        gap: 6px;
+        align-items: center;
+    }
+
+    .note {
+      color: $secondary;
+      margin-top: 10px;
+      font-size: 18px;
+      font-weight: 300;
+      strong{
+        font-weight: 600;
+      }
+    }
+    .navigation-btn{
+        border-radius: 10px;
+        background: $secondary;
+        color: #fff;
+        width: 100%;
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 100%;
+        display: flex;
+        gap: 6px;
+        align-items: center;
+        justify-content: center;
+        padding: 12px;
+        border: 0px;
+        margin-top: 12px;
+    }
+  }
+
+  .btn-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 23px;
+    gap: 24px;
+
+    .btn-primary {
+      background: $primary;
+      border: 1px solid transparent;
+      padding: 13px 25px;
+      border-radius: 10px;
+      font-size: 24px;
+      font-weight: 600;
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      align-items: center;
+      &:hover{
+        background: $secondary !important;
+      }
+    }
+
+    .btn-light {
+      padding: 13px 25px;
+      border-radius: 10px !important;
+      font-size: 24px;
+      font-weight: 600;
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      align-items: center;
+      padding: 8px 25px;
+      border-radius: 10px;
+      border: 1px solid #D9D9D9;
+      color: #D9D9D9;
+    }
+
+    .btn-primary:hover {
+      background: #102a7c;
+    }
+
+    .btn-light:disabled {
+      opacity: 0.7;
+    }
+  }
+}

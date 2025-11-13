@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Button, Dropdown } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import logo from "../../img/logo.png";
 import logout from "../../img/logout-two.svg";
 import filter from "../../img/filter.svg";
@@ -7,15 +8,31 @@ import driver1 from "../../img/driver-1.svg";
 import driver2 from "../../img/driver-2.svg";
 import driver3 from "../../img/driver-3.svg";
 import driver4 from "../../img/driver-4.svg";
+import user from "../../img/drivar/user.svg";
+import time from "../../img/drivar/time.svg";
+import location from "../../img/drivar/location.svg";
+import call from "../../img/drivar/call.svg";
+import plane from "../../img/drivar/plane.svg";
+import car from "../../img/drivar/car.svg";
+import color from "../../img/drivar/color.svg";
+import text from "../../img/drivar/text.svg";
+import accept from "../../img/drivar/done.svg";
+import cancle from "../../img/drivar/cancel.svg";
+import danger from "../../img/drivar/priority.svg";
+import dropoff from "../../img/drivar/droppoff.svg";
 
 interface Task {
   id: string;
   type: "Pick-Up" | "Drop-Off";
+  icon: string;
   client: string;
   time: string;
   terminal: string;
   flight: string;
+  call: string;
   vehicle: string;
+  color: string;
+  text: string;
   priority: "High" | "Normal" | "Low";
 }
 
@@ -34,42 +51,58 @@ const DriverDashboard: React.FC = () => {
     {
       id: "TD001",
       type: "Pick-Up",
+      icon: car,
       client: "Sarah Johnson",
       time: "2:30 PM",
       terminal: "Terminal A Gate A6",
+      call: "+1 (555) 234-5678",
       flight: "UA 1234",
-      vehicle: "Toyota Camry 2022 – Silver",
+      vehicle: "Toyota Camry 2022",
       priority: "High",
+      color: "silver",
+      text: "ABC-1234",
     },
     {
       id: "TD002",
       type: "Drop-Off",
+      icon: dropoff,
       client: "David Miller",
       time: "3:15 PM",
       terminal: "Terminal B Gate B2",
+      call: "+1 (555) 234-5678",
       flight: "AA 5678",
       vehicle: "Honda Accord 2021 – Black",
       priority: "Normal",
+      color: "silver",
+      text: "ABC-1234",
     },
     {
       id: "TD003",
       type: "Pick-Up",
+      icon: car,
       client: "Emily Carter",
       time: "4:05 PM",
       terminal: "Terminal C Gate C4",
+      call: "+1 (555) 234-5678",
       flight: "DL 7890",
       vehicle: "Tesla Model 3 2023 – White",
       priority: "High",
+      color: "silver",
+      text: "ABC-1234",
     },
     {
       id: "TD004",
       type: "Drop-Off",
+      icon: dropoff,
       client: "Jim Carry",
       time: "6:20 PM",
       terminal: "Terminal D Gate D5",
+      call: "+1 (555) 234-5678",
       flight: "BA 7780",
       vehicle: "BMW M5 2022 – Silver",
       priority: "Low",
+      color: "silver",
+      text: "ABC-1234",
     },
   ];
 
@@ -172,29 +205,39 @@ const DriverDashboard: React.FC = () => {
               filteredTasks.map((task, i) => (
                 <Col md={4} key={i}>
                   <div className={`task-card ${task.priority === "High" ? "high" : ""}`}>
+                    <div className="task-card-blue">
                     <div className="task-header">
-                      <h6>{task.type}</h6>
+                      <div className="task-name">
+                      <h6><img src={task.icon} className="task-icon" /> {task.type}</h6>
+                      <p>Task ID: {task.id}</p>
+                      </div>
                       <span className={`priority-tag ${task.priority.toLowerCase()}`}>
-                        {task.priority}
+                       <img src={danger} alt="priority" /> {task.priority}
                       </span>
                     </div>
 
                     <ul className="task-details">
-                      <li><strong>Task ID:</strong> {task.id}</li>
-                      <li><strong>Client:</strong> {task.client}</li>
-                      <li><strong>Time:</strong> {task.time}</li>
-                      <li><strong>Terminal:</strong> {task.terminal}</li>
-                      <li><strong>Flight:</strong> {task.flight}</li>
+                      <li><img src={user} alt="user" /> {task.client}</li>
+                      <li><img src={time} alt="time" /> {task.time}</li>
+                      <li><img src={location} alt="location" /> {task.terminal}</li>
+                      <li><img src={call} alt="call" /> {task.call}</li>
+                      <li><img src={plane} alt="plane" /> {task.flight}</li>
                     </ul>
-
+                    </div>
+                    <div className="task-card-orange">
                     <div className="vehicle-details">
-                      <h6>Vehicle Details</h6>
-                      <p>{task.vehicle}</p>
+                      <h6><img src={car} alt="car" /> Vehicle Details</h6>
+                      <ul className="task-details">
+                      <li><img src={car} alt="car" /> {task.vehicle}</li>
+                      <li><img src={color} alt="color" /> {task.color}</li>
+                      <li><img src={text} alt="location" /> {task.text}</li>
+                    </ul>
                     </div>
 
                     <div className="action-buttons">
-                      <Button variant="primary">Accept</Button>
-                      <Button variant="outline-danger">Reject</Button>
+                      <Button variant="primary" className="accept" as={Link} to="/progresstask"><img src={accept} alt="accept" />Accept</Button>
+                      <Button variant="outline-danger"><img src={cancle} alt="cancle" /> Reject</Button>
+                    </div>
                     </div>
                   </div>
                 </Col>

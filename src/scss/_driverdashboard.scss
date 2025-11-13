@@ -158,32 +158,57 @@
   }
 
   .task-card {
-    background: $primary;
+    .task-card-blue{
+      background: $primary;
+      padding: 24px 36px 0;
+    }
+    .task-card-orange{
+      background: $secondary;
+      padding: 24px 36px;
+    }
+    
     border-radius: 10px;
     color: #fff;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
     overflow: hidden;
-    padding: 24px 36px;
+    
 
     .task-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 15px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-
+      margin-bottom: 9px;
+      .task-name{
+        h6{
+          font-size: 16px;
+          font-weight: 600;
+          line-height: 100%;
+          margin-bottom: 6px;
+          display: flex;
+          gap: 6px;
+        }
+        p{
+          font-size: 14px;
+          font-weight: 300;
+          line-height: 100%;
+        }
+      }
       .priority-tag {
-        padding: 3px 8px;
+        padding: 5px;
         font-size: 12px;
-        border-radius: 5px;
+        line-height: 100%;
+        color: #fff;
+        display: flex;
+        gap: 4px;
+        border-radius: 10px;
         &.high {
-          background: #ff2d2d;
+          background: #F31928;
         }
         &.normal {
-          background: #00bf63;
+          background: #E68531;
         }
         &.low {
-          background: #ffb703;
+          background: #3771C8;
         }
       }
     }
@@ -192,32 +217,61 @@
       list-style: none;
       margin: 0;
       padding: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
 
       li {
         margin-bottom: 5px;
+        font-style: 14px;
+        font-weight: 300;
+        line-height: 100%;
+        display: flex;
+        gap: 6px;
       }
     }
 
     .vehicle-details {
-      background: #f7931e;
       color: #fff;
-      padding: 10px 15px;
 
       h6 {
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 600;
         margin-bottom: 4px;
+        display: flex;
+        gap: 6px;
       }
     }
 
     .action-buttons {
       display: flex;
       justify-content: space-between;
-      padding: 12px 15px;
+      gap: 12px;
 
-      button {
-        width: 48%;
-        border-radius: 8px;
+      button,a {
+        border-radius: 10px;
+        padding: 9px 0;
+        font-weight: 400;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        justify-content: center;
+        border: 1px solid #FFFFFF;
+        width: 100%;
+        color: #fff;
+        line-height: 100%;
+        &:hover{
+          background: #fff;
+          color: $primary;
+          img{
+            filter: brightness(0) saturate(100%) invert(15%) sepia(44%) saturate(1075%) hue-rotate(183deg) brightness(96%) contrast(99%);
+          }
+        }
+      }
+      .accept{
+        background: $primary;
+        border: 1px solid transparent;
       }
     }
 

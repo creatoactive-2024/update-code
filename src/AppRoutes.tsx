@@ -45,6 +45,7 @@ import SelectDriver from './pages/AdminPanel/pages/SelectDriver';
 import AdDriverDashboard from './pages/AdminPanel/pages/AdDriverDashboard';
 import SelectSupervisor from './pages/AdminPanel/pages/SelectSupervisor';
 import AdminSignIn from './pages/AdminPanel/pages/SignIn';
+import ProgressTask from './pages/DriverDashboard/ProgressTask';
 
 
 const AppRoutes: React.FC = () => (
@@ -79,6 +80,7 @@ const AppRoutes: React.FC = () => (
 
     <Route path='/dashboard' element={<DriverDashboard />} />
     <Route path='/driverregistration' element={<DriverRegistration />} />
+    <Route path='/progresstask' element={<ProgressTask />} />
 
     <Route path="/admin/signin" element={<AdminSignIn />} />
 
