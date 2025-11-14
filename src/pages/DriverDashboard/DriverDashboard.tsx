@@ -203,7 +203,7 @@ const DriverDashboard: React.FC = () => {
           <Row>
             {filteredTasks.length > 0 ? (
               filteredTasks.map((task, i) => (
-                <Col md={4} key={i}>
+                <Col md={6} lg={4} key={i}>
                   <div className={`task-card ${task.priority === "High" ? "high" : ""}`}>
                     <div className="task-card-blue">
                     <div className="task-header">

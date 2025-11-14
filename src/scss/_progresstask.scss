@@ -1,5 +1,8 @@
 .progress-task-bar{
     margin-top: 69px;
+    @media (max-width: 768px) {
+         margin-top: 30px;
+      }
     .header {
     display: flex;
     justify-content: space-between;
@@ -10,6 +13,9 @@
       line-height: 120%;
       color: $primary;
       margin-bottom: 0;
+      @media (max-width: 768px) {
+         font-size: 16px;
+      }
     }
     .type {
       color: $primary;
@@ -22,6 +28,9 @@
        font-size: 18px;
       line-height: 120%; 
        color: $primary;
+       @media (max-width: 768px) {
+         font-size: 16px;
+      }
     }
     }
     .bottom-progress{
@@ -32,6 +41,9 @@
         line-height: 100%;
         font-weight: 400;
         color: #152B52;
+        @media (max-width: 768px) {
+         font-size: 16px;
+        }
     }
     .progress {
       height: 12px;
@@ -58,13 +70,20 @@
   background: #fff;
   padding: 30px;
   border-radius: 12px;
-
+@media (max-width: 768px) {
+         max-width: 100%;
+         margin: 10px auto 0;
+         padding: 15px;
+        }
   
 
   .tabs {
     display: flex;
     justify-content: space-between;
     margin: 25px 0;
+    @media (max-width: 768px) {
+      margin: 14px 0;
+    }
     .tab-item {
       text-align: center;
       color: #aaa;
@@ -78,7 +97,20 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 22px;
+        @media (max-width: 992px) {
+         width: 50px;
+         height: 50px;
+         img{
+          width: 34px;
+         }
+        }
+        @media (max-width: 576px) {
+         width: 36px;
+         height: 36px;
+         img{
+          width: 24px;
+         }
+      }
       }
 
       &.active .icon-circle {
@@ -105,6 +137,16 @@
         display: block;
         text-align: center;
         margin: 16px auto 0;
+        @media (max-width: 992px) {
+         font-size: 16px;
+        }
+        @media (max-width: 768px) {
+         font-size: 14px;
+        }
+        @media (max-width: 576px) {
+         font-size: 10px;
+         width: 100%;
+        }
       }
     }
   }
@@ -115,20 +157,34 @@
     padding: 24px;
     border-radius: 10px;
     height: 392px;
+    @media (max-width: 768px) {
+        height: max-content;
+        padding: 12px;
+        }
 
     h5 {
       font-weight: 600;
       font-size: 24px;
       line-height: 100%;
       margin-bottom: 6px;
+      @media (max-width: 768px) {
+        font-size: 18px;
+        }
     }
     p{
         font-weight: 300;
       font-size: 16px;
       line-height: 100%;
+      @media (max-width: 768px) {
+        font-size: 14px;
+        }
+      
     }
     .inner-form{
         margin-top: 50px;
+        @media (max-width: 768px) {
+         margin-top: 30px;
+        }
     }
 
     .form-control {
@@ -141,6 +197,11 @@
       color: $primary;
       line-height: 100%;
       margin-bottom: 28px;
+       @media (max-width: 768px) {
+         padding: 4px 8px;
+         font-size: 16px;
+         margin-bottom: 20px;
+        }
     }
     .parking-lot-box{
         padding:16px 24px;
@@ -149,12 +210,18 @@
             font-size: 24px;
             line-height: 100%;
             color: $primary;
+            @media (max-width: 768px) {
+              font-size: 18px;
+            }
         }
         p{
             font-weight: 300;
             font-size: 16px;
             line-height: 100%;
             color: $primary;
+            @media (max-width: 768px) {
+              font-size: 12px;
+            }
         }
     }
     .w-14{
@@ -179,6 +246,9 @@
           line-height: 100%;
           color: $primary;
           margin: 0px 0 8px;
+          @media (max-width: 768px) {
+              font-size: 18px;
+            }
         }
 
         
@@ -189,6 +259,9 @@
         font-size: 16px;
         font-weight: 300;
         color: $primary;
+        @media (max-width: 768px) {
+              font-size: 12px;
+            }
       }
     }
 
@@ -210,11 +283,17 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 6px;
-
+        @media (max-width: 768px) {
+              grid-template-columns: repeat(1, 1fr);
+            }
         p {
           margin: 0 0px 16px;
           font-weight: 300;
           font-size: 16px;
+          @media (max-width: 768px) {
+              font-size: 12px;
+              margin: 0 0px 12px;
+            }
         }
       }
     }
@@ -227,6 +306,9 @@
         display: flex;
         gap: 6px;
         align-items: center;
+        @media (max-width: 768px) {
+         font-size: 14px;
+        }
     }
 
     .note {
@@ -237,6 +319,9 @@
       strong{
         font-weight: 600;
       }
+       @media (max-width: 768px) {
+         font-size: 14px;
+        }
     }
     .navigation-btn{
         border-radius: 10px;
@@ -253,6 +338,11 @@
         padding: 12px;
         border: 0px;
         margin-top: 12px;
+        @media (max-width: 768px) {
+         padding: 8px;
+         margin-top: 8px;
+         font-size: 18px;
+        }
     }
   }
 
@@ -273,6 +363,10 @@
       gap: 16px;
       justify-content: center;
       align-items: center;
+      @media (max-width: 768px) {
+        padding: 6px 15px;
+         font-size: 18px;
+        }
       &:hover{
         background: $secondary !important;
       }

@@ -18,6 +18,7 @@ const App: React.FC = () => {
   const isTandCInRoute = location.pathname === '/termsandCondition';
   const isDriverDashboardRoute = location.pathname === '/dashboard';
   const isProgressTaskRoute = location.pathname === '/progresstask';
+  const isDriverRegistrationRoute = location.pathname === '/driverregistration';
 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
@@ -48,7 +49,8 @@ const App: React.FC = () => {
         !isPassupdateRoute && 
         !isTandCInRoute &&
         !isDriverDashboardRoute &&
-        !isProgressTaskRoute && <FindUs />}
+        !isProgressTaskRoute && 
+        !isDriverRegistrationRoute && <FindUs />}
 
       {!isAdminRoute &&
         !(isSignInRoute && isMobile) &&
