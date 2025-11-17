@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import ProtectedAdminRoute from "@/components/ProtectedAdminRoute";
+import ProtectedDriverRoute from "@/components/ProtectedDriverRoute";
 
 import CheckoutButton from '@/pages/Website/CheckoutButton';
 
@@ -31,6 +32,7 @@ import MyProfile from '@/pages/CustomerDashboard/MyProfile';
 
 import DriverDashboard from '@/pages/DriverDashboard/DriverDashboard';
 import DriverRegistration from '@/pages/DriverDashboard/DriverRegistration';
+import DriverSignIn from '@/pages/DriverDashboard/SignIn';
 
 import AdminLayout from '@/pages/AdminPanel/AdminLayout';
 import AdminDashboard from '@/pages/AdminPanel/pages/Dashboard';
@@ -77,10 +79,13 @@ const AppRoutes: React.FC = () => (
     <Route path='/mybooking' element={<MyBooking />} />
     <Route path='/myprofile' element={<MyProfile />} />
 
-
-    <Route path='/dashboard' element={<DriverDashboard />} />
     <Route path='/driverregistration' element={<DriverRegistration />} />
-    <Route path='/progresstask' element={<ProgressTask />} />
+    <Route path="/driver/signin" element={<DriverSignIn />} />
+
+    <Route element={<ProtectedDriverRoute />}>
+      <Route path='/dashboard' element={<DriverDashboard />} />
+      <Route path='/progresstask' element={<ProgressTask />} />
+    </Route>
 
     <Route path="/admin/signin" element={<AdminSignIn />} />
 

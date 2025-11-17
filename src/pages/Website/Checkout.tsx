@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Button, Container, Row, Col, Card } from "react-bootstrap";
-import { useNavigate, useLocation } from "react-router-dom";
+import { Form, Button, Container, Row, Col, Card, Alert, Spinner } from "react-bootstrap";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 
 import oil from "../../img/oil-change.svg";
 import fuel from "../../img/fuel.svg";
@@ -66,6 +66,12 @@ const Checkout: React.FC = () => {
     bookingData?.selectedAddons || []
   );
 
+  // ✅ Coupon state
+  const [couponCode, setCouponCode] = useState("");
+  const [couponData, setCouponData] = useState<any>(null);
+  const [couponError, setCouponError] = useState<string | null>(null);
+  const [couponLoading, setCouponLoading] = useState(false);
+
   // ✅ Base price from previous step
   const basePrice = Number(bookingData?.totalPrice) || 0;
 
@@ -76,8 +82,13 @@ const Checkout: React.FC = () => {
   // ✅ Add-on totals
   const addonsTotal = selected.reduce((sum, s) => sum + s.price, 0);
   const subtotal = adjustedBasePrice + addonsTotal + (isValet ? 10 : 0); // valet fixed charge adds back $10
-  const tax = subtotal * 0.13;
-  const total = subtotal + tax;
+  
+  // ✅ Apply coupon discount if available
+  const discountAmount = couponData?.calculation?.discountAmount || 0;
+  const subtotalAfterDiscount = subtotal - discountAmount;
+  
+  const tax = subtotalAfterDiscount * 0.13;
+  const total = subtotalAfterDiscount + tax;
 
   // ✅ Toggle service selection
   const toggleService = (service: Service) => {
@@ -86,6 +97,74 @@ const Checkout: React.FC = () => {
         ? prev.filter((s) => s.id !== service.id)
         : [...prev, service]
     );
+  };
+
+  // ✅ Handle coupon redemption
+  const handleRedeemCoupon = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setCouponError(null);
+
+    if (!couponCode.trim()) {
+      setCouponError("Please enter a coupon code");
+      return;
+    }
+
+    try {
+      setCouponLoading(true);
+      
+      // Get user ID from localStorage or formData
+      const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
+      const userId = storedUser?._id || storedUser?.id || formData?.id || formData?.userId;
+
+      if (!userId) {
+        setCouponError("User not found. Please login first.");
+        setCouponLoading(false);
+        return;
+      }
+
+      // Get arrival date from booking data
+      const arrivalDate = bookingData?.dropOffDateTime 
+        ? new Date(bookingData.dropOffDateTime).toISOString().split('T')[0]
+        : bookingData?.arrivalDate 
+        ? bookingData.arrivalDate
+        : new Date().toISOString().split('T')[0]; // fallback to today
+
+      const response = await fetch(`${baseURL}/api/users/apply-coupon`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          code: couponCode.trim().toUpperCase(),
+          bookingAmount: subtotal,
+          userId: userId,
+          arrivalDate: arrivalDate,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Failed to apply coupon");
+      }
+
+      // Success - store coupon data
+      setCouponData(data);
+      setCouponError(null);
+      
+    } catch (err: any) {
+      setCouponError(err.message || "Something went wrong. Please try again.");
+      setCouponData(null);
+    } finally {
+      setCouponLoading(false);
+    }
+  };
+
+  // ✅ Handle cancel coupon
+  const handleCancelCoupon = () => {
+    setCouponCode("");
+    setCouponData(null);
+    setCouponError(null);
   };
 
   // ✅ Handle booking
@@ -278,6 +357,68 @@ const handleBookNow = async () => {
                   </Card.Body>
                 </Card>
               ))}
+
+              <Card className="service-card mb-3">
+                <Form onSubmit={handleRedeemCoupon}>
+                  <div className="d-md-flex coupon-card w-100 px-3 py-4 gap-4">
+                    <Form.Group className="custome-form-group flex-grow-1">
+                      <Form.Control
+                        type="text"
+                        placeholder="Enter coupon code"
+                        value={couponCode}
+                        onChange={(e) => setCouponCode(e.target.value)}
+                        disabled={couponLoading || !!couponData}
+                        required
+                      />
+                      {couponError && (
+                        <Alert variant="danger" className="mt-2 mb-0">
+                          {couponError}
+                        </Alert>
+                      )}
+                      {couponData && (
+                        <Alert variant="success" className="mt-2 mb-0">
+                          Coupon "{couponData.coupon.code}" applied successfully!
+                        </Alert>
+                      )}
+                    </Form.Group>
+                    <div className="d-flex registration-btns">
+                      <Button 
+                        variant="primary" 
+                        type="submit" 
+                        className="me-3 primary-btn"
+                        disabled={couponLoading || !!couponData}
+                      >
+                        {couponLoading ? (
+                          <>
+                            <Spinner
+                              as="span"
+                              animation="border"
+                              size="sm"
+                              role="status"
+                              aria-hidden="true"
+                              className="me-2"
+                            />
+                            Applying...
+                          </>
+                        ) : (
+                          "Redeem"
+                        )}
+                      </Button>
+                      {couponData && (
+                        <Button 
+                          variant="secondary" 
+                          type="button"
+                          className="secondary-btn"
+                          onClick={handleCancelCoupon}
+                        >
+                          Cancel
+                        </Button>
+                      )}
+                    </div>
+                  </div>
+                </Form>
+              </Card>
+
             </Col>
 
             {/* Right Column - Summary */}
@@ -323,6 +464,18 @@ const handleBookNow = async () => {
                   <p>Subtotal</p>
                   <span>${subtotal.toFixed(2)}</span>
                 </div>
+                
+                {/* Coupon discount */}
+                {couponData && (
+                  <div className="summary-item-sub" style={{ color: "#00BA48" }}>
+                    <p>
+                      Discount ({couponData.coupon.code})
+                      {couponData.coupon.discountType === "percentage" && ` - ${couponData.coupon.discountValue}%`}
+                    </p>
+                    <span>-${discountAmount.toFixed(2)}</span>
+                  </div>
+                )}
+                
                 <div className="summary-item-sub">
                   <p>Tax (13%)</p>
                   <span>${tax.toFixed(2)}</span>

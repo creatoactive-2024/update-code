@@ -429,7 +429,7 @@ const AddonServices: React.FC = () => {
                   </Card.Body>
                 </Card>
               ))}
-              <Card className="service-card mb-3">
+              {/* <Card className="service-card mb-3">
                 <div className="d-md-flex coupon-card w-100 px-3 py-4 gap-4">
                     <Form.Group className="custome-form-group">
                        <Form.Control
@@ -447,7 +447,7 @@ const AddonServices: React.FC = () => {
                      </Link>
                  </div>
                 </div>
-              </Card>
+              </Card> */}
             </Col>
 
             {/* Right Column: Order Summary */}
