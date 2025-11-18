@@ -17,8 +17,12 @@ interface Booking {
   addons: { name: string; price: number }[];
   vehicle: { make: string; type: string; color: string; licensePlate: string };
   totalAmount: number;
+  subtotal?: number;
+  tax?: number;
+  couponCode?: string | null;
+  discountAmount?: number;
   createdAt: string;
-  user: { name: string; email: string; phone?: string };
+  user: { name: string; email: string; phone?: string; firstName?: string; lastName?: string };
 }
 
 const Receipt: React.FC = () => {
@@ -254,11 +258,22 @@ const Receipt: React.FC = () => {
         <div className="totals-box">
           <Row>
             <Col>Subtotal</Col>
-            <Col className="text-end">${subtotal.toFixed(2)}</Col>
+            <Col className="text-end">${(booking.subtotal || subtotal).toFixed(2)}</Col>
           </Row>
+          
+          {/* Discount row - show only if coupon code exists */}
+          {booking.couponCode && booking.discountAmount && booking.discountAmount > 0 && (
+            <Row style={{ color: "#00BA48" }}>
+              <Col>
+                Discount ({booking.couponCode})
+              </Col>
+              <Col className="text-end">-${booking.discountAmount.toFixed(2)}</Col>
+            </Row>
+          )}
+          
           <Row>
             <Col>Tax (13%)</Col>
-            <Col className="text-end">${tax.toFixed(2)}</Col>
+            <Col className="text-end">${(booking.tax || tax).toFixed(2)}</Col>
           </Row>
 
           <Row className="total-amount">

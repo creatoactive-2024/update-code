@@ -256,7 +256,10 @@ const handleBookNow = async () => {
     const bookingSummary = {
       ...formData,
       ...bookingData,
-      totalAmount: total, // ✅ exact total
+      originalAmount: subtotal + tax, // ✅ Original total before discount
+      discountAmount: discountAmount, // ✅ Discount amount applied
+      totalAmount: total, // ✅ Final total after discount
+      couponCode: couponData?.coupon?.code || null, // ✅ Coupon code if applied
       email: storedUser?.email || formData?.email || "", // ✅ ADD THIS LINE
       vehicle:
         Array.isArray(formData?.vehicle) && formData.vehicle.length > 0
